@@ -13,6 +13,12 @@ struct RecipeService {
     func fetchRandomRecipe() async throws -> Recipe {
         let (data, response) = try await URLSession.shared.data(from: baseURL)
         
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("Response JSON String: \(jsonString)")
+        } else {
+            print("Unable to convert data to String")
+        }
+        
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }

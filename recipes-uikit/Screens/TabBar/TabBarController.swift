@@ -19,7 +19,7 @@ class TabBarController: UITabBarController {
         createRootControllers()
         setupTabItems()
         
-        self.viewControllers = [randomRecipeViewController,
+        self.viewControllers = [UINavigationController(rootViewController: randomRecipeViewController),
                                 historyViewController,
                                 favoritesViewController]
         self.selectedIndex = 0
