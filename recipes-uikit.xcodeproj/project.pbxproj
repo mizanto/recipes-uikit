@@ -16,6 +16,10 @@
 		AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B802C85C6B000029DD5 /* HistoryViewController.swift */; };
 		AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */; };
 		AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B842C85CA1900029DD5 /* TabBarController.swift */; };
+		AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8A2C85D35C00029DD5 /* Ingredient.swift */; };
+		AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8C2C85D37A00029DD5 /* Recipe.swift */; };
+		AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */; };
+		AD456B922C85D5B700029DD5 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B912C85D5B700029DD5 /* RecipeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		AD456B802C85C6B000029DD5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD456B842C85CA1900029DD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		AD456B8A2C85D35C00029DD5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		AD456B8C2C85D37A00029DD5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResponse.swift; sourceTree = "<group>"; };
+		AD456B912C85D5B700029DD5 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +71,9 @@
 			isa = PBXGroup;
 			children = (
 				AD456B862C85CDBB00029DD5 /* App */,
-				AD456B872C85CDCC00029DD5 /* TabBar */,
+				AD456B892C85D34B00029DD5 /* Models */,
 				AD456B882C85CDEB00029DD5 /* Screens */,
+				AD456B902C85D57B00029DD5 /* Services */,
 				AD456B702C85C59300029DD5 /* Main.storyboard */,
 				AD456B732C85C59500029DD5 /* Assets.xcassets */,
 				AD456B752C85C59500029DD5 /* LaunchScreen.storyboard */,
@@ -93,11 +102,30 @@
 		AD456B882C85CDEB00029DD5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				AD456B872C85CDCC00029DD5 /* TabBar */,
 				AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */,
 				AD456B802C85C6B000029DD5 /* HistoryViewController.swift */,
 				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		AD456B892C85D34B00029DD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AD456B8A2C85D35C00029DD5 /* Ingredient.swift */,
+				AD456B8C2C85D37A00029DD5 /* Recipe.swift */,
+				AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD456B902C85D57B00029DD5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AD456B912C85D5B700029DD5 /* RecipeService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +201,14 @@
 			files = (
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
+				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
 				AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */,
 				AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */,
+				AD456B922C85D5B700029DD5 /* RecipeService.swift in Sources */,
+				AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */,
+				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
