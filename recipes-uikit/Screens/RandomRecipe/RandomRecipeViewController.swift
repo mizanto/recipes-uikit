@@ -65,7 +65,7 @@ class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
             recipeView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             recipeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             recipeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            recipeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            recipeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             recipeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
