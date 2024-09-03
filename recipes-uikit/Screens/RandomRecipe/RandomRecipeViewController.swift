@@ -8,6 +8,8 @@
 import UIKit
 
 class RandomRecipeViewController: UIViewController {
+    
+    // TODO: Add a stub view for the first try
 
     private let recipeService = RecipeService()
     private let recipeView = RecipeView()
@@ -41,7 +43,15 @@ class RandomRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        // TODO: add logic to check if the recipe in favs
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(addToFavorites))
+        
+        navigationItem.rightBarButtonItem = favoriteButton
+        
         setupUI()
         loadLastViewedRecipe()
     }
@@ -110,6 +120,12 @@ class RandomRecipeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc private func addToFavorites() {
+        // TODO: add fav logic
+        print("Added to favorite")
+        // navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
     }
     
     private func showErrorAlert(message: String) {

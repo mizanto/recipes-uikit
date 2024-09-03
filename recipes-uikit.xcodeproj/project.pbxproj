@@ -22,6 +22,7 @@
 		AD456B922C85D5B700029DD5 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B912C85D5B700029DD5 /* RecipeService.swift */; };
 		AD456B952C85E8B000029DD5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD456B942C85E8B000029DD5 /* Kingfisher */; };
 		AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B972C85EA0400029DD5 /* RecipeView.swift */; };
+		AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResponse.swift; sourceTree = "<group>"; };
 		AD456B912C85D5B700029DD5 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		AD456B972C85EA0400029DD5 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				AD456B862C85CDBB00029DD5 /* App */,
+				AD456B992C871B5100029DD5 /* CommonViews */,
 				AD456B892C85D34B00029DD5 /* Models */,
 				AD456B882C85CDEB00029DD5 /* Screens */,
 				AD456B902C85D57B00029DD5 /* Services */,
@@ -139,6 +142,14 @@
 				AD456B972C85EA0400029DD5 /* RecipeView.swift */,
 			);
 			path = RandomRecipe;
+			sourceTree = "<group>";
+		};
+		AD456B992C871B5100029DD5 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */,
+			);
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
+				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,

@@ -35,18 +35,22 @@ class RecipeView: UIView {
         return label
     }()
     
-    private let categoryLabel: UILabel = {
-        let label = UILabel()
+    private let categoryLabel: PaddedLabel = {
+        let label = PaddedLabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
+        label.backgroundColor = .systemBlue
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let areaLabel: UILabel = {
-        let label = UILabel()
+    private let areaLabel: PaddedLabel = {
+        let label = PaddedLabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
+        label.backgroundColor = .systemGreen
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -110,6 +114,9 @@ class RecipeView: UIView {
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        imageView.addSubview(categoryLabel)
+        imageView.addSubview(areaLabel)
+        
         let stackView = UIStackView(arrangedSubviews: [
             imageView,
             ingredientsTitleLabel,
@@ -131,7 +138,16 @@ class RecipeView: UIView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0) // Правильное ограничение пропорции изображения
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0),
+            
+            categoryLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16),
+            categoryLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -16),
+            
+            areaLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -16),
+            areaLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -16),
+            
+            youtubeButton.heightAnchor.constraint(equalToConstant: 44),
+            sourceButton.heightAnchor.constraint(equalToConstant: 44),
         ])
 
         youtubeButton.addTarget(self, action: #selector(openYoutube), for: .touchUpInside)
@@ -145,6 +161,8 @@ class RecipeView: UIView {
     func configure(with recipe: Recipe) {
         currentRecipe = recipe
         imageView.kf.setImage(with: recipe.mealThumbURL)
+        categoryLabel.text = recipe.category
+        areaLabel.text = recipe.area
         setIngredientsText(recipe.ingredients.map { "\($0.name): \($0.measure)" }.joined(separator: "\n"))
         setInstructionsText(recipe.instructions)
     }
