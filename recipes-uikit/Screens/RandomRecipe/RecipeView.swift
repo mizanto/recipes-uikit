@@ -11,87 +11,15 @@ import Kingfisher
 class RecipeView: UIView {
     // MARK: - UI Elements
 
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let ingredientsTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Ingredients"
-        label.font = .boldSystemFont(ofSize: 17)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let ingredientsLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let categoryLabel: PaddedLabel = {
-        let label = PaddedLabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
-        label.backgroundColor = .systemBlue
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let areaLabel: PaddedLabel = {
-        let label = PaddedLabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
-        label.backgroundColor = .systemGreen
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let instructionsTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Instructions"
-        label.font = .boldSystemFont(ofSize: 17)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let instructionsLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let youtubeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Watch on YouTube", for: .normal)
-        button.backgroundColor = UIColor.systemRed
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let sourceButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("View Source", for: .normal)
-        button.backgroundColor = UIColor.systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private lazy var imageView: UIImageView = createImageView()
+    private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemBlue)
+    private lazy var areaLabel: PaddedLabel = createTagLabel(color: .systemGreen)
+    private lazy var ingredientsTitleLabel: UILabel = createTitleLabel(text: "Ingredients")
+    private lazy var ingredientsLabel: UILabel = createTextLabel()
+    private lazy var instructionsTitleLabel: UILabel = createTitleLabel(text: "Instructions")
+    private lazy var instructionsLabel: UILabel = createTextLabel()
+    private lazy var youtubeButton: UIButton = createLinkButton(title: "Watch on YouTube")
+    private lazy var sourceButton: UIButton = createLinkButton(title: "View Source")
     
     // MARK: - Init
 
@@ -168,6 +96,8 @@ class RecipeView: UIView {
         
         youtubeButton.isHidden = viewModel.youtubeURL == nil
         sourceButton.isHidden = viewModel.sourceURL == nil
+        categoryLabel.isHidden = viewModel.category == nil
+        areaLabel.isHidden = viewModel.area == nil
         
         currentRecipeURL = viewModel.youtubeURL
         currentSourceURL = viewModel.sourceURL
@@ -188,18 +118,14 @@ class RecipeView: UIView {
     // MARK: - Helpers
     
     private func setIngredientsText(_ text: String) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-
-        let attributedString = NSAttributedString(
-            string: text,
-            attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        )
-        
-        ingredientsLabel.attributedText = attributedString
+        ingredientsLabel.attributedText = formattedText(text)
     }
     
     private func setInstructionsText(_ text: String) {
+        instructionsLabel.attributedText = formattedText(text)
+    }
+    
+    private func formattedText(_ text: String) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
 
@@ -208,6 +134,51 @@ class RecipeView: UIView {
             attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]
         )
         
-        instructionsLabel.attributedText = attributedString
+        return attributedString
+    }
+    
+    private func createImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }
+    
+    private func createTitleLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = .boldSystemFont(ofSize: 17)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    private func createTextLabel() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    private func createTagLabel(color: UIColor) -> PaddedLabel {
+        let label = PaddedLabel()
+        label.font = .boldSystemFont(ofSize: 15)
+        label.textAlignment = .center
+        label.backgroundColor = color
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    private func createLinkButton(title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.backgroundColor = UIColor.systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }
 }
