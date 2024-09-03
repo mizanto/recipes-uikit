@@ -11,7 +11,8 @@ class RandomRecipeViewController: UIViewController {
     
     // TODO: Add a stub view for the first try
 
-    private let recipeService = RecipeService()
+    private let networkService = NetworkService()
+    private let storageService: StorageServiceProtocol
     private let recipeView = RecipeView()
     
     private let getRecipeButton: UIButton = {
@@ -39,6 +40,16 @@ class RandomRecipeViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    init(storageService: StorageServiceProtocol = StorageService()) {
+            self.storageService = storageService
+            super.init(nibName: nil, bundle: nil)
+        }
+        
+        required init?(coder: NSCoder) {
+            self.storageService = StorageService()
+            super.init(coder: coder)
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +64,8 @@ class RandomRecipeViewController: UIViewController {
         navigationItem.rightBarButtonItem = favoriteButton
         
         setupUI()
-        loadLastViewedRecipe()
+        
+        currentRecipe = storageService.loadLastViewedRecipe()
     }
     
     private func setupUI() {
@@ -89,28 +101,13 @@ class RandomRecipeViewController: UIViewController {
         recipeView.isHidden = true
     }
     
-    private func loadLastViewedRecipe() {
-        if let data = UserDefaults.standard.data(forKey: "lastRecipe"),
-           let savedRecipe = try? JSONDecoder().decode(Recipe.self, from: data) {
-            currentRecipe = savedRecipe
-        } else {
-            currentRecipe = nil
-        }
-    }
-    
-    private func saveLastRecipe(_ recipe: Recipe) {
-        if let data = try? JSONEncoder().encode(recipe) {
-            UserDefaults.standard.set(data, forKey: "lastRecipe")
-        }
-    }
-    
     @objc private func getRandomRecipe() {
         Task {
             do {
-                let recipe = try await recipeService.fetchRandomRecipe()
+                let recipe = try await networkService.fetchRandomRecipe()
                 DispatchQueue.main.async {
                     self.currentRecipe = recipe
-                    self.saveLastRecipe(recipe)
+                    self.storageService.saveLastRecipe(recipe)
                     self.scrollView.setContentOffset(.zero, animated: true)
                 }
             } catch {

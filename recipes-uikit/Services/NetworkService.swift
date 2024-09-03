@@ -1,5 +1,5 @@
 //
-//  RecipeService.swift
+//  NetworkService.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 2.09.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecipeService {
+struct NetworkService {
     private let baseURL = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")!
 
     func fetchRandomRecipe() async throws -> Recipe {

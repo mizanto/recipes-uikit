@@ -19,10 +19,11 @@
 		AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8A2C85D35C00029DD5 /* Ingredient.swift */; };
 		AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8C2C85D37A00029DD5 /* Recipe.swift */; };
 		AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */; };
-		AD456B922C85D5B700029DD5 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B912C85D5B700029DD5 /* RecipeService.swift */; };
+		AD456B922C85D5B700029DD5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B912C85D5B700029DD5 /* NetworkService.swift */; };
 		AD456B952C85E8B000029DD5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD456B942C85E8B000029DD5 /* Kingfisher */; };
 		AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B972C85EA0400029DD5 /* RecipeView.swift */; };
 		AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */; };
+		AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9C2C8730C600029DD5 /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,9 +41,10 @@
 		AD456B8A2C85D35C00029DD5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		AD456B8C2C85D37A00029DD5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResponse.swift; sourceTree = "<group>"; };
-		AD456B912C85D5B700029DD5 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
+		AD456B912C85D5B700029DD5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AD456B972C85EA0400029DD5 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		AD456B9C2C8730C600029DD5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +132,8 @@
 		AD456B902C85D57B00029DD5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AD456B912C85D5B700029DD5 /* RecipeService.swift */,
+				AD456B912C85D5B700029DD5 /* NetworkService.swift */,
+				AD456B9C2C8730C600029DD5 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -236,9 +239,10 @@
 				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
+				AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */,
 				AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */,
 				AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */,
-				AD456B922C85D5B700029DD5 /* RecipeService.swift in Sources */,
+				AD456B922C85D5B700029DD5 /* NetworkService.swift in Sources */,
 				AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */,
 				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);
