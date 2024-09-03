@@ -156,26 +156,32 @@ class RecipeView: UIView {
     
     // MARK: - Configure View
 
-    private var currentRecipe: Recipe?
+    private var currentRecipeURL: URL?
+    private var currentSourceURL: URL?
 
-    func configure(with recipe: Recipe) {
-        currentRecipe = recipe
-        imageView.kf.setImage(with: recipe.mealThumbURL)
-        categoryLabel.text = recipe.category
-        areaLabel.text = recipe.area
-        setIngredientsText(recipe.ingredients.map { "\($0.name): \($0.measure)" }.joined(separator: "\n"))
-        setInstructionsText(recipe.instructions)
+    func configure(with viewModel: RandomRecipeViewModel) {
+        imageView.kf.setImage(with: viewModel.mealThumbURL)
+        categoryLabel.text = viewModel.category
+        areaLabel.text = viewModel.area
+        setIngredientsText(viewModel.ingredients)
+        setInstructionsText(viewModel.instructions)
+        
+        youtubeButton.isHidden = viewModel.youtubeURL == nil
+        sourceButton.isHidden = viewModel.sourceURL == nil
+        
+        currentRecipeURL = viewModel.youtubeURL
+        currentSourceURL = viewModel.sourceURL
     }
 
     // MARK: - Actions
 
     @objc private func openYoutube() {
-        guard let url = currentRecipe?.youtubeURL else { return }
+        guard let url = currentRecipeURL else { return }
         UIApplication.shared.open(url)
     }
 
     @objc private func openSource() {
-        guard let url = currentRecipe?.sourceURL else { return }
+        guard let url = currentSourceURL else { return }
         UIApplication.shared.open(url)
     }
     

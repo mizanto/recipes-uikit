@@ -7,33 +7,22 @@
 
 import UIKit
 
-class RandomRecipeViewController: UIViewController {
+protocol RandomRecipeViewProtocol: AnyObject {
+    func displayRecipe(_ viewModel: RandomRecipeViewModel)
+    func displayError(_ message: String)
+}
+
+class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
     
-    // TODO: Add a stub view for the first try
-    
-    private let networkService: NetworkServiceProtocol
-    private let storageService: StorageServiceProtocol
+    var interactor: RandomRecipeInteractorProtocol?
     private let recipeView = RecipeView()
     
     private let getRecipeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Get Random Recipe", for: .normal)
-        button.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    private var currentRecipe: Recipe? {
-        didSet {
-            if let recipe = currentRecipe {
-                recipeView.isHidden = false
-                navigationItem.title = recipe.mealName
-                recipeView.configure(with: recipe)
-            } else {
-                recipeView.isHidden = true
-            }
-        }
-    }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -41,42 +30,28 @@ class RandomRecipeViewController: UIViewController {
         return scrollView
     }()
     
-    init(networkService: NetworkServiceProtocol = NetworkService(),
-         storageService: StorageServiceProtocol = StorageService()) {
-        self.storageService = storageService
-        self.networkService = networkService
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        self.storageService = StorageService()
-        self.networkService = NetworkService()
-        super.init(coder: coder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        // TODO: add logic to check if the recipe in favs
         let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(addToFavorites))
-        
         navigationItem.rightBarButtonItem = favoriteButton
         
         setupUI()
         
-        currentRecipe = storageService.loadLastViewedRecipe()
+        interactor?.loadLastViewedRecipe()
+        
+        getRecipeButton.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
     }
     
     private func setupUI() {
-        view.addSubview(scrollView)
-        
-        scrollView.addSubview(recipeView)
         recipeView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(recipeView)
         view.addSubview(getRecipeButton)
         
         NSLayoutConstraint.activate([
@@ -105,30 +80,24 @@ class RandomRecipeViewController: UIViewController {
     }
     
     @objc private func getRandomRecipe() {
-        Task {
-            do {
-                let recipe = try await networkService.fetchRandomRecipe()
-                DispatchQueue.main.async {
-                    self.currentRecipe = recipe
-                    self.storageService.saveLastRecipe(recipe)
-                    self.scrollView.setContentOffset(.zero, animated: true)
-                }
-            } catch {
-                print("Failed to fetch recipe: \(error)")
-                DispatchQueue.main.async {
-                    self.showErrorAlert(message: "Failed to fetch recipe. Please try again.")
-                }
-            }
-        }
+        interactor?.fetchRandomRecipe()
     }
     
     @objc private func addToFavorites() {
-        // TODO: add fav logic
-        print("Added to favorite")
-        // navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+        interactor?.saveRecipeToFavorites()
     }
     
-    private func showErrorAlert(message: String) {
+    // MARK: - RandomRecipeViewProtocol
+    
+    // TODO: add epty state
+    
+    func displayRecipe(_ viewModel: RandomRecipeViewModel) {
+        recipeView.isHidden = false
+        navigationItem.title = viewModel.mealName
+        recipeView.configure(with: viewModel)
+    }
+    
+    func displayError(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)

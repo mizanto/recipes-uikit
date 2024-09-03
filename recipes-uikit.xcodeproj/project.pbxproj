@@ -25,6 +25,10 @@
 		AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */; };
 		AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9C2C8730C600029DD5 /* StorageService.swift */; };
 		AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9E2C87343600029DD5 /* APIConfiguration.swift */; };
+		AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */; };
+		AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */; };
+		AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */; };
+		AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		AD456B9C2C8730C600029DD5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AD456B9E2C87343600029DD5 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeInteractor.swift; sourceTree = "<group>"; };
+		AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipePresenter.swift; sourceTree = "<group>"; };
+		AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +152,12 @@
 		AD456B962C85E9D400029DD5 /* RandomRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */,
+				AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */,
+				AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */,
 				AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */,
 				AD456B972C85EA0400029DD5 /* RecipeView.swift */,
+				AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */,
 			);
 			path = RandomRecipe;
 			sourceTree = "<group>";
@@ -238,11 +250,15 @@
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
 				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
+				AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */,
+				AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,
 				AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
+				AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
+				AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */,
 				AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */,
 				AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */,
 				AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */,
