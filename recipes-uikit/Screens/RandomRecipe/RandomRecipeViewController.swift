@@ -89,7 +89,7 @@ class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
     
     // MARK: - RandomRecipeViewProtocol
     
-    // TODO: add epty state
+    // TODO: add empty state
     
     func displayRecipe(_ viewModel: RandomRecipeViewModel) {
         recipeView.isHidden = false

@@ -10,7 +10,7 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private var randomRecipeViewController: UIViewController!
-    private var historyViewController: HistoryViewController!
+    private var historyViewController: UIViewController!
     private var favoritesViewController: FavoritesViewController!
 
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
         
         self.viewControllers = [
             UINavigationController(rootViewController: randomRecipeViewController),
-            historyViewController,
+            UINavigationController(rootViewController: historyViewController),
             favoritesViewController
         ]
         self.selectedIndex = 0
@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
     
     private func createRootControllers() {
         randomRecipeViewController = RandomRecipeModuleBuilder.build()
-        historyViewController = HistoryViewController()
+        historyViewController = HistoryModuleBuilder.build()
         favoritesViewController = FavoritesViewController()
     }
     

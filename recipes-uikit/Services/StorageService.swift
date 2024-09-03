@@ -12,6 +12,7 @@ protocol StorageServiceProtocol {
     func saveLastRecipe(_ recipe: Recipe)
     func loadRecipeHistory() -> [Recipe]
     func saveRecipeToHistory(_ recipe: Recipe)
+    func clearHistory()
 }
 
 final class StorageService: StorageServiceProtocol {
@@ -49,5 +50,9 @@ final class StorageService: StorageServiceProtocol {
         if let data = try? JSONEncoder().encode(history) {
             userDefaults.set(data, forKey: recipeHistoryKey)
         }
+    }
+    
+    func clearHistory() {
+        userDefaults.removeObject(forKey: recipeHistoryKey)
     }
 }

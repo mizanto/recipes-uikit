@@ -13,7 +13,6 @@
 		AD456B742C85C59500029DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD456B732C85C59500029DD5 /* Assets.xcassets */; };
 		AD456B772C85C59500029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B762C85C59500029DD5 /* Base */; };
 		AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */; };
-		AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B802C85C6B000029DD5 /* HistoryViewController.swift */; };
 		AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */; };
 		AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B842C85CA1900029DD5 /* TabBarController.swift */; };
 		AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8A2C85D35C00029DD5 /* Ingredient.swift */; };
@@ -29,6 +28,12 @@
 		AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */; };
 		AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */; };
 		AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */; };
+		AD456BAC2C8759E000029DD5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */; };
+		AD456BAE2C875A0E00029DD5 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAD2C875A0E00029DD5 /* HistoryInteractor.swift */; };
+		AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAF2C875A2900029DD5 /* HistoryPresenter.swift */; };
+		AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BB12C875A4600029DD5 /* HistoryModuleBuilder.swift */; };
+		AD456BB42C875B5200029DD5 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BB32C875B5200029DD5 /* HistoryViewModel.swift */; };
+		AD456BB62C875FB500029DD5 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BB52C875FB500029DD5 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +45,6 @@
 		AD456B762C85C59500029DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD456B782C85C59500029DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewController.swift; sourceTree = "<group>"; };
-		AD456B802C85C6B000029DD5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD456B842C85CA1900029DD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AD456B8A2C85D35C00029DD5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -55,6 +59,12 @@
 		AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipePresenter.swift; sourceTree = "<group>"; };
 		AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeModuleBuilder.swift; sourceTree = "<group>"; };
+		AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		AD456BAD2C875A0E00029DD5 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		AD456BAF2C875A2900029DD5 /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
+		AD456BB12C875A4600029DD5 /* HistoryModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModuleBuilder.swift; sourceTree = "<group>"; };
+		AD456BB32C875B5200029DD5 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		AD456BB52C875FB500029DD5 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +131,9 @@
 		AD456B882C85CDEB00029DD5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				AD456BAA2C87555F00029DD5 /* History */,
 				AD456B962C85E9D400029DD5 /* RandomRecipe */,
 				AD456B872C85CDCC00029DD5 /* TabBar */,
-				AD456B802C85C6B000029DD5 /* HistoryViewController.swift */,
 				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
 			);
 			path = Screens;
@@ -168,6 +178,19 @@
 				AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		AD456BAA2C87555F00029DD5 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				AD456BB12C875A4600029DD5 /* HistoryModuleBuilder.swift */,
+				AD456BAD2C875A0E00029DD5 /* HistoryInteractor.swift */,
+				AD456BAF2C875A2900029DD5 /* HistoryPresenter.swift */,
+				AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */,
+				AD456BB52C875FB500029DD5 /* HistoryTableViewCell.swift */,
+				AD456BB32C875B5200029DD5 /* HistoryViewModel.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,9 +274,12 @@
 				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
 				AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */,
+				AD456BB42C875B5200029DD5 /* HistoryViewModel.swift in Sources */,
 				AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
-				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,
+				AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */,
+				AD456BB62C875FB500029DD5 /* HistoryTableViewCell.swift in Sources */,
+				AD456BAE2C875A0E00029DD5 /* HistoryInteractor.swift in Sources */,
 				AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
 				AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */,
@@ -263,7 +289,9 @@
 				AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */,
 				AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */,
 				AD456B922C85D5B700029DD5 /* NetworkService.swift in Sources */,
+				AD456BAC2C8759E000029DD5 /* HistoryViewController.swift in Sources */,
 				AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */,
+				AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */,
 				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

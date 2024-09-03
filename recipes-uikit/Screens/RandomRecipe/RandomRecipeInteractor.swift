@@ -10,7 +10,6 @@ import Foundation
 protocol RandomRecipeInteractorProtocol: AnyObject {
     func fetchRandomRecipe()
     func saveRecipeToFavorites()
-    func saveLastViewedRecipe()
     func loadLastViewedRecipe()
 }
 
@@ -36,7 +35,8 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
                 let recipe = try await networkService.fetchRandomRecipe()
                 presenter.presentRecipe(recipe)
                 currentRecipe = recipe
-                saveLastViewedRecipe()
+                storageService.saveLastRecipe(recipe)
+                storageService.saveRecipeToHistory(recipe)
             } catch {
                 presenter.presentError(error)
             }
@@ -47,15 +47,6 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         if let recipe = currentRecipe {
             // TODO: add logic for Favorites
             print("Info: Recipe '\(recipe.mealName)' was saved to favorites.")
-        } else {
-            print("Error: Failed to save. Current recipe is nil.")
-        }
-    }
-    
-    func saveLastViewedRecipe() {
-        if let recipe = currentRecipe {
-            storageService.saveLastRecipe(recipe)
-            print("Info: Recipe '\(recipe)' was saved to favorites.")
         } else {
             print("Error: Failed to save. Current recipe is nil.")
         }
