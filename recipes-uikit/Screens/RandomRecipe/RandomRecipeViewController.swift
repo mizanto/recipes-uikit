@@ -10,8 +10,8 @@ import UIKit
 class RandomRecipeViewController: UIViewController {
     
     // TODO: Add a stub view for the first try
-
-    private let networkService = NetworkService()
+    
+    private let networkService: NetworkServiceProtocol
     private let storageService: StorageServiceProtocol
     private let recipeView = RecipeView()
     
@@ -34,23 +34,26 @@ class RandomRecipeViewController: UIViewController {
             }
         }
     }
-
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    init(storageService: StorageServiceProtocol = StorageService()) {
-            self.storageService = storageService
-            super.init(nibName: nil, bundle: nil)
-        }
-        
-        required init?(coder: NSCoder) {
-            self.storageService = StorageService()
-            super.init(coder: coder)
-        }
-
+    init(networkService: NetworkServiceProtocol = NetworkService(),
+         storageService: StorageServiceProtocol = StorageService()) {
+        self.storageService = storageService
+        self.networkService = networkService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.storageService = StorageService()
+        self.networkService = NetworkService()
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -73,7 +76,7 @@ class RandomRecipeViewController: UIViewController {
         
         scrollView.addSubview(recipeView)
         recipeView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         view.addSubview(getRecipeButton)
         
         NSLayoutConstraint.activate([
@@ -97,7 +100,7 @@ class RandomRecipeViewController: UIViewController {
             getRecipeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             getRecipeButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-
+        
         recipeView.isHidden = true
     }
     

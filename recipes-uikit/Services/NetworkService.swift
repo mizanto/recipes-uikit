@@ -7,11 +7,16 @@
 
 import Foundation
 
-struct NetworkService {
-    private let baseURL = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")!
+protocol NetworkServiceProtocol {
+    func fetchRandomRecipe() async throws -> Recipe
+}
 
-    func fetchRandomRecipe() async throws -> Recipe {
-        let (data, response) = try await URLSession.shared.data(from: baseURL)
+struct NetworkService: NetworkServiceProtocol {
+    
+    private let baseURL = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")!
+    
+    private func fetchData<T: Decodable>(from url: URL) async throws -> T {
+        let (data, response) = try await URLSession.shared.data(from: url)
         
         if let jsonString = String(data: data, encoding: .utf8) {
             print("Response JSON String: \(jsonString)")
@@ -24,7 +29,15 @@ struct NetworkService {
         }
         
         let decoder = JSONDecoder()
-        let decodedResponse = try decoder.decode(RecipesResponse.self, from: data)
+        return try decoder.decode(T.self, from: data)
+    }
+    
+    func fetchRandomRecipe() async throws -> Recipe {
+        guard let url = APIConfiguration.url(for: .randomRecipe) else {
+            throw URLError(.badURL)
+        }
+        
+        let decodedResponse: RecipesResponse = try await fetchData(from: url)
         
         guard let recipe = decodedResponse.meals.first else {
             throw URLError(.cannotParseResponse)

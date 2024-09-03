@@ -24,6 +24,7 @@
 		AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B972C85EA0400029DD5 /* RecipeView.swift */; };
 		AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */; };
 		AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9C2C8730C600029DD5 /* StorageService.swift */; };
+		AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9E2C87343600029DD5 /* APIConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		AD456B972C85EA0400029DD5 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		AD456B9C2C8730C600029DD5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		AD456B9E2C87343600029DD5 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		AD456B902C85D57B00029DD5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AD456B9E2C87343600029DD5 /* APIConfiguration.swift */,
 				AD456B912C85D5B700029DD5 /* NetworkService.swift */,
 				AD456B9C2C8730C600029DD5 /* StorageService.swift */,
 			);
@@ -237,6 +240,7 @@
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456B812C85C6B000029DD5 /* HistoryViewController.swift in Sources */,
+				AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
 				AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */,
