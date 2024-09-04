@@ -16,4 +16,5 @@ struct RandomRecipeViewModel {
     let instructions: String
     let youtubeURL: URL?
     let sourceURL: URL?
+    let isFavorite: Bool
 }

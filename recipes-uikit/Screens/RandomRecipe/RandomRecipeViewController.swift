@@ -32,18 +32,11 @@ class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         
-        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"),
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(addToFavorites))
-        navigationItem.rightBarButtonItem = favoriteButton
-        
+        setupNavigationBar()
         setupUI()
         
         interactor?.loadLastViewedRecipe()
-        
         getRecipeButton.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
     }
     
@@ -79,22 +72,38 @@ class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
         recipeView.isHidden = true
     }
     
+    private func setupNavigationBar() {
+        view.backgroundColor = .white
+        
+        let favoriteButton = UIBarButtonItem(
+            image: UIImage(systemName: "star"),
+            style: .plain,
+            target: self,
+            action: #selector(toggleFavoriteStatus)
+        )
+        navigationItem.rightBarButtonItem = favoriteButton
+    }
+    
+    // MARK: - Actions
+    
     @objc private func getRandomRecipe() {
         interactor?.fetchRandomRecipe()
     }
     
-    @objc private func addToFavorites() {
-        interactor?.saveRecipeToFavorites()
+    @objc private func toggleFavoriteStatus() {
+        interactor?.toggleFavoriteStatus()
     }
     
     // MARK: - RandomRecipeViewProtocol
-    
-    // TODO: add empty state
     
     func displayRecipe(_ viewModel: RandomRecipeViewModel) {
         recipeView.isHidden = false
         navigationItem.title = viewModel.mealName
         recipeView.configure(with: viewModel)
+        
+        let imageName = viewModel.isFavorite ? "star.fill" : "star"
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
+        navigationItem.rightBarButtonItem?.tintColor = viewModel.isFavorite ? .orange : .gray
     }
     
     func displayError(_ message: String) {

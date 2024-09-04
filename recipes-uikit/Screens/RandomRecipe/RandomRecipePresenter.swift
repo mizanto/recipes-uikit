@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RandomRecipePresenterProtocol: AnyObject {
-    func presentRecipe(_ recipe: Recipe)
+    func presentRecipe(_ recipe: Recipe, isFavorite: Bool)
     func presentError(_ error: Error)
 }
 
@@ -20,7 +20,7 @@ class RandomRecipePresenter: RandomRecipePresenterProtocol {
         self.view = view
     }
     
-    func presentRecipe(_ recipe: Recipe) {
+    func presentRecipe(_ recipe: Recipe, isFavorite: Bool) {
         let viewModel = RandomRecipeViewModel(
             mealName: recipe.mealName,
             mealThumbURL: recipe.mealThumbURL,
@@ -31,7 +31,8 @@ class RandomRecipePresenter: RandomRecipePresenterProtocol {
                                     .joined(separator: "\n"),
             instructions: recipe.instructions,
             youtubeURL: recipe.youtubeURL,
-            sourceURL: recipe.sourceURL
+            sourceURL: recipe.sourceURL,
+            isFavorite: isFavorite
         )
         
         DispatchQueue.main.async {

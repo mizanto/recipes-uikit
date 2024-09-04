@@ -206,12 +206,12 @@
 		AD456BB72C884CD200029DD5 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
+				AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */,
 				AD456BB82C884D1900029DD5 /* FavoritesInteractor.swift */,
 				AD456BBA2C884D3900029DD5 /* FavoritesPresenter.swift */,
-				AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */,
-				AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */,
+				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
 				AD456BC02C884D7B00029DD5 /* RecipeTableViewCell.swift */,
+				AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
