@@ -9,6 +9,7 @@ import Foundation
 
 protocol HistoryPresenterProtocol {
     func presentRecipeHistory(_ history: [Recipe])
+    func presentError(_ error: Error)
 }
 
 class HistoryPresenter: HistoryPresenterProtocol {
@@ -27,5 +28,9 @@ class HistoryPresenter: HistoryPresenterProtocol {
             )
         }
         view?.displayRecipeHistory(viewModel)
+    }
+    
+    func presentError(_ error: Error) {
+        view?.displayError(error.localizedDescription)
     }
 }

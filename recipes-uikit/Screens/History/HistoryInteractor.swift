@@ -23,12 +23,20 @@ class HistoryInteractor: HistoryInteractorProtocol {
     }
     
     func fetchHistory() {
-        let history = storageService.loadRecipeHistory()
-        presenter.presentRecipeHistory(history)
+        do {
+            let history = try storageService.loadRecipeHistory()
+            presenter.presentRecipeHistory(history)
+        } catch {
+            presenter.presentError(error)
+        }
     }
     
     func clearHistory() {
-        storageService.clearHistory()
-        presenter.presentRecipeHistory([])
+        do {
+            try storageService.clearHistory()
+            presenter.presentRecipeHistory([])
+        } catch {
+            presenter.presentError(error)
+        }
     }
 }

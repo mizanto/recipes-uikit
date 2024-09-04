@@ -35,8 +35,10 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
                 let recipe = try await networkService.fetchRandomRecipe()
                 presenter.presentRecipe(recipe)
                 currentRecipe = recipe
-                storageService.saveLastRecipe(recipe)
-                storageService.saveRecipeToHistory(recipe)
+                
+                try storageService.saveLastRecipe(recipe)
+                try storageService.saveRecipeToHistory(recipe)
+                
             } catch {
                 presenter.presentError(error)
             }
@@ -44,18 +46,26 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     }
     
     func saveRecipeToFavorites() {
-        if let recipe = currentRecipe {
-            // TODO: add logic for Favorites
+        guard let recipe = currentRecipe else {
+            presenter.presentError(StorageError.itemNotFound)
+            return
+        }
+        
+        do {
+            try storageService.addRecipeToFavorites(recipe)
             print("Info: Recipe '\(recipe.mealName)' was saved to favorites.")
-        } else {
-            print("Error: Failed to save. Current recipe is nil.")
+        } catch {
+            presenter.presentError(error)
         }
     }
     
     func loadLastViewedRecipe() {
-        if let recipe = storageService.loadLastViewedRecipe() {
+        do {
+            let recipe = try storageService.loadLastViewedRecipe()
             presenter.presentRecipe(recipe)
             currentRecipe = recipe
+        } catch {
+            presenter.presentError(error)
         }
     }
 }

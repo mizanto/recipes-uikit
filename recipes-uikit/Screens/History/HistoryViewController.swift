@@ -9,6 +9,7 @@ import UIKit
 
 protocol HistoryViewProtocol: AnyObject {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel])
+    func displayError(_ message: String)
 }
 
 class HistoryViewController: UIViewController {
@@ -18,9 +19,8 @@ class HistoryViewController: UIViewController {
     var interactor: HistoryInteractorProtocol?
     
     private let tableView = UITableView()
-    
     private var recipes: [HistoryViewModel] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -59,6 +59,12 @@ class HistoryViewController: UIViewController {
     @objc private func clearHistory() {
         interactor?.clearHistory()
     }
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
@@ -74,11 +80,19 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(with: recipe)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension HistoryViewController: HistoryViewProtocol {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel]) {
         self.recipes = viewModel
         tableView.reloadData()
+    }
+    
+    func displayError(_ message: String) {
+        showErrorAlert(message: message)
     }
 }
