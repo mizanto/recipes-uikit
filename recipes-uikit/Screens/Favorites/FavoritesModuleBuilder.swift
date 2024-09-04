@@ -11,7 +11,8 @@ final class FavoritesModuleBuilder {
     static func build() -> FavoritesViewController {
         let view = FavoritesViewController()
         let presenter = FavoritesPresenter(view: view)
-        let interactor = FavoritesInteractor(presenter: presenter)
+        let interactor = FavoritesInteractor()
+        interactor.presenter = presenter
         view.interactor = interactor
         return view
     }

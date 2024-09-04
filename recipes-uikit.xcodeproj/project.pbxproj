@@ -12,7 +12,7 @@
 		AD456B722C85C59300029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B712C85C59300029DD5 /* Base */; };
 		AD456B742C85C59500029DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD456B732C85C59500029DD5 /* Assets.xcassets */; };
 		AD456B772C85C59500029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B762C85C59500029DD5 /* Base */; };
-		AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */; };
+		AD456B7F2C85C67D00029DD5 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B7E2C85C67D00029DD5 /* RecipeViewController.swift */; };
 		AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */; };
 		AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B842C85CA1900029DD5 /* TabBarController.swift */; };
 		AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8A2C85D35C00029DD5 /* Ingredient.swift */; };
@@ -25,9 +25,9 @@
 		AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9C2C8730C600029DD5 /* StorageService.swift */; };
 		AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B9E2C87343600029DD5 /* APIConfiguration.swift */; };
 		AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */; };
-		AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */; };
+		AD456BA52C87447900029DD5 /* RecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA42C87447900029DD5 /* RecipePresenter.swift */; };
 		AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */; };
-		AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */; };
+		AD456BA92C87466A00029DD5 /* RecipeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BA82C87466A00029DD5 /* RecipeModuleBuilder.swift */; };
 		AD456BAC2C8759E000029DD5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */; };
 		AD456BAE2C875A0E00029DD5 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAD2C875A0E00029DD5 /* HistoryInteractor.swift */; };
 		AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BAF2C875A2900029DD5 /* HistoryPresenter.swift */; };
@@ -40,6 +40,8 @@
 		AD456BBF2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */; };
 		AD456BC32C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */; };
 		AD456BC52C88718A00029DD5 /* StoredRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC42C88718A00029DD5 /* StoredRecipe.swift */; };
+		AD456BC72C8887F600029DD5 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC62C8887F600029DD5 /* FavoritesRouter.swift */; };
+		AD456BC92C888F4F00029DD5 /* RecipeDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC82C888F4F00029DD5 /* RecipeDetailInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +52,7 @@
 		AD456B732C85C59500029DD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD456B762C85C59500029DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD456B782C85C59500029DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeViewController.swift; sourceTree = "<group>"; };
+		AD456B7E2C85C67D00029DD5 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD456B842C85CA1900029DD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AD456B8A2C85D35C00029DD5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -62,9 +64,9 @@
 		AD456B9C2C8730C600029DD5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AD456B9E2C87343600029DD5 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeInteractor.swift; sourceTree = "<group>"; };
-		AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipePresenter.swift; sourceTree = "<group>"; };
+		AD456BA42C87447900029DD5 /* RecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenter.swift; sourceTree = "<group>"; };
 		AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
-		AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeModuleBuilder.swift; sourceTree = "<group>"; };
+		AD456BA82C87466A00029DD5 /* RecipeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModuleBuilder.swift; sourceTree = "<group>"; };
 		AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		AD456BAD2C875A0E00029DD5 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
 		AD456BAF2C875A2900029DD5 /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
@@ -77,6 +79,8 @@
 		AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModel.swift; sourceTree = "<group>"; };
 		AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		AD456BC42C88718A00029DD5 /* StoredRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredRecipe.swift; sourceTree = "<group>"; };
+		AD456BC62C8887F600029DD5 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
+		AD456BC82C888F4F00029DD5 /* RecipeDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				AD456B872C85CDCC00029DD5 /* TabBar */,
-				AD456B962C85E9D400029DD5 /* RandomRecipe */,
+				AD456B962C85E9D400029DD5 /* Recipe */,
 				AD456BAA2C87555F00029DD5 /* History */,
 				AD456BB72C884CD200029DD5 /* Favorites */,
 			);
@@ -172,17 +176,18 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		AD456B962C85E9D400029DD5 /* RandomRecipe */ = {
+		AD456B962C85E9D400029DD5 /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
-				AD456BA82C87466A00029DD5 /* RandomRecipeModuleBuilder.swift */,
+				AD456BA82C87466A00029DD5 /* RecipeModuleBuilder.swift */,
 				AD456BA22C87443700029DD5 /* RandomRecipeInteractor.swift */,
-				AD456BA42C87447900029DD5 /* RandomRecipePresenter.swift */,
-				AD456B7E2C85C67D00029DD5 /* RandomRecipeViewController.swift */,
+				AD456BC82C888F4F00029DD5 /* RecipeDetailInteractor.swift */,
+				AD456BA42C87447900029DD5 /* RecipePresenter.swift */,
+				AD456B7E2C85C67D00029DD5 /* RecipeViewController.swift */,
 				AD456B972C85EA0400029DD5 /* RecipeView.swift */,
 				AD456BA62C8744D300029DD5 /* RecipeViewModel.swift */,
 			);
-			path = RandomRecipe;
+			path = Recipe;
 			sourceTree = "<group>";
 		};
 		AD456B992C871B5100029DD5 /* CommonViews */ = {
@@ -215,6 +220,7 @@
 				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
 				AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */,
 				AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */,
+				AD456BC62C8887F600029DD5 /* FavoritesRouter.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -296,21 +302,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD456BC72C8887F600029DD5 /* FavoritesRouter.swift in Sources */,
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
 				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
-				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
+				AD456B7F2C85C67D00029DD5 /* RecipeViewController.swift in Sources */,
 				AD456BBD2C884D4F00029DD5 /* FavoritesModuleBuilder.swift in Sources */,
 				AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */,
 				AD456BB42C875B5200029DD5 /* HistoryViewModel.swift in Sources */,
 				AD456BC52C88718A00029DD5 /* StoredRecipe.swift in Sources */,
-				AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */,
+				AD456BA92C87466A00029DD5 /* RecipeModuleBuilder.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */,
 				AD456BB62C875FB500029DD5 /* HistoryTableViewCell.swift in Sources */,
 				AD456BAE2C875A0E00029DD5 /* HistoryInteractor.swift in Sources */,
 				AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
-				AD456BA52C87447900029DD5 /* RandomRecipePresenter.swift in Sources */,
+				AD456BA52C87447900029DD5 /* RecipePresenter.swift in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
 				AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */,
 				AD456BBB2C884D3900029DD5 /* FavoritesPresenter.swift in Sources */,
@@ -324,6 +331,7 @@
 				AD456BAC2C8759E000029DD5 /* HistoryViewController.swift in Sources */,
 				AD456B8D2C85D37A00029DD5 /* RecipeDTO.swift in Sources */,
 				AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */,
+				AD456BC92C888F4F00029DD5 /* RecipeDetailInteractor.swift in Sources */,
 				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

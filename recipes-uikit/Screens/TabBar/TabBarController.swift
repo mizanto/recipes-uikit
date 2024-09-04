@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     }
     
     private func createRootControllers() {
-        randomRecipeViewController = RandomRecipeModuleBuilder.build()
+        randomRecipeViewController = RecipeModuleBuilder.buildRandomRecipe()
         historyViewController = HistoryModuleBuilder.build()
         favoritesViewController = FavoritesModuleBuilder.build()
     }

@@ -37,6 +37,7 @@ protocol StorageServiceProtocol {
     func saveRecipeToHistory(_ recipe: StoredRecipe) throws
     func clearHistory() throws
     func loadFavoriteRecipes() throws -> [StoredRecipe]
+    func loadFavoriteRecipe(by id: String) throws -> StoredRecipe
     func addRecipeToFavorites(_ recipe: StoredRecipe) throws
     func removeRecipeFromFavorites(_ recipe: StoredRecipe) throws
     func isRecipeFavorite(_ recipe: StoredRecipe) throws -> Bool
@@ -103,6 +104,14 @@ final class StorageService: StorageServiceProtocol {
             throw StorageError.decodingFailed
         }
         return savedFavorites
+    }
+    
+    func loadFavoriteRecipe(by id: String) throws -> StoredRecipe {
+        let favorites = try loadFavoriteRecipes()
+        guard let recipe = favorites.first(where: { $0.id == id }) else {
+            throw StorageError.itemNotFound
+        }
+        return recipe
     }
     
     func addRecipeToFavorites(_ recipe: StoredRecipe) throws {

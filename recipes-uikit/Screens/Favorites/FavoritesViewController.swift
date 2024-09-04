@@ -99,7 +99,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
 private extension FavoritesViewController {
     func createFavoritesLayout() -> UICollectionViewCompositionalLayout {
         // Cell Size
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(250))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(240))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         // Cell Insets

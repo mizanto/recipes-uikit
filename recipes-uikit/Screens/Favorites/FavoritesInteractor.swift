@@ -14,21 +14,20 @@ protocol FavoritesInteractorProtocol {
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
     
-    private let presenter: FavoritesPresenterProtocol
+    var presenter: FavoritesPresenterProtocol?
+    
     private let storageService: StorageServiceProtocol
     
-    init(presenter: FavoritesPresenterProtocol,
-         storageService: StorageServiceProtocol = StorageService()) {
-        self.presenter = presenter
+    init(storageService: StorageServiceProtocol = StorageService()) {
         self.storageService = storageService
     }
     
     func fetchFavoriteRecipes() {
         do {
             let favorites = try storageService.loadFavoriteRecipes()
-            presenter.presentFavoriteRecipes(favorites)
+            presenter?.presentFavoriteRecipes(favorites)
         } catch {
-            presenter.presentError(error)
+            presenter?.presentError(error)
         }
     }
     
@@ -40,7 +39,7 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
                 fetchFavoriteRecipes()
             }
         } catch {
-            presenter.presentError(error)
+            presenter?.presentError(error)
         }
     }
 }

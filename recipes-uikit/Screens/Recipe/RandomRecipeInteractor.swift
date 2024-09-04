@@ -7,22 +7,20 @@
 
 import Foundation
 
-protocol RandomRecipeInteractorProtocol: AnyObject {
+protocol RandomRecipeInteractorProtocol: RecipeInteractorProtocol {
     func fetchRandomRecipe()
-    func toggleFavoriteStatus()
-    func loadLastViewedRecipe()
 }
 
 class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     
-    private let presenter: RandomRecipePresenterProtocol
+    private let presenter: RecipePresenterProtocol
     private let networkService: NetworkServiceProtocol
     private let storageService: StorageServiceProtocol
     
     private var currentRecipe: StoredRecipe?
     private var isFavorite: Bool = false
     
-    init(presenter: RandomRecipePresenterProtocol,
+    init(presenter: RecipePresenterProtocol,
          networkService: NetworkServiceProtocol = NetworkService(),
          storageService: StorageServiceProtocol = StorageService()) {
         self.presenter = presenter
@@ -30,22 +28,48 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         self.storageService = storageService
     }
     
+    func fetchRecipe() {
+        if let recipe = currentRecipe {
+            presenter.presentRecipe(recipe, isFavorite: isFavorite)
+            return
+        }
+
+        if let recipe = try? storageService.loadLastViewedRecipe() {
+            processLoadedRecipe(recipe)
+            return
+        }
+        
+        fetchRandomRecipeFromNetwork()
+    }
+    
     func fetchRandomRecipe() {
+        fetchRandomRecipeFromNetwork()
+    }
+
+    private func fetchRandomRecipeFromNetwork() {
         Task {
             do {
                 let recipeDTO = try await networkService.fetchRandomRecipe()
                 let storedRecipe = StoredRecipe(from: recipeDTO)
-                currentRecipe = storedRecipe
-                
-                try storageService.saveLastRecipe(storedRecipe)
-                try storageService.saveRecipeToHistory(storedRecipe)
-                
-                isFavorite = try storageService.isRecipeFavorite(storedRecipe)
-                presenter.presentRecipe(storedRecipe, isFavorite: isFavorite)
-                
+                processLoadedRecipe(storedRecipe)
             } catch {
                 presenter.presentError(error)
             }
+        }
+    }
+    
+    private func processLoadedRecipe(_ recipe: StoredRecipe) {
+        currentRecipe = recipe
+        
+        do {
+            try storageService.saveLastRecipe(recipe)
+            try storageService.saveRecipeToHistory(recipe)
+            
+            isFavorite = try storageService.isRecipeFavorite(recipe)
+            
+            presenter.presentRecipe(recipe, isFavorite: isFavorite)
+        } catch {
+            presenter.presentError(error)
         }
     }
     
@@ -64,19 +88,6 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
                 isFavorite = true
             }
             presenter.presentRecipe(recipe, isFavorite: isFavorite)
-        } catch {
-            presenter.presentError(error)
-        }
-    }
-    
-    func loadLastViewedRecipe() {
-        do {
-            let recipe = try storageService.loadLastViewedRecipe()
-            currentRecipe = recipe
-            
-            isFavorite = try storageService.isRecipeFavorite(recipe)
-            presenter.presentRecipe(recipe, isFavorite: isFavorite)
-            
         } catch {
             presenter.presentError(error)
         }

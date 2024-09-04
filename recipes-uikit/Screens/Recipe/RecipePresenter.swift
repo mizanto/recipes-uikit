@@ -1,5 +1,5 @@
 //
-//  RandomRecipePresenter.swift
+//  RecipePresenter.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 3.09.2024.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol RandomRecipePresenterProtocol: AnyObject {
+protocol RecipePresenterProtocol: AnyObject {
     func presentRecipe(_ recipe: StoredRecipe, isFavorite: Bool)
     func presentError(_ error: Error)
 }
 
-class RandomRecipePresenter: RandomRecipePresenterProtocol {
+class RecipePresenter: RecipePresenterProtocol {
     
-    weak var view: RandomRecipeViewProtocol?
+    weak var view: RecipeViewProtocol?
     
-    init(view: RandomRecipeViewProtocol) {
+    init(view: RecipeViewProtocol) {
         self.view = view
     }
     
