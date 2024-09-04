@@ -44,6 +44,7 @@ class HistoryViewController: UIViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: "HistoryTableViewCell")

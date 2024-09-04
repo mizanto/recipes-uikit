@@ -16,6 +16,13 @@ class HistoryPresenter: HistoryPresenterProtocol {
     
     weak var view: HistoryViewProtocol?
     
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    
     init(view: HistoryViewProtocol) {
         self.view = view
     }
@@ -24,7 +31,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
         let viewModel = history.map { recipe in
             HistoryViewModel(
                 mealName: recipe.mealName,
-                isFavorite: false // TODO: add check logic
+                dateAdded: dateFormatter.string(from: recipe.dateAdded)
             )
         }
         view?.displayRecipeHistory(viewModel)

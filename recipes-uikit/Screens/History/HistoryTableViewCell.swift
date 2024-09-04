@@ -16,11 +16,12 @@ class HistoryTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let favoriteImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemYellow
-        return imageView
+    private let dateAddedLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,26 +35,22 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-            contentView.addSubview(mealNameLabel)
-            contentView.addSubview(favoriteImageView)
+        contentView.addSubview(mealNameLabel)
+        contentView.addSubview(dateAddedLabel)
+        
+        NSLayoutConstraint.activate([
+            mealNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mealNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            mealNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            NSLayoutConstraint.activate([
-                mealNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                mealNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-                mealNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-                
-                favoriteImageView.leadingAnchor.constraint(equalTo: mealNameLabel.trailingAnchor, constant: 8),
-                favoriteImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                favoriteImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                favoriteImageView.widthAnchor.constraint(equalToConstant: 24),
-                favoriteImageView.heightAnchor.constraint(equalToConstant: 24)
-            ])
-        }
+            dateAddedLabel.leadingAnchor.constraint(equalTo: mealNameLabel.leadingAnchor),
+            dateAddedLabel.topAnchor.constraint(equalTo: mealNameLabel.bottomAnchor, constant: 4),
+            dateAddedLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+        ])
+    }
     
     func configure(with viewModel: HistoryViewModel) {
         mealNameLabel.text = viewModel.mealName
-        if viewModel.isFavorite {
-            favoriteImageView.image = UIImage(systemName: "star.fill")
-        }
+        dateAddedLabel.text = viewModel.dateAdded
     }
 }
