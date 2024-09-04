@@ -24,7 +24,7 @@ class HistoryInteractor: HistoryInteractorProtocol {
     
     func fetchHistory() {
         do {
-            let history = try storageService.loadRecipeHistory()
+            let history = try Array(storageService.loadRecipeHistory().reversed())
             presenter.presentRecipeHistory(history)
         } catch {
             presenter.presentError(error)
