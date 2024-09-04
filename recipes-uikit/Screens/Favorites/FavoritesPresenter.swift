@@ -23,6 +23,7 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     func presentFavoriteRecipes(_ recipes: [StoredRecipe]) {
         let viewModel = recipes.map { recipe in
             FavoriteRecipeViewModel(
+                id: recipe.id, 
                 mealName: recipe.mealName,
                 category: recipe.category,
                 area: recipe.area,

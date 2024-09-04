@@ -18,7 +18,7 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     
     var interactor: FavoritesInteractorProtocol?
     private var favoriteRecipes: [FavoriteRecipeViewModel] = []
-
+    
     private lazy var collectionView: UICollectionView = {
         let layout = createFavoritesLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -80,6 +80,11 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
         let recipe = favoriteRecipes[indexPath.row]
         cell.configure(with: recipe)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedRecipe = favoriteRecipes[indexPath.row]
+        interactor?.selectRecipe(selectedRecipe)
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

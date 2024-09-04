@@ -10,11 +10,13 @@ import Foundation
 protocol FavoritesInteractorProtocol {
     func fetchFavoriteRecipes()
     func removeRecipeFromFavorites(_ viewModel: FavoriteRecipeViewModel)
+    func selectRecipe(_ viewModel: FavoriteRecipeViewModel)
 }
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
     
     var presenter: FavoritesPresenterProtocol?
+    var router: FavoritesRouterProtocol?
     
     private let storageService: StorageServiceProtocol
     
@@ -41,5 +43,9 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         } catch {
             presenter?.presentError(error)
         }
+    }
+    
+    func selectRecipe(_ viewModel: FavoriteRecipeViewModel) {
+        router?.navigateToRecipeDetail(with: viewModel.id)
     }
 }
