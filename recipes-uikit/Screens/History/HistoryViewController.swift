@@ -57,7 +57,22 @@ class HistoryViewController: UIViewController {
     }
     
     @objc private func clearHistory() {
-        interactor?.clearHistory()
+        let alertController = UIAlertController(
+            title: "Clear History",
+            message: "Are you sure you want to clear all recipe history? This action cannot be undone.",
+            preferredStyle: .alert
+        )
+
+        let clearAction = UIAlertAction(title: "Clear", style: .destructive) { [weak self] _ in
+            self?.interactor?.clearHistory()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(clearAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
     
     private func showErrorAlert(message: String) {
