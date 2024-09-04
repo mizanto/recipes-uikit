@@ -70,7 +70,7 @@ class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
     private func createTitleLabel() -> UILabel {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
