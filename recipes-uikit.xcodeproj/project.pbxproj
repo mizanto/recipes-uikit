@@ -16,7 +16,7 @@
 		AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */; };
 		AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B842C85CA1900029DD5 /* TabBarController.swift */; };
 		AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8A2C85D35C00029DD5 /* Ingredient.swift */; };
-		AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8C2C85D37A00029DD5 /* Recipe.swift */; };
+		AD456B8D2C85D37A00029DD5 /* RecipeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8C2C85D37A00029DD5 /* RecipeDTO.swift */; };
 		AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */; };
 		AD456B922C85D5B700029DD5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B912C85D5B700029DD5 /* NetworkService.swift */; };
 		AD456B952C85E8B000029DD5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD456B942C85E8B000029DD5 /* Kingfisher */; };
@@ -39,6 +39,7 @@
 		AD456BBD2C884D4F00029DD5 /* FavoritesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */; };
 		AD456BBF2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */; };
 		AD456BC32C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */; };
+		AD456BC52C88718A00029DD5 /* StoredRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC42C88718A00029DD5 /* StoredRecipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,7 @@
 		AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD456B842C85CA1900029DD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AD456B8A2C85D35C00029DD5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		AD456B8C2C85D37A00029DD5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		AD456B8C2C85D37A00029DD5 /* RecipeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDTO.swift; sourceTree = "<group>"; };
 		AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesResponse.swift; sourceTree = "<group>"; };
 		AD456B912C85D5B700029DD5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AD456B972C85EA0400029DD5 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModuleBuilder.swift; sourceTree = "<group>"; };
 		AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModel.swift; sourceTree = "<group>"; };
 		AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
+		AD456BC42C88718A00029DD5 /* StoredRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredRecipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				AD456B8A2C85D35C00029DD5 /* Ingredient.swift */,
-				AD456B8C2C85D37A00029DD5 /* Recipe.swift */,
+				AD456B8C2C85D37A00029DD5 /* RecipeDTO.swift */,
 				AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */,
+				AD456BC42C88718A00029DD5 /* StoredRecipe.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				AD456BBD2C884D4F00029DD5 /* FavoritesModuleBuilder.swift in Sources */,
 				AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */,
 				AD456BB42C875B5200029DD5 /* HistoryViewModel.swift in Sources */,
+				AD456BC52C88718A00029DD5 /* StoredRecipe.swift in Sources */,
 				AD456BA92C87466A00029DD5 /* RandomRecipeModuleBuilder.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */,
@@ -318,7 +322,7 @@
 				AD456BB92C884D1900029DD5 /* FavoritesInteractor.swift in Sources */,
 				AD456B922C85D5B700029DD5 /* NetworkService.swift in Sources */,
 				AD456BAC2C8759E000029DD5 /* HistoryViewController.swift in Sources */,
-				AD456B8D2C85D37A00029DD5 /* Recipe.swift in Sources */,
+				AD456B8D2C85D37A00029DD5 /* RecipeDTO.swift in Sources */,
 				AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */,
 				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);

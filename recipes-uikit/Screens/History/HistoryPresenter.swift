@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HistoryPresenterProtocol {
-    func presentRecipeHistory(_ history: [Recipe])
+    func presentRecipeHistory(_ history: [StoredRecipe])
     func presentError(_ error: Error)
 }
 
@@ -20,7 +20,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
         self.view = view
     }
     
-    func presentRecipeHistory(_ history: [Recipe]) {
+    func presentRecipeHistory(_ history: [StoredRecipe]) {
         let viewModel = history.map { recipe in
             HistoryViewModel(
                 mealName: recipe.mealName,

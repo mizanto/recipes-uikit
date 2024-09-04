@@ -19,7 +19,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     private let networkService: NetworkServiceProtocol
     private let storageService: StorageServiceProtocol
     
-    private var currentRecipe: Recipe?
+    private var currentRecipe: StoredRecipe?
     private var isFavorite: Bool = false
     
     init(presenter: RandomRecipePresenterProtocol,
@@ -33,14 +33,15 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     func fetchRandomRecipe() {
         Task {
             do {
-                let recipe = try await networkService.fetchRandomRecipe()
-                currentRecipe = recipe
+                let recipeDTO = try await networkService.fetchRandomRecipe()
+                let storedRecipe = StoredRecipe(from: recipeDTO)
+                currentRecipe = storedRecipe
                 
-                try storageService.saveLastRecipe(recipe)
-                try storageService.saveRecipeToHistory(recipe)
+                try storageService.saveLastRecipe(storedRecipe)
+                try storageService.saveRecipeToHistory(storedRecipe)
                 
-                isFavorite = try storageService.isRecipeFavorite(recipe)
-                presenter.presentRecipe(recipe, isFavorite: isFavorite)
+                isFavorite = try storageService.isRecipeFavorite(storedRecipe)
+                presenter.presentRecipe(storedRecipe, isFavorite: isFavorite)
                 
             } catch {
                 presenter.presentError(error)

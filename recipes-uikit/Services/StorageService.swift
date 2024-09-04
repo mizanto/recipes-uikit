@@ -31,15 +31,15 @@ enum StorageError: Error, LocalizedError {
 }
 
 protocol StorageServiceProtocol {
-    func loadLastViewedRecipe() throws -> Recipe
-    func saveLastRecipe(_ recipe: Recipe) throws
-    func loadRecipeHistory() throws -> [Recipe]
-    func saveRecipeToHistory(_ recipe: Recipe) throws
+    func loadLastViewedRecipe() throws -> StoredRecipe
+    func saveLastRecipe(_ recipe: StoredRecipe) throws
+    func loadRecipeHistory() throws -> [StoredRecipe]
+    func saveRecipeToHistory(_ recipe: StoredRecipe) throws
     func clearHistory() throws
-    func loadFavoriteRecipes() throws -> [Recipe]
-    func addRecipeToFavorites(_ recipe: Recipe) throws
-    func removeRecipeFromFavorites(_ recipe: Recipe) throws
-    func isRecipeFavorite(_ recipe: Recipe) throws -> Bool
+    func loadFavoriteRecipes() throws -> [StoredRecipe]
+    func addRecipeToFavorites(_ recipe: StoredRecipe) throws
+    func removeRecipeFromFavorites(_ recipe: StoredRecipe) throws
+    func isRecipeFavorite(_ recipe: StoredRecipe) throws -> Bool
 }
 
 final class StorageService: StorageServiceProtocol {
@@ -51,17 +51,17 @@ final class StorageService: StorageServiceProtocol {
     
     // MARK: - Last Viewed Recipe Methods
     
-    func loadLastViewedRecipe() throws -> Recipe {
+    func loadLastViewedRecipe() throws -> StoredRecipe {
         guard let data = userDefaults.data(forKey: recipeKey) else {
             throw StorageError.itemNotFound
         }
-        guard let savedRecipe = try? JSONDecoder().decode(Recipe.self, from: data) else {
+        guard let savedRecipe = try? JSONDecoder().decode(StoredRecipe.self, from: data) else {
             throw StorageError.decodingFailed
         }
         return savedRecipe
     }
     
-    func saveLastRecipe(_ recipe: Recipe) throws {
+    func saveLastRecipe(_ recipe: StoredRecipe) throws {
         guard let data = try? JSONEncoder().encode(recipe) else {
             throw StorageError.encodingFailed
         }
@@ -70,17 +70,17 @@ final class StorageService: StorageServiceProtocol {
     
     // MARK: - Recipe History Methods
     
-    func loadRecipeHistory() throws -> [Recipe] {
+    func loadRecipeHistory() throws -> [StoredRecipe] {
         guard let data = userDefaults.data(forKey: recipeHistoryKey) else {
             return []
         }
-        guard let savedHistory = try? JSONDecoder().decode([Recipe].self, from: data) else {
+        guard let savedHistory = try? JSONDecoder().decode([StoredRecipe].self, from: data) else {
             throw StorageError.decodingFailed
         }
         return savedHistory
     }
     
-    func saveRecipeToHistory(_ recipe: Recipe) throws {
+    func saveRecipeToHistory(_ recipe: StoredRecipe) throws {
         var history = try loadRecipeHistory()
         history.append(recipe)
         guard let data = try? JSONEncoder().encode(history) else {
@@ -95,17 +95,17 @@ final class StorageService: StorageServiceProtocol {
     
     // MARK: - Favorite Recipes Methods
     
-    func loadFavoriteRecipes() throws -> [Recipe] {
+    func loadFavoriteRecipes() throws -> [StoredRecipe] {
         guard let data = userDefaults.data(forKey: favoritesKey) else {
             return []
         }
-        guard let savedFavorites = try? JSONDecoder().decode([Recipe].self, from: data) else {
+        guard let savedFavorites = try? JSONDecoder().decode([StoredRecipe].self, from: data) else {
             throw StorageError.decodingFailed
         }
         return savedFavorites
     }
     
-    func addRecipeToFavorites(_ recipe: Recipe) throws {
+    func addRecipeToFavorites(_ recipe: StoredRecipe) throws {
         var favorites = try loadFavoriteRecipes()
         if favorites.contains(where: { $0.id == recipe.id }) {
             throw StorageError.alreadyInFavorites
@@ -117,7 +117,7 @@ final class StorageService: StorageServiceProtocol {
         userDefaults.set(data, forKey: favoritesKey)
     }
     
-    func removeRecipeFromFavorites(_ recipe: Recipe) throws {
+    func removeRecipeFromFavorites(_ recipe: StoredRecipe) throws {
         var favorites = try loadFavoriteRecipes()
         guard let index = favorites.firstIndex(where: { $0.id == recipe.id }) else {
             throw StorageError.itemNotFound
@@ -129,7 +129,7 @@ final class StorageService: StorageServiceProtocol {
         userDefaults.set(data, forKey: favoritesKey)
     }
     
-    func isRecipeFavorite(_ recipe: Recipe) throws -> Bool {
+    func isRecipeFavorite(_ recipe: StoredRecipe) throws -> Bool {
         let favorites = try loadFavoriteRecipes()
         return favorites.contains(where: { $0.id == recipe.id })
     }

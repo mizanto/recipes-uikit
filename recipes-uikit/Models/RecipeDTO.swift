@@ -1,5 +1,5 @@
 //
-//  Recipe.swift
+//  RecipeDTO.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 2.09.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe: Codable {
+struct RecipeDTO: Codable {
     let id: String
     let mealName: String
     let category: String?
@@ -41,7 +41,6 @@ struct Recipe: Codable {
         mealThumbURL = try container.decode(URL.self, forKey: .mealThumbURL)
         tags = try container.decodeIfPresent(String.self, forKey: .tags)
         
-        // Используем безопасное преобразование для URL
         if let youtubeString = try container.decodeIfPresent(String.self, forKey: .youtubeURL),
            let url = URL(string: youtubeString) {
             youtubeURL = url
@@ -56,7 +55,6 @@ struct Recipe: Codable {
             sourceURL = nil
         }
         
-        // Декодирование ингредиентов и мерок
         var ingredients: [Ingredient] = []
         let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
         
@@ -71,31 +69,6 @@ struct Recipe: Codable {
             }
         }
         self.ingredients = ingredients
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(mealName, forKey: .mealName)
-        try container.encodeIfPresent(category, forKey: .category)
-        try container.encodeIfPresent(area, forKey: .area)
-        try container.encode(instructions, forKey: .instructions)
-        try container.encode(mealThumbURL, forKey: .mealThumbURL)
-        try container.encodeIfPresent(tags, forKey: .tags)
-        
-        // Кодируем URL как String
-        try container.encodeIfPresent(youtubeURL?.absoluteString, forKey: .youtubeURL)
-        try container.encodeIfPresent(sourceURL?.absoluteString, forKey: .sourceURL)
-        
-        // Используем тот же метод для кодирования ингредиентов
-        var dynamicContainer = encoder.container(keyedBy: DynamicCodingKeys.self)
-        for (index, ingredient) in ingredients.enumerated() {
-            let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(index + 1)")!
-            let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(index + 1)")!
-            
-            try dynamicContainer.encode(ingredient.name, forKey: ingredientKey)
-            try dynamicContainer.encode(ingredient.measure, forKey: measureKey)
-        }
     }
 }
 

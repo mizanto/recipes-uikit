@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchRandomRecipe() async throws -> Recipe
+    func fetchRandomRecipe() async throws -> RecipeDTO
 }
 
 struct NetworkService: NetworkServiceProtocol {
@@ -32,7 +32,7 @@ struct NetworkService: NetworkServiceProtocol {
         return try decoder.decode(T.self, from: data)
     }
     
-    func fetchRandomRecipe() async throws -> Recipe {
+    func fetchRandomRecipe() async throws -> RecipeDTO {
         guard let url = APIConfiguration.url(for: .randomRecipe) else {
             throw URLError(.badURL)
         }
