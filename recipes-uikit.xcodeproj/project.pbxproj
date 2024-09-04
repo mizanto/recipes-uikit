@@ -38,7 +38,7 @@
 		AD456BBB2C884D3900029DD5 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBA2C884D3900029DD5 /* FavoritesPresenter.swift */; };
 		AD456BBD2C884D4F00029DD5 /* FavoritesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */; };
 		AD456BBF2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */; };
-		AD456BC12C884D7B00029DD5 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC02C884D7B00029DD5 /* RecipeTableViewCell.swift */; };
+		AD456BC32C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +74,7 @@
 		AD456BBA2C884D3900029DD5 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD456BBC2C884D4F00029DD5 /* FavoritesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModuleBuilder.swift; sourceTree = "<group>"; };
 		AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewModel.swift; sourceTree = "<group>"; };
-		AD456BC02C884D7B00029DD5 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,8 +210,8 @@
 				AD456BB82C884D1900029DD5 /* FavoritesInteractor.swift */,
 				AD456BBA2C884D3900029DD5 /* FavoritesPresenter.swift */,
 				AD456B822C85C6D500029DD5 /* FavoritesViewController.swift */,
-				AD456BC02C884D7B00029DD5 /* RecipeTableViewCell.swift */,
 				AD456BBE2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift */,
+				AD456BC22C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -296,7 +296,6 @@
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
 				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
 				AD456B7F2C85C67D00029DD5 /* RandomRecipeViewController.swift in Sources */,
-				AD456BC12C884D7B00029DD5 /* RecipeTableViewCell.swift in Sources */,
 				AD456BBD2C884D4F00029DD5 /* FavoritesModuleBuilder.swift in Sources */,
 				AD456BA72C8744D300029DD5 /* RecipeViewModel.swift in Sources */,
 				AD456BB42C875B5200029DD5 /* HistoryViewModel.swift in Sources */,
@@ -312,6 +311,7 @@
 				AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */,
 				AD456BBB2C884D3900029DD5 /* FavoritesPresenter.swift in Sources */,
 				AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */,
+				AD456BC32C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift in Sources */,
 				AD456B832C85C6D500029DD5 /* FavoritesViewController.swift in Sources */,
 				AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */,
 				AD456BBF2C884D6A00029DD5 /* FavoriteRecipeViewModel.swift in Sources */,

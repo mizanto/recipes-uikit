@@ -9,5 +9,7 @@ import Foundation
 
 struct FavoriteRecipeViewModel {
     let mealName: String
-    let isFavorite: Bool
+    let category: String?
+    let area: String?
+    let imageUrl: URL
 }

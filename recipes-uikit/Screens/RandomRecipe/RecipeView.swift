@@ -12,7 +12,7 @@ class RecipeView: UIView {
     // MARK: - UI Elements
 
     private lazy var imageView: UIImageView = createImageView()
-    private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemBlue)
+    private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemYellow)
     private lazy var areaLabel: PaddedLabel = createTagLabel(color: .systemGreen)
     private lazy var ingredientsTitleLabel: UILabel = createTitleLabel(text: "Ingredients")
     private lazy var ingredientsLabel: UILabel = createTextLabel()
@@ -140,6 +140,7 @@ class RecipeView: UIView {
     private func createImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -163,10 +164,11 @@ class RecipeView: UIView {
     
     private func createTagLabel(color: UIColor) -> PaddedLabel {
         let label = PaddedLabel()
-        label.font = .boldSystemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 15)
         label.textAlignment = .center
         label.backgroundColor = color
-        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
@@ -176,7 +178,7 @@ class RecipeView: UIView {
         button.setTitle(title, for: .normal)
         button.backgroundColor = UIColor.systemBlue
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 8
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
