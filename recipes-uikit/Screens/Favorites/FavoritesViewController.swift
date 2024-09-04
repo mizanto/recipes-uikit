@@ -61,6 +61,20 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(with: recipe)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completionHandler in
+            guard let self = self else { return }
+            
+            let recipeToDelete = self.favoriteRecipes[indexPath.row]
+            self.interactor?.removeRecipeFromFavorites(recipeToDelete)
+            
+            completionHandler(true)
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
 }
 
 extension FavoritesViewController: FavoritesViewProtocol {

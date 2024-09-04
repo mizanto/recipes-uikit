@@ -36,8 +36,13 @@ class RandomRecipeViewController: UIViewController, RandomRecipeViewProtocol {
         setupNavigationBar()
         setupUI()
         
-        interactor?.loadLastViewedRecipe()
         getRecipeButton.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        interactor?.loadLastViewedRecipe()
     }
     
     private func setupUI() {

@@ -9,7 +9,7 @@ import Foundation
 
 protocol FavoritesInteractorProtocol {
     func fetchFavoriteRecipes()
-    func removeRecipeFromFavorites(_ recipe: Recipe)
+    func removeRecipeFromFavorites(_ viewModel: FavoriteRecipeViewModel)
 }
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
@@ -32,10 +32,13 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         }
     }
     
-    func removeRecipeFromFavorites(_ recipe: Recipe) {
+    func removeRecipeFromFavorites(_ viewModel: FavoriteRecipeViewModel) {
         do {
-            try storageService.removeRecipeFromFavorites(recipe)
-            fetchFavoriteRecipes() // Refresh the list
+            let favorites = try storageService.loadFavoriteRecipes()
+            if let recipe = favorites.first(where: { $0.mealName == viewModel.mealName }) {
+                try storageService.removeRecipeFromFavorites(recipe)
+                fetchFavoriteRecipes()
+            }
         } catch {
             presenter.presentError(error)
         }

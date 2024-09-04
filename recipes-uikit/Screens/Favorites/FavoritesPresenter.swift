@@ -24,7 +24,7 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
         let viewModel = recipes.map { recipe in
             FavoriteRecipeViewModel(
                 mealName: recipe.mealName,
-                isFavorite: true // All recipes here are favorites
+                isFavorite: false
             )
         }
         view?.displayFavoriteRecipes(viewModel)
