@@ -87,7 +87,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedRecipe = favoriteRecipes[indexPath.row]
         AppLogger.shared.info("Selected favorite recipe: \(selectedRecipe.mealName)", category: .ui)
-        interactor?.selectRecipe(selectedRecipe)
+        interactor?.selectRecipe(withId: selectedRecipe.id)
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -96,7 +96,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
             
             let recipeToDelete = self.favoriteRecipes[indexPath.row]
             AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
-            self.interactor?.removeRecipeFromFavorites(recipeToDelete)
+            self.interactor?.removeRecipeFromFavorites(withId: recipeToDelete.id)
         }
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in

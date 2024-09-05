@@ -26,7 +26,8 @@ class HistoryInteractor: HistoryInteractorProtocol {
         AppLogger.shared.info("Fetching recipe history from storage", category: .database)
         
         do {
-            let history = try Array(storageService.loadRecipeHistory().reversed())
+            let history = try storageService.loadRecipeHistory()
+            
             AppLogger.shared.info("Fetched \(history.count) history items", category: .database)
             presenter.presentRecipeHistory(history)
         } catch {

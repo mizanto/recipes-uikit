@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchRandomRecipe() async throws -> RecipeDTO
+    func fetchRandomRecipe() async throws -> RecipeNetworkModel
 }
 
 struct NetworkService: NetworkServiceProtocol {
@@ -40,7 +40,7 @@ struct NetworkService: NetworkServiceProtocol {
         return try decoder.decode(T.self, from: data)
     }
     
-    func fetchRandomRecipe() async throws -> RecipeDTO {
+    func fetchRandomRecipe() async throws -> RecipeNetworkModel {
         guard let url = APIConfiguration.url(for: .randomRecipe) else {
             AppLogger.shared.error("Failed to construct URL for random recipe", 
                                    category: .network)

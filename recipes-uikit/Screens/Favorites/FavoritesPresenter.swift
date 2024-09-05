@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FavoritesPresenterProtocol {
-    func presentFavoriteRecipes(_ recipes: [StoredRecipe])
+    func presentFavoriteRecipes(_ recipes: [RecipeDataModel])
     func presentError(_ error: Error)
 }
 
@@ -20,7 +20,7 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
         self.view = view
     }
     
-    func presentFavoriteRecipes(_ recipes: [StoredRecipe]) {
+    func presentFavoriteRecipes(_ recipes: [RecipeDataModel]) {
         AppLogger.shared.info("Presenting \(recipes.count) favorite recipes", category: .ui)
         let viewModel = recipes.map { recipe in
             FavoriteRecipeViewModel(

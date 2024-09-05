@@ -1,5 +1,5 @@
 //
-//  RecipeDTO.swift
+//  RecipeNetworkModel.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 2.09.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecipeDTO: Codable {
+struct RecipeNetworkModel: Codable {
     let id: String
     let mealName: String
     let category: String?

@@ -17,7 +17,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     private let networkService: NetworkServiceProtocol
     private let storageService: StorageServiceProtocol
     
-    private var currentRecipe: StoredRecipe?
+    private var currentRecipe: RecipeDataModel?
     private var isFavorite: Bool = false
     
     init(presenter: RecipePresenterProtocol,
@@ -35,13 +35,14 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
             return
         }
 
-        if let recipe = try? storageService.loadLastViewedRecipe() {
+        do {
+            let recipe = try storageService.loadLastViewedRecipe()
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
             processLoadedRecipe(recipe)
-            return
+        } catch {
+            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)", category: .database)
+            fetchRandomRecipeFromNetwork()
         }
-        
-        fetchRandomRecipeFromNetwork()
     }
     
     func fetchRandomRecipe() {
@@ -52,10 +53,10 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         AppLogger.shared.info("Fetching random recipe from network...", category: .network)
         Task {
             do {
-                let recipeDTO = try await networkService.fetchRandomRecipe()
-                let storedRecipe = StoredRecipe(from: recipeDTO)
-                AppLogger.shared.info("Fetched random recipe: \(storedRecipe.mealName) from network", category: .network)
-                processLoadedRecipe(storedRecipe)
+                let recipeNetworkModel = try await networkService.fetchRandomRecipe()
+                let recipeDataModel = RecipeDataModel(from: recipeNetworkModel)
+                AppLogger.shared.info("Fetched random recipe: \(recipeDataModel.mealName) from network", category: .network)
+                processLoadedRecipe(recipeDataModel)
             } catch {
                 AppLogger.shared.error("Failed to fetch random recipe: \(error.localizedDescription)", category: .network)
                 presenter.presentError(error)
@@ -63,7 +64,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         }
     }
     
-    private func processLoadedRecipe(_ recipe: StoredRecipe) {
+    private func processLoadedRecipe(_ recipe: RecipeDataModel) {
         currentRecipe = recipe
         
         do {
@@ -72,8 +73,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
             try storageService.saveRecipeToHistory(recipe)
             AppLogger.shared.info("Added recipe to history: \(recipe.mealName)", category: .database)
             
-            isFavorite = try storageService.isRecipeFavorite(recipe)
-            
+            isFavorite = recipe.isFavorite
             presenter.presentRecipe(recipe, isFavorite: isFavorite)
         } catch {
             AppLogger.shared.error("Error processing loaded recipe: \(error.localizedDescription)", category: .database)
@@ -84,7 +84,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     func toggleFavoriteStatus() {
         guard let recipe = currentRecipe else {
             AppLogger.shared.error("No recipe available to toggle favorite status", category: .ui)
-            presenter.presentError(StorageError.itemNotFound)
+            presenter.presentError(StorageServiceError.itemNotFound)
             return
         }
         
@@ -98,6 +98,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
                 isFavorite = true
                 AppLogger.shared.info("Added recipe to favorites: \(recipe.mealName)", category: .database)
             }
+            currentRecipe?.isFavorite = isFavorite
             presenter.presentRecipe(recipe, isFavorite: isFavorite)
         } catch {
             AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)", category: .database)
