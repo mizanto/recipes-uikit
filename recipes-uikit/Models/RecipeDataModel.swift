@@ -114,10 +114,6 @@ struct RecipeDataModel {
         }
         entity.dateAdded = dateAdded
         entity.isFavorite = isFavorite
-
-        AppLogger.shared.info("Setting isFavorite to \(isFavorite)", category: .database)
-        AppLogger.shared.info("Entity isFavorite is now \(entity.isFavorite)", category: .database)
-
         return entity
     }
 }

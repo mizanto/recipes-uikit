@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HistoryPresenterProtocol {
-    func presentRecipeHistory(_ history: [RecipeDataModel])
+    func presentRecipeHistory(_ history: [HistoryItemDataModel])
     func presentError(_ error: Error)
 }
 
@@ -27,13 +27,13 @@ class HistoryPresenter: HistoryPresenterProtocol {
         self.view = view
     }
     
-    func presentRecipeHistory(_ history: [RecipeDataModel]) {
+    func presentRecipeHistory(_ history: [HistoryItemDataModel]) {
         AppLogger.shared.info("Presenting recipe history with \(history.count) items", category: .ui)
         
-        let viewModel = history.map { recipe in
+        let viewModel = history.map { item in
             HistoryViewModel(
-                mealName: recipe.mealName,
-                dateAdded: dateFormatter.string(from: recipe.dateAdded)
+                mealName: item.mealName,
+                dateAdded: dateFormatter.string(from: item.date)
             )
         }
         view?.displayRecipeHistory(viewModel)

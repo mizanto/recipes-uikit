@@ -50,6 +50,9 @@
 		AD456BF62C89E88500029DD5 /* RecipeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BF22C89E88500029DD5 /* RecipeEntity+CoreDataProperties.swift */; };
 		AD456BF72C89E88500029DD5 /* IngredientEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BF32C89E88500029DD5 /* IngredientEntity+CoreDataClass.swift */; };
 		AD456BF82C89E88500029DD5 /* IngredientEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BF42C89E88500029DD5 /* IngredientEntity+CoreDataProperties.swift */; };
+		AD456C002C89ECDD00029DD5 /* HistoryItemDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BFF2C89ECDD00029DD5 /* HistoryItemDataModel.swift */; };
+		AD456C0B2C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */; };
+		AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +100,9 @@
 		AD456BF22C89E88500029DD5 /* RecipeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AD456BF32C89E88500029DD5 /* IngredientEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AD456BF42C89E88500029DD5 /* IngredientEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AD456BFF2C89ECDD00029DD5 /* HistoryItemDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemDataModel.swift; sourceTree = "<group>"; };
+		AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,7 @@
 				AD456B8C2C85D37A00029DD5 /* RecipeNetworkModel.swift */,
 				AD456B8E2C85D56D00029DD5 /* RecipesResponse.swift */,
 				AD456BC42C88718A00029DD5 /* RecipeDataModel.swift */,
+				AD456BFF2C89ECDD00029DD5 /* HistoryItemDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,6 +254,8 @@
 		AD456BF92C89EB0C00029DD5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */,
+				AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */,
 				AD456BF12C89E88500029DD5 /* RecipeEntity+CoreDataClass.swift */,
 				AD456BF22C89E88500029DD5 /* RecipeEntity+CoreDataProperties.swift */,
 				AD456BF32C89E88500029DD5 /* IngredientEntity+CoreDataClass.swift */,
@@ -343,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD456BC72C8887F600029DD5 /* FavoritesRouter.swift in Sources */,
+				AD456C002C89ECDD00029DD5 /* HistoryItemDataModel.swift in Sources */,
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
 				AD456B9B2C871B7600029DD5 /* PaddedLabel.swift in Sources */,
 				AD456BD42C89C09700029DD5 /* CoreDataStack.swift in Sources */,
@@ -366,6 +376,8 @@
 				AD456BA52C87447900029DD5 /* RecipePresenter.swift in Sources */,
 				AD456BCE2C89BCDC00029DD5 /* Recipes.xcdatamodeld in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,
+				AD456C0B2C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift in Sources */,
+				AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */,
 				AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */,
 				AD456BDA2C89DA5400029DD5 /* IngredientArrayTransformer.swift in Sources */,
 				AD456BBB2C884D3900029DD5 /* FavoritesPresenter.swift in Sources */,
