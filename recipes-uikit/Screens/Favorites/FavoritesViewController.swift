@@ -7,8 +7,6 @@
 
 import UIKit
 
-import UIKit
-
 protocol FavoritesViewProtocol: AnyObject {
     func displayFavoriteRecipes(_ viewModel: [FavoriteRecipeViewModel])
     func displayError(_ message: String)
@@ -31,6 +29,7 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppLogger.shared.info("Favorites screen loaded", category: .ui)
         setupCollectionView()
         
         view.backgroundColor = .white
@@ -39,6 +38,7 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppLogger.shared.info("Fetching favorite recipes", category: .database)
         interactor?.fetchFavoriteRecipes()
     }
     
@@ -56,11 +56,13 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     // MARK: - FavoritesViewProtocol
     
     func displayFavoriteRecipes(_ viewModel: [FavoriteRecipeViewModel]) {
+        AppLogger.shared.info("Displaying \(viewModel.count) favorite recipes", category: .ui)
         self.favoriteRecipes = viewModel
         collectionView.reloadData()
     }
     
     func displayError(_ message: String) {
+        AppLogger.shared.error("Error displaying favorites: \(message)", category: .ui)
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -84,6 +86,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedRecipe = favoriteRecipes[indexPath.row]
+        AppLogger.shared.info("Selected favorite recipe: \(selectedRecipe.mealName)", category: .ui)
         interactor?.selectRecipe(selectedRecipe)
     }
     
@@ -92,6 +95,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
             guard let self = self else { return }
             
             let recipeToDelete = self.favoriteRecipes[indexPath.row]
+            AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
             self.interactor?.removeRecipeFromFavorites(recipeToDelete)
         }
         
@@ -111,7 +115,7 @@ private extension FavoritesViewController {
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         // Group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(250))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(240))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section

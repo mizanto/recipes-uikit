@@ -28,6 +28,8 @@ class HistoryPresenter: HistoryPresenterProtocol {
     }
     
     func presentRecipeHistory(_ history: [StoredRecipe]) {
+        AppLogger.shared.info("Presenting recipe history with \(history.count) items", category: .ui)
+        
         let viewModel = history.map { recipe in
             HistoryViewModel(
                 mealName: recipe.mealName,
@@ -38,6 +40,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
     }
     
     func presentError(_ error: Error) {
+        AppLogger.shared.error("Error presenting recipe history: \(error.localizedDescription)", category: .ui)
         view?.displayError(error.localizedDescription)
     }
 }

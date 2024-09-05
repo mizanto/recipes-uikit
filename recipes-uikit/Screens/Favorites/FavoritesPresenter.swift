@@ -21,9 +21,10 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     }
     
     func presentFavoriteRecipes(_ recipes: [StoredRecipe]) {
+        AppLogger.shared.info("Presenting \(recipes.count) favorite recipes", category: .ui)
         let viewModel = recipes.map { recipe in
             FavoriteRecipeViewModel(
-                id: recipe.id, 
+                id: recipe.id,
                 mealName: recipe.mealName,
                 category: recipe.category,
                 area: recipe.area,
@@ -34,6 +35,7 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     }
     
     func presentError(_ error: Error) {
+        AppLogger.shared.error("Error presenting favorite recipes: \(error.localizedDescription)", category: .ui)
         view?.displayError(error.localizedDescription)
     }
 }

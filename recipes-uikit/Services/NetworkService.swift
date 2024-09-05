@@ -19,12 +19,20 @@ struct NetworkService: NetworkServiceProtocol {
         let (data, response) = try await URLSession.shared.data(from: url)
         
         if let jsonString = String(data: data, encoding: .utf8) {
-            print("Response JSON String: \(jsonString)")
+            AppLogger.shared.debug("Response JSON String: \(jsonString)",
+                                   category: .network)
         } else {
-            print("Unable to convert data to String")
+            AppLogger.shared.error("Unable to convert data to String",
+                                   category: .network)
         }
         
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            AppLogger.shared.error("Failed to cast response to HTTPURLResponse", category: .network)
+            throw URLError(.badServerResponse)
+        }
+
+        if httpResponse.statusCode != 200 {
+            AppLogger.shared.error("Unexpected HTTP status code: \(httpResponse.statusCode)", category: .network)
             throw URLError(.badServerResponse)
         }
         
@@ -34,12 +42,16 @@ struct NetworkService: NetworkServiceProtocol {
     
     func fetchRandomRecipe() async throws -> RecipeDTO {
         guard let url = APIConfiguration.url(for: .randomRecipe) else {
+            AppLogger.shared.error("Failed to construct URL for random recipe", 
+                                   category: .network)
             throw URLError(.badURL)
         }
         
         let decodedResponse: RecipesResponse = try await fetchData(from: url)
         
         guard let recipe = decodedResponse.meals.first else {
+            AppLogger.shared.error("Failed to parse recipe from response", 
+                                   category: .network)
             throw URLError(.cannotParseResponse)
         }
         

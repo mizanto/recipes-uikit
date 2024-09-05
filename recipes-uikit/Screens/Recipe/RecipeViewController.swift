@@ -40,6 +40,7 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     init(screenType: ScreenType) {
         self.screenType = screenType
         super.init(nibName: nil, bundle: nil)
+        AppLogger.shared.info("RecipeViewController initialized with screen type: \(screenType)", category: .ui)
     }
     
     required init?(coder: NSCoder) {
@@ -48,12 +49,14 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppLogger.shared.info("viewDidLoad called", category: .ui)
         setupNavigationBar()
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppLogger.shared.info("viewWillAppear called", category: .ui)
         interactor?.fetchRecipe()
     }
     
@@ -96,6 +99,7 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
         ])
         
         recipeView.isHidden = true
+        AppLogger.shared.info("UI setup completed", category: .ui)
     }
     
     private func setupNavigationBar() {
@@ -108,23 +112,27 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
             action: #selector(toggleFavoriteStatus)
         )
         navigationItem.rightBarButtonItem = favoriteButton
+        AppLogger.shared.info("Navigation bar setup completed", category: .ui)
     }
     
     // MARK: - Actions
     
     @objc private func getRandomRecipe() {
+        AppLogger.shared.info("Get Random Recipe button tapped", category: .ui)
         if let randomInteractor = interactor as? RandomRecipeInteractorProtocol {
             randomInteractor.fetchRandomRecipe()
         } else {
+            AppLogger.shared.error("This screen does not support fetching a random recipe.", category: .ui)
             displayError("This screen does not support fetching a random recipe.")
         }
     }
     
     @objc private func toggleFavoriteStatus() {
+        AppLogger.shared.info("Toggle favorite status button tapped", category: .ui)
         interactor?.toggleFavoriteStatus()
     }
     
-    // MARK: - RandomRecipeViewProtocol
+    // MARK: - RecipeViewProtocol
     
     func displayRecipe(_ viewModel: RandomRecipeViewModel) {
         recipeView.isHidden = false
@@ -134,9 +142,12 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
         let imageName = viewModel.isFavorite ? "star.fill" : "star"
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
         navigationItem.rightBarButtonItem?.tintColor = viewModel.isFavorite ? .orange : .gray
+        
+        AppLogger.shared.info("Recipe displayed: \(viewModel.mealName)", category: .ui)
     }
     
     func displayError(_ message: String) {
+        AppLogger.shared.error("Error displayed: \(message)", category: .ui)
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)

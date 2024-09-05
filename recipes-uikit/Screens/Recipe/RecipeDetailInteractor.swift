@@ -29,20 +29,23 @@ class RecipeDetailInteractor: RecipeInteractorProtocol {
     }
     
     func fetchRecipe() {
+        AppLogger.shared.info("Fetching recipe with ID: \(recipeId)", category: .database)
         do {
             let recipe = try storageService.loadFavoriteRecipe(by: recipeId)
             currentRecipe = recipe
+            AppLogger.shared.info("Loaded recipe from favorites: \(recipe.mealName)", category: .database)
             
             isFavorite = try storageService.isRecipeFavorite(recipe)
             presenter.presentRecipe(recipe, isFavorite: isFavorite)
-            
         } catch {
+            AppLogger.shared.error("Failed to fetch recipe: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
         }
     }
     
     func toggleFavoriteStatus() {
         guard let recipe = currentRecipe else {
+            AppLogger.shared.error("No recipe available to toggle favorite status", category: .ui)
             presenter.presentError(StorageError.itemNotFound)
             return
         }
@@ -51,12 +54,15 @@ class RecipeDetailInteractor: RecipeInteractorProtocol {
             if isFavorite {
                 try storageService.removeRecipeFromFavorites(recipe)
                 isFavorite = false
+                AppLogger.shared.info("Removed recipe from favorites: \(recipe.mealName)", category: .database)
             } else {
                 try storageService.addRecipeToFavorites(recipe)
                 isFavorite = true
+                AppLogger.shared.info("Added recipe to favorites: \(recipe.mealName)", category: .database)
             }
             presenter.presentRecipe(recipe, isFavorite: isFavorite)
         } catch {
+            AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
         }
     }

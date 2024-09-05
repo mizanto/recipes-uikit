@@ -21,14 +21,16 @@ class RecipePresenter: RecipePresenterProtocol {
     }
     
     func presentRecipe(_ recipe: StoredRecipe, isFavorite: Bool) {
+        AppLogger.shared.info("Preparing to present recipe: \(recipe.mealName)", category: .ui)
+        
         let viewModel = RandomRecipeViewModel(
             mealName: recipe.mealName,
             mealThumbURL: recipe.mealThumbURL,
             category: recipe.category,
             area: recipe.area,
             ingredients: recipe.ingredients
-                                    .map { "\($0.name): \($0.measure)" }
-                                    .joined(separator: "\n"),
+                .map { "\($0.name): \($0.measure)" }
+                .joined(separator: "\n"),
             instructions: recipe.instructions,
             youtubeURL: recipe.youtubeURL,
             sourceURL: recipe.sourceURL,
@@ -36,11 +38,13 @@ class RecipePresenter: RecipePresenterProtocol {
         )
         
         DispatchQueue.main.async {
+            AppLogger.shared.info("Presenting кecipe: \(recipe.mealName)", category: .ui)
             self.view?.displayRecipe(viewModel)
         }
     }
     
     func presentError(_ error: Error) {
+        AppLogger.shared.error("Presenting error: \(error.localizedDescription)", category: .ui)
         DispatchQueue.main.async {
             self.view?.displayError(error.localizedDescription)
         }

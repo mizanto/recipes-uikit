@@ -14,8 +14,6 @@ protocol HistoryViewProtocol: AnyObject {
 
 class HistoryViewController: UIViewController {
     
-    // TODO: add timestamps to items in table
-    
     var interactor: HistoryInteractorProtocol?
     
     private let tableView = UITableView()
@@ -23,21 +21,14 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppLogger.shared.info("HistoryViewController loaded", category: .ui)
         setupTableView()
-        
-        view.backgroundColor = .white
-        title = "History"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Clear",
-            style: .plain,
-            target: self,
-            action: #selector(clearHistory)
-        )
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppLogger.shared.info("Fetching recipe history", category: .ui)
         interactor?.fetchHistory()
     }
     
@@ -57,7 +48,19 @@ class HistoryViewController: UIViewController {
         ])
     }
     
+    private func setupNavigationBar() {
+        title = "History"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Clear",
+            style: .plain,
+            target: self,
+            action: #selector(clearHistory)
+        )
+    }
+    
     @objc private func clearHistory() {
+        AppLogger.shared.info("Clear history button tapped", category: .ui)
         let alertController = UIAlertController(
             title: "Clear History",
             message: "Are you sure you want to clear all recipe history? This action cannot be undone.",
@@ -65,10 +68,13 @@ class HistoryViewController: UIViewController {
         )
 
         let clearAction = UIAlertAction(title: "Clear", style: .destructive) { [weak self] _ in
+            AppLogger.shared.info("User confirmed clearing history", category: .ui)
             self?.interactor?.clearHistory()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            AppLogger.shared.info("User cancelled clearing history", category: .ui)
+        }
 
         alertController.addAction(clearAction)
         alertController.addAction(cancelAction)
@@ -77,6 +83,7 @@ class HistoryViewController: UIViewController {
     }
     
     private func showErrorAlert(message: String) {
+        AppLogger.shared.error("Displaying error alert: \(message)", category: .ui)
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -98,17 +105,20 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        AppLogger.shared.info("Selected recipe at index: \(indexPath.row)", category: .ui)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension HistoryViewController: HistoryViewProtocol {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel]) {
+        AppLogger.shared.info("Displaying fetched recipe history", category: .ui)
         self.recipes = viewModel
         tableView.reloadData()
     }
     
     func displayError(_ message: String) {
+        AppLogger.shared.error("Error received from interactor: \(message)", category: .ui)
         showErrorAlert(message: message)
     }
 }

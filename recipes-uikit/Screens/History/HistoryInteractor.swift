@@ -23,19 +23,27 @@ class HistoryInteractor: HistoryInteractorProtocol {
     }
     
     func fetchHistory() {
+        AppLogger.shared.info("Fetching recipe history from storage", category: .database)
+        
         do {
             let history = try Array(storageService.loadRecipeHistory().reversed())
+            AppLogger.shared.info("Fetched \(history.count) history items", category: .database)
             presenter.presentRecipeHistory(history)
         } catch {
+            AppLogger.shared.error("Failed to fetch recipe history: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
         }
     }
     
     func clearHistory() {
+        AppLogger.shared.info("Clearing recipe history", category: .database)
+        
         do {
             try storageService.clearHistory()
+            AppLogger.shared.info("History cleared successfully", category: .database)
             presenter.presentRecipeHistory([])
         } catch {
+            AppLogger.shared.error("Failed to clear history: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
         }
     }
