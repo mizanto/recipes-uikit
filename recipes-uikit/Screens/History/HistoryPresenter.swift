@@ -30,13 +30,17 @@ class HistoryPresenter: HistoryPresenterProtocol {
     func presentRecipeHistory(_ history: [HistoryItemDataModel]) {
         AppLogger.shared.info("Presenting recipe history with \(history.count) items", category: .ui)
         
-        let viewModel = history.map { item in
-            HistoryViewModel(
-                mealName: item.mealName,
-                dateAdded: dateFormatter.string(from: item.date)
-            )
+        if history.isEmpty {
+            view?.displayPlaceholder()
+        } else {
+            let viewModel = history.map { item in
+                HistoryViewModel(
+                    mealName: item.mealName,
+                    dateAdded: dateFormatter.string(from: item.date)
+                )
+            }
+            view?.displayRecipeHistory(viewModel)
         }
-        view?.displayRecipeHistory(viewModel)
     }
     
     func presentError(_ error: Error) {

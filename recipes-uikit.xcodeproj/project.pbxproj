@@ -54,6 +54,7 @@
 		AD456C0B2C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */; };
 		AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */; };
 		AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */; };
+		AD456C102C8B37B400029DD5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyConfigurator.swift; sourceTree = "<group>"; };
+		AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				AD456B9A2C871B7600029DD5 /* PaddedLabel.swift */,
+				AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				AD456B8D2C85D37A00029DD5 /* RecipeNetworkModel.swift in Sources */,
 				AD456BB02C875A2900029DD5 /* HistoryPresenter.swift in Sources */,
 				AD456BC92C888F4F00029DD5 /* RecipeDetailInteractor.swift in Sources */,
+				AD456C102C8B37B400029DD5 /* PlaceholderView.swift in Sources */,
 				AD456B8F2C85D56D00029DD5 /* RecipesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
