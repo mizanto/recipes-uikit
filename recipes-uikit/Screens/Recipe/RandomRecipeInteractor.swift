@@ -51,6 +51,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
                 let recipeDataModel = RecipeDataModel(from: recipeNetworkModel)
                 AppLogger.shared.info("Fetched random recipe: \(recipeDataModel.mealName) from network", category: .network)
                 processLoadedRecipe(recipeDataModel)
+                saveRecipe(recipeDataModel)
                 saveRecipeToHistory(recipeDataModel)
             } catch {
                 AppLogger.shared.error("Failed to fetch random recipe: \(error.localizedDescription)", category: .network)
@@ -61,16 +62,16 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     
     private func processLoadedRecipe(_ recipe: RecipeDataModel) {
         currentRecipe = recipe
-        
+        isFavorite = recipe.isFavorite
+        presenter.presentRecipe(recipe, isFavorite: isFavorite)
+    }
+    
+    private func saveRecipe(_ recipe: RecipeDataModel) {
         do {
             try storageService.saveRecipe(recipe)
             AppLogger.shared.info("Saved last viewed recipe: \(recipe.mealName)", category: .database)
-            
-            isFavorite = recipe.isFavorite
-            presenter.presentRecipe(recipe, isFavorite: isFavorite)
         } catch {
-            AppLogger.shared.error("Error processing loaded recipe: \(error.localizedDescription)", category: .database)
-            presenter.presentError(error)
+            AppLogger.shared.error("Error saving loaded recipe: \(error.localizedDescription)", category: .database)
         }
     }
     
@@ -80,7 +81,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
             try storageService.saveRecipeToHistory(historyItem)
             AppLogger.shared.info("Added recipe to history: \(historyItem.mealName)", category: .database)
         } catch {
-            AppLogger.shared.error("Error saving loaded recipe: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)", category: .database)
         }
     }
     
