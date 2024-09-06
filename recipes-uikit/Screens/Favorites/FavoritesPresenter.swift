@@ -22,16 +22,21 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     
     func presentFavoriteRecipes(_ recipes: [RecipeDataModel]) {
         AppLogger.shared.info("Presenting \(recipes.count) favorite recipes", category: .ui)
-        let viewModel = recipes.map { recipe in
-            FavoriteRecipeViewModel(
-                id: recipe.id,
-                mealName: recipe.mealName,
-                category: recipe.category,
-                area: recipe.area,
-                imageUrl: recipe.mealThumbURL
-            )
+        
+        if recipes.isEmpty {
+            view?.displayPlaceholder()
+        } else {
+            let viewModel = recipes.map { recipe in
+                FavoriteRecipeViewModel(
+                    id: recipe.id,
+                    mealName: recipe.mealName,
+                    category: recipe.category,
+                    area: recipe.area,
+                    imageUrl: recipe.mealThumbURL
+                )
+            }
+            view?.displayFavoriteRecipes(viewModel)
         }
-        view?.displayFavoriteRecipes(viewModel)
     }
     
     func presentError(_ error: Error) {

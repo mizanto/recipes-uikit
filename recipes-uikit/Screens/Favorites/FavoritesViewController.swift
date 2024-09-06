@@ -9,10 +9,11 @@ import UIKit
 
 protocol FavoritesViewProtocol: AnyObject {
     func displayFavoriteRecipes(_ viewModel: [FavoriteRecipeViewModel])
+    func displayPlaceholder()
     func displayError(_ message: String)
 }
 
-class FavoritesViewController: UIViewController, FavoritesViewProtocol {
+class FavoritesViewController: UIViewController {
     
     var interactor: FavoritesInteractorProtocol?
     private var favoriteRecipes: [FavoriteRecipeViewModel] = []
@@ -20,17 +21,16 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     private lazy var collectionView: UICollectionView = {
         let layout = createFavoritesLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(FavoriteRecipeCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier)
         return collectionView
     }()
+    
+    private let placeholderView: PlaceholderView = PlaceholderView(type: .noFavorites)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         AppLogger.shared.info("Favorites screen loaded", category: .ui)
         setupCollectionView()
+        setupPlaceholderView()
         
         view.backgroundColor = .white
         title = "Favorites"
@@ -43,6 +43,11 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
     }
     
     private func setupCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(FavoriteRecipeCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier)
+        
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -53,19 +58,15 @@ class FavoritesViewController: UIViewController, FavoritesViewProtocol {
         ])
     }
     
-    // MARK: - FavoritesViewProtocol
-    
-    func displayFavoriteRecipes(_ viewModel: [FavoriteRecipeViewModel]) {
-        AppLogger.shared.info("Displaying \(viewModel.count) favorite recipes", category: .ui)
-        self.favoriteRecipes = viewModel
-        collectionView.reloadData()
-    }
-    
-    func displayError(_ message: String) {
-        AppLogger.shared.error("Error displaying favorites: \(message)", category: .ui)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+    private func setupPlaceholderView() {
+        view.addSubview(placeholderView)
+        placeholderView.translatesAutoresizingMaskIntoConstraints = false
+        placeholderView.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            placeholderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            placeholderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
 
@@ -123,5 +124,30 @@ private extension FavoritesViewController {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+}
+
+// MARK: - FavoritesViewProtocol
+
+extension FavoritesViewController: FavoritesViewProtocol {
+    func displayFavoriteRecipes(_ viewModel: [FavoriteRecipeViewModel]) {
+        AppLogger.shared.info("Displaying \(viewModel.count) favorite recipes", category: .ui)
+        self.favoriteRecipes = viewModel
+        collectionView.isHidden = false
+        placeholderView.isHidden = true
+        collectionView.reloadData()
+    }
+    
+    func displayError(_ message: String) {
+        AppLogger.shared.error("Error displaying favorites: \(message)", category: .ui)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    func displayPlaceholder() {
+        AppLogger.shared.info("Displaying placeholder", category: .ui)
+        placeholderView.isHidden = false
+        collectionView.isHidden = true
     }
 }
