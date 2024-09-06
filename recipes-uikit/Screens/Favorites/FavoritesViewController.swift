@@ -108,19 +108,16 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
 
 private extension FavoritesViewController {
     func createFavoritesLayout() -> UICollectionViewCompositionalLayout {
-        // Cell Size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(240))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        // Cell Insets
-        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        
-        // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(240))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(8)
         
-        // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 8
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
