@@ -51,11 +51,14 @@ class TabBarController: UITabBarController {
     
     private func setupTabItems() {
         randomRecipeViewController.tabBarItem = UITabBarItem(
-            title: "Random", image: UIImage(systemName: "shuffle"), tag: 0)
+            title: NSLocalizedString("random_tab.title", comment: ""),
+            image: UIImage(systemName: "shuffle"), tag: 0)
         historyViewController.tabBarItem = UITabBarItem(
-            title: "History", image: UIImage(systemName: "clock"), tag: 1)
+            title: NSLocalizedString("history_tab.title", comment: ""),
+            image: UIImage(systemName: "clock"), tag: 1)
         favoritesViewController.tabBarItem = UITabBarItem(
-            title: "Favorites", image: UIImage(systemName: "star"), tag: 2)
+            title: NSLocalizedString("random_tab.title", comment: ""),
+            image: UIImage(systemName: "star"), tag: 2)
     }
 
 }

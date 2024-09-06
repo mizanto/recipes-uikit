@@ -65,10 +65,10 @@ class HistoryViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "History"
+        title = NSLocalizedString("history_screen.title", comment: "")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Clear",
+            title: NSLocalizedString("clear_button.title", comment: ""),
             style: .plain,
             target: self,
             action: #selector(clearHistory)
@@ -78,17 +78,19 @@ class HistoryViewController: UIViewController {
     @objc private func clearHistory() {
         AppLogger.shared.info("Clear history button tapped", category: .ui)
         let alertController = UIAlertController(
-            title: "Clear History",
-            message: "Are you sure you want to clear all recipe history? This action cannot be undone.",
+            title: NSLocalizedString("clear_history_alert.title", comment: ""),
+            message: NSLocalizedString("clear_history_alert.message", comment: ""),
             preferredStyle: .alert
         )
         
-        let clearAction = UIAlertAction(title: "Clear", style: .destructive) { [weak self] _ in
+        let clearAction = UIAlertAction(
+            title: NSLocalizedString("clear_button.title", comment: ""), style: .destructive) { [weak self] _ in
             AppLogger.shared.info("User confirmed clearing history", category: .ui)
             self?.interactor?.clearHistory()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancel_button.title", comment: ""), style: .cancel) { _ in
             AppLogger.shared.info("User cancelled clearing history", category: .ui)
         }
         
@@ -100,8 +102,9 @@ class HistoryViewController: UIViewController {
     
     private func showErrorAlert(message: String) {
         AppLogger.shared.error("Displaying error alert: \(message)", category: .ui)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(
+            title: NSLocalizedString("error.title", comment: ""), message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""), style: .default))
         present(alert, animated: true)
     }
 }
@@ -129,17 +132,17 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 extension HistoryViewController: HistoryViewProtocol {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel]) {
         AppLogger.shared.info("Displaying fetched recipe history", category: .ui)
-                self.recipes = viewModel
-                tableView.isHidden = false
-                placeholderView.isHidden = true
-                tableView.reloadData()
+        self.recipes = viewModel
+        tableView.isHidden = false
+        placeholderView.isHidden = true
+        tableView.reloadData()
     }
     
     func displayPlaceholder() {
-            AppLogger.shared.info("Displaying placeholder", category: .ui)
-            placeholderView.isHidden = false
-            tableView.isHidden = true
-        }
+        AppLogger.shared.info("Displaying placeholder", category: .ui)
+        placeholderView.isHidden = false
+        tableView.isHidden = true
+    }
     
     func displayError(_ message: String) {
         AppLogger.shared.error("Error received from interactor: \(message)", category: .ui)

@@ -33,7 +33,7 @@ class FavoritesViewController: UIViewController {
         setupPlaceholderView()
         
         view.backgroundColor = .white
-        title = "Favorites"
+        title = NSLocalizedString("favorites_screen.title", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +68,18 @@ class FavoritesViewController: UIViewController {
             placeholderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+    
+    private func showErrorAlert(message: String) {
+        AppLogger.shared.error("Displaying error alert: \(message)", category: .ui)
+        let alert = UIAlertController(
+            title: NSLocalizedString("error.title", comment: ""), message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""), style: .default))
+        present(alert, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource & UICollectionViewDelegate
+
 extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteRecipes.count
@@ -92,7 +101,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] _ in
+        let deleteAction = UIAction(title: NSLocalizedString("delete_action.title", comment: ""), attributes: .destructive) { [weak self] _ in
             guard let self = self else { return }
             
             let recipeToDelete = self.favoriteRecipes[indexPath.row]
@@ -137,9 +146,7 @@ extension FavoritesViewController: FavoritesViewProtocol {
     
     func displayError(_ message: String) {
         AppLogger.shared.error("Error displaying favorites: \(message)", category: .ui)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        showErrorAlert(message: message)
     }
     
     func displayPlaceholder() {

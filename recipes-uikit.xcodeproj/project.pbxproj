@@ -55,6 +55,7 @@
 		AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */; };
 		AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */; };
 		AD456C102C8B37B400029DD5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */; };
+		AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyConfigurator.swift; sourceTree = "<group>"; };
 		AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +147,8 @@
 				AD456B892C85D34B00029DD5 /* Models */,
 				AD456B882C85CDEB00029DD5 /* Screens */,
 				AD456B902C85D57B00029DD5 /* Services */,
+				AD456C112C8B5C8700029DD5 /* Resources */,
 				AD456B702C85C59300029DD5 /* Main.storyboard */,
-				AD456B732C85C59500029DD5 /* Assets.xcassets */,
-				AD456B752C85C59500029DD5 /* LaunchScreen.storyboard */,
 				AD456B782C85C59500029DD5 /* Info.plist */,
 			);
 			path = "recipes-uikit";
@@ -280,6 +281,16 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		AD456C112C8B5C8700029DD5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD456B732C85C59500029DD5 /* Assets.xcassets */,
+				AD456B752C85C59500029DD5 /* LaunchScreen.storyboard */,
+				AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,6 +357,7 @@
 			files = (
 				AD456B742C85C59500029DD5 /* Assets.xcassets in Resources */,
 				AD456B772C85C59500029DD5 /* Base in Resources */,
+				AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */,
 				AD456B722C85C59300029DD5 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

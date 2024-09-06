@@ -15,12 +15,12 @@ class RecipeView: UIView {
     private lazy var imageView: UIImageView = createImageView()
     private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemYellow)
     private lazy var areaLabel: PaddedLabel = createTagLabel(color: .systemGreen)
-    private lazy var ingredientsTitleLabel: UILabel = createTitleLabel(text: "Ingredients")
+    private lazy var ingredientsTitleLabel: UILabel = createTitleLabel(text: NSLocalizedString("ingredients.title", comment: ""))
     private lazy var ingredientsLabel: UILabel = createTextLabel()
-    private lazy var instructionsTitleLabel: UILabel = createTitleLabel(text: "Instructions")
+    private lazy var instructionsTitleLabel: UILabel = createTitleLabel(text: NSLocalizedString("instructions.title", comment: ""))
     private lazy var instructionsLabel: UILabel = createTextLabel()
-    private lazy var youtubeButton: UIButton = createLinkButton(title: "Watch on YouTube")
-    private lazy var sourceButton: UIButton = createLinkButton(title: "View Source")
+    private lazy var youtubeButton: UIButton = createLinkButton(title: NSLocalizedString("youtube_button.title", comment: ""))
+    private lazy var sourceButton: UIButton = createLinkButton(title: NSLocalizedString("source_button.title", comment: ""))
     
     // MARK: - Init
 

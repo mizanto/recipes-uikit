@@ -25,7 +25,10 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
 
     private lazy var getRecipeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Get Random Recipe", for: .normal)
+        button.setTitle(
+            NSLocalizedString("get_random_recipe_button.title", comment: ""),
+            for: .normal
+        )
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
         return button
@@ -148,8 +151,14 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     
     func displayError(_ message: String) {
         AppLogger.shared.error("Error displayed: \(message)", category: .ui)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(
+            title: NSLocalizedString("error.title", comment: ""),
+            message: message,
+            preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""),
+                          style: .default)
+        )
         present(alert, animated: true)
     }
 }

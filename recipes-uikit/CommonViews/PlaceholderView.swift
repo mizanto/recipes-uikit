@@ -25,9 +25,9 @@ class PlaceholderView: UIView {
         var message: String {
             switch self {
             case .noFavorites:
-                return "No favorite recipes"
+                return NSLocalizedString("no_favorites_placeholder.message", comment: "")
             case .noHistory:
-                return "No history available"
+                return NSLocalizedString("no_history_placeholder.message", comment: "")
             }
         }
     }
