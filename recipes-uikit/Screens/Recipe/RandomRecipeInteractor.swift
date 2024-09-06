@@ -29,12 +29,6 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     }
     
     func fetchRecipe() {
-        if let recipe = currentRecipe {
-            AppLogger.shared.info("Using cached recipe: \(recipe.mealName)", category: .network)
-            presenter.presentRecipe(recipe, isFavorite: isFavorite)
-            return
-        }
-
         do {
             let recipe = try storageService.getLastRecipe()
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
