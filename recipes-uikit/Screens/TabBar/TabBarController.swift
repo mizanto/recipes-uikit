@@ -12,11 +12,33 @@ class TabBarController: UITabBarController {
     private var randomRecipeViewController: UIViewController!
     private var historyViewController: UIViewController!
     private var favoritesViewController: FavoritesViewController!
-
+    
+    init(networkService: NetworkServiceProtocol,
+         storageService: StorageServiceProtocol) {
+        
+        randomRecipeViewController = RecipeModuleBuilder.buildRandomRecipe(
+            networkService: networkService,
+            storageService: storageService
+        )
+        
+        historyViewController = HistoryModuleBuilder.build(
+            storageService: storageService
+        )
+        
+        favoritesViewController = FavoritesModuleBuilder.build(
+            storageService: storageService
+        )
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createRootControllers()
         setupTabItems()
         
         self.viewControllers = [
@@ -25,12 +47,6 @@ class TabBarController: UITabBarController {
             UINavigationController(rootViewController: favoritesViewController)
         ]
         self.selectedIndex = 0
-    }
-    
-    private func createRootControllers() {
-        randomRecipeViewController = RecipeModuleBuilder.buildRandomRecipe()
-        historyViewController = HistoryModuleBuilder.build()
-        favoritesViewController = FavoritesModuleBuilder.build()
     }
     
     private func setupTabItems() {

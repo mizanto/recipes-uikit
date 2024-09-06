@@ -53,6 +53,7 @@
 		AD456C002C89ECDD00029DD5 /* HistoryItemDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456BFF2C89ECDD00029DD5 /* HistoryItemDataModel.swift */; };
 		AD456C0B2C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */; };
 		AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */; };
+		AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		AD456BFF2C89ECDD00029DD5 /* HistoryItemDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemDataModel.swift; sourceTree = "<group>"; };
 		AD456C092C89EE0200029DD5 /* HistoryItemEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AD456C0A2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				AD456B6A2C85C59300029DD5 /* AppDelegate.swift */,
 				AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */,
+				AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				AD456C0C2C89EE0200029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */,
 				AD456BA32C87443700029DD5 /* RandomRecipeInteractor.swift in Sources */,
 				AD456BDA2C89DA5400029DD5 /* IngredientArrayTransformer.swift in Sources */,
+				AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */,
 				AD456BBB2C884D3900029DD5 /* FavoritesPresenter.swift in Sources */,
 				AD456B9D2C8730C600029DD5 /* StorageService.swift in Sources */,
 				AD456BC32C88651500029DD5 /* FavoriteRecipeCollectionViewCell.swift in Sources */,

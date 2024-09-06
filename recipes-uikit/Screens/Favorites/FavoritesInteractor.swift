@@ -15,12 +15,16 @@ protocol FavoritesInteractorProtocol {
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
     
-    var presenter: FavoritesPresenterProtocol?
-    var router: FavoritesRouterProtocol?
+    private let presenter: FavoritesPresenterProtocol?
+    private let router: FavoritesRouterProtocol?
     
     private let storageService: StorageServiceProtocol
     
-    init(storageService: StorageServiceProtocol = StorageService()) {
+    init(presenter: FavoritesPresenterProtocol,
+         router: FavoritesRouterProtocol,
+         storageService: StorageServiceProtocol) {
+        self.presenter = presenter
+        self.router = router
         self.storageService = storageService
     }
     

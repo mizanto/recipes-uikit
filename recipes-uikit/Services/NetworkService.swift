@@ -11,7 +11,7 @@ protocol NetworkServiceProtocol {
     func fetchRandomRecipe() async throws -> RecipeNetworkModel
 }
 
-struct NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     
     private let baseURL = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")!
     

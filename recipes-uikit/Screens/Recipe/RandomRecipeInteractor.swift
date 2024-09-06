@@ -21,8 +21,8 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     private var isFavorite: Bool = false
     
     init(presenter: RecipePresenterProtocol,
-         networkService: NetworkServiceProtocol = NetworkService(),
-         storageService: StorageServiceProtocol = StorageService()) {
+         networkService: NetworkServiceProtocol,
+         storageService: StorageServiceProtocol) {
         self.presenter = presenter
         self.networkService = networkService
         self.storageService = storageService

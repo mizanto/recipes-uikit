@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class RecipeView: UIView {
+    
     // MARK: - UI Elements
 
     private lazy var imageView: UIImageView = createImageView()

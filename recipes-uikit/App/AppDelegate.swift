@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        AppLogger.shared.info("Configuring scene for connection: \(connectingSceneSession.configuration.name)", category: .ui)
+        let configurationName = connectingSceneSession.configuration.name ?? "Unknown Configuration"
+        AppLogger.shared.info("Configuring scene for connection: \(configurationName)", category: .ui)
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 

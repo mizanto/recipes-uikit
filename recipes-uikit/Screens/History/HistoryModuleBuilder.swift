@@ -8,10 +8,11 @@
 import UIKit
 
 class HistoryModuleBuilder {
-    static func build() -> UIViewController {
+    static func build(storageService: StorageServiceProtocol) -> UIViewController {
         let viewController = HistoryViewController()
         let presenter = HistoryPresenter(view: viewController)
-        let interactor = HistoryInteractor(presenter: presenter)
+        let interactor = HistoryInteractor(presenter: presenter,
+                                           storageService: storageService)
         viewController.interactor = interactor
         return viewController
     }

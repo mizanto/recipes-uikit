@@ -17,7 +17,7 @@ class HistoryInteractor: HistoryInteractorProtocol {
     private let storageService: StorageServiceProtocol
     
     init(presenter: HistoryPresenterProtocol,
-         storageService: StorageServiceProtocol = StorageService()) {
+         storageService: StorageServiceProtocol) {
         self.presenter = presenter
         self.storageService = storageService
     }

@@ -21,7 +21,7 @@ class RecipeDetailInteractor: RecipeInteractorProtocol {
     private var isFavorite: Bool = false
     
     init(presenter: RecipePresenterProtocol,
-         storageService: StorageServiceProtocol = StorageService(),
+         storageService: StorageServiceProtocol,
          recipeId: String) {
         self.presenter = presenter
         self.storageService = storageService
