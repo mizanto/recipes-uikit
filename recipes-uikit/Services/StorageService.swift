@@ -37,21 +37,14 @@ enum StorageServiceError: Error, LocalizedError {
 
 // MARK: - Storage Service Protocol
 
-import CoreData
-import UIKit
-
-// MARK: - Storage Service Protocol
-
-// MARK: - Storage Service Protocol
-
 protocol StorageServiceProtocol {
-    func loadLastViewedRecipe() throws -> RecipeDataModel
-    func saveLastRecipe(_ recipe: RecipeDataModel) throws
-    func loadRecipeHistory() throws -> [HistoryItemDataModel]
+    func getLastRecipe() throws -> RecipeDataModel
+    func saveRecipe(_ recipe: RecipeDataModel) throws
+    func getRecipeHistory() throws -> [HistoryItemDataModel]
     func saveRecipeToHistory(_ recipe: HistoryItemDataModel) throws
     func clearHistory() throws
-    func loadFavoriteRecipes() throws -> [RecipeDataModel]
-    func loadFavoriteRecipe(by id: String) throws -> RecipeDataModel
+    func getFavoriteRecipes() throws -> [RecipeDataModel]
+    func getFavoriteRecipe(by id: String) throws -> RecipeDataModel
     func addRecipeToFavorites(_ recipe: RecipeDataModel) throws
     func removeRecipeFromFavorites(_ recipe: RecipeDataModel) throws
     func isRecipeFavorite(_ recipe: RecipeDataModel) throws -> Bool
@@ -67,18 +60,9 @@ final class StorageService: StorageServiceProtocol {
         self.context = context
     }
     
-    // MARK: - Helper Methods
-    
-    private func fetchRecipeEntity(by id: String) throws -> RecipeEntity? {
-        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id)
-        
-        return try context.fetch(request).first
-    }
-    
     // MARK: - Last Viewed Recipe Methods
     
-    func loadLastViewedRecipe() throws -> RecipeDataModel {
+    func getLastRecipe() throws -> RecipeDataModel {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: false)]
         request.fetchLimit = 1
@@ -100,12 +84,12 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
-    func saveLastRecipe(_ recipe: RecipeDataModel) throws {
+    func saveRecipe(_ recipe: RecipeDataModel) throws {
         let entity = recipe.toEntity(in: context)
         entity.dateAdded = Date()
         do {
             try context.save()
-            AppLogger.shared.info("Saved last viewed recipe successfully", category: .database)
+            AppLogger.shared.info("Saved recipe \(recipe.mealName) successfully", category: .database)
         } catch {
             AppLogger.shared.error("Failed to save last recipe: \(error.localizedDescription)", category: .database)
             throw StorageServiceError.failedToSave
@@ -114,7 +98,7 @@ final class StorageService: StorageServiceProtocol {
     
     // MARK: - Recipe History Methods
     
-    func loadRecipeHistory() throws -> [HistoryItemDataModel] {
+    func getRecipeHistory() throws -> [HistoryItemDataModel] {
         let request: NSFetchRequest<HistoryItemEntity> = HistoryItemEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
@@ -159,7 +143,7 @@ final class StorageService: StorageServiceProtocol {
     
     // MARK: - Favorite Recipes Methods
     
-    func loadFavoriteRecipes() throws -> [RecipeDataModel] {
+    func getFavoriteRecipes() throws -> [RecipeDataModel] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "isFavorite == YES")
         
@@ -177,7 +161,7 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
-    func loadFavoriteRecipe(by id: String) throws -> RecipeDataModel {
+    func getFavoriteRecipe(by id: String) throws -> RecipeDataModel {
         guard let entity = try fetchRecipeEntity(by: id), entity.isFavorite else {
             AppLogger.shared.error("Favorite recipe with id \(id) not found", category: .database)
             throw StorageServiceError.itemNotFound
@@ -194,45 +178,11 @@ final class StorageService: StorageServiceProtocol {
     }
     
     func addRecipeToFavorites(_ recipe: RecipeDataModel) throws {
-        guard let entity = try fetchRecipeEntity(by: recipe.id) else {
-            AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
-            throw StorageServiceError.itemNotFound
-        }
-        
-        guard !entity.isFavorite else {
-            AppLogger.shared.error("Recipe already in favorites", category: .database)
-            throw StorageServiceError.alreadyInFavorites
-        }
-        
-        entity.isFavorite = true
-        do {
-            try context.save()
-            AppLogger.shared.info("Added recipe to favorites successfully", category: .database)
-        } catch {
-            AppLogger.shared.error("Failed to add recipe to favorites: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToSave
-        }
+        try updateRecipeFavoriteStatus(recipe, shouldBeFavorite: true)
     }
     
     func removeRecipeFromFavorites(_ recipe: RecipeDataModel) throws {
-        guard let entity = try fetchRecipeEntity(by: recipe.id) else {
-            AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
-            throw StorageServiceError.itemNotFound
-        }
-        
-        guard entity.isFavorite else {
-            AppLogger.shared.error("Recipe not found in favorites", category: .database)
-            throw StorageServiceError.itemNotFound
-        }
-        
-        entity.isFavorite = false
-        do {
-            try context.save()
-            AppLogger.shared.info("Removed recipe from favorites successfully", category: .database)
-        } catch {
-            AppLogger.shared.error("Failed to remove recipe from favorites: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToSave
-        }
+        try updateRecipeFavoriteStatus(recipe, shouldBeFavorite: false)
     }
     
     func isRecipeFavorite(_ recipe: RecipeDataModel) throws -> Bool {
@@ -243,5 +193,43 @@ final class StorageService: StorageServiceProtocol {
         let isFavorite = entity.isFavorite
         AppLogger.shared.info("Checked if recipe is favorite: \(isFavorite)", category: .database)
         return isFavorite
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func fetchRecipeEntity(by id: String) throws -> RecipeEntity? {
+        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id)
+        
+        return try context.fetch(request).first
+    }
+    
+    private func updateRecipeFavoriteStatus(_ recipe: RecipeDataModel, shouldBeFavorite: Bool) throws {
+        guard let entity = try fetchRecipeEntity(by: recipe.id) else {
+            AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
+            throw StorageServiceError.itemNotFound
+        }
+        
+        if shouldBeFavorite && entity.isFavorite {
+            AppLogger.shared.error("Recipe already in favorites", category: .database)
+            throw StorageServiceError.alreadyInFavorites
+        } else if !shouldBeFavorite && !entity.isFavorite {
+            AppLogger.shared.error("Recipe not found in favorites", category: .database)
+            throw StorageServiceError.itemNotFound
+        }
+        
+        entity.isFavorite = shouldBeFavorite
+        do {
+            try context.save()
+            if shouldBeFavorite {
+                AppLogger.shared.info("Added recipe to favorites successfully", category: .database)
+            } else {
+                AppLogger.shared.info("Removed recipe from favorites successfully", category: .database)
+            }
+        } catch {
+            let action = shouldBeFavorite ? "add recipe to favorites" : "remove recipe from favorites"
+            AppLogger.shared.error("Failed to \(action): \(error.localizedDescription)", category: .database)
+            throw StorageServiceError.failedToSave
+        }
     }
 }

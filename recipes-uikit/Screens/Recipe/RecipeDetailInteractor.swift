@@ -31,7 +31,7 @@ class RecipeDetailInteractor: RecipeInteractorProtocol {
     func fetchRecipe() {
         AppLogger.shared.info("Fetching recipe with ID: \(recipeId)", category: .database)
         do {
-            let recipe = try storageService.loadFavoriteRecipe(by: recipeId)
+            let recipe = try storageService.getFavoriteRecipe(by: recipeId)
             currentRecipe = recipe
             AppLogger.shared.info("Loaded recipe from favorites: \(recipe.mealName)", category: .database)
             

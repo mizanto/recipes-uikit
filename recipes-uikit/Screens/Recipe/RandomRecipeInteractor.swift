@@ -36,7 +36,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         }
 
         do {
-            let recipe = try storageService.loadLastViewedRecipe()
+            let recipe = try storageService.getLastRecipe()
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
             processLoadedRecipe(recipe)
         } catch {
@@ -69,7 +69,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
         currentRecipe = recipe
         
         do {
-            try storageService.saveLastRecipe(recipe)
+            try storageService.saveRecipe(recipe)
             AppLogger.shared.info("Saved last viewed recipe: \(recipe.mealName)", category: .database)
             
             isFavorite = recipe.isFavorite
