@@ -56,7 +56,9 @@
 		AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */; };
 		AD456C102C8B37B400029DD5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */; };
 		AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */; };
-		AD456C1B2C8EF5AB00029DD5 /* recipes_uikit_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */; };
+		AD456C222C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C212C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift */; };
+		AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C242C8EF92A00029DD5 /* URLSessionMock.swift */; };
+		AD456C282C8EF98700029DD5 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C272C8EF98700029DD5 /* NetworkServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +123,9 @@
 		AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AD456C182C8EF5AB00029DD5 /* recipes-uikit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-uikit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_tests.swift; sourceTree = "<group>"; };
+		AD456C212C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+URLSessionProtocol.swift"; sourceTree = "<group>"; };
+		AD456C242C8EF92A00029DD5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		AD456C272C8EF98700029DD5 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,7 @@
 				AD456B912C85D5B700029DD5 /* NetworkService.swift */,
 				AD456B9C2C8730C600029DD5 /* StorageService.swift */,
 				AD456BCA2C899EA900029DD5 /* AppLogger.swift */,
+				AD456C212C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -316,9 +321,26 @@
 		AD456C192C8EF5AB00029DD5 /* recipes-uikit-tests */ = {
 			isa = PBXGroup;
 			children = (
-				AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */,
+				AD456C232C8EF91C00029DD5 /* Mocks */,
+				AD456C262C8EF95C00029DD5 /* Tests */,
 			);
 			path = "recipes-uikit-tests";
+			sourceTree = "<group>";
+		};
+		AD456C232C8EF91C00029DD5 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				AD456C242C8EF92A00029DD5 /* URLSessionMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AD456C262C8EF95C00029DD5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AD456C272C8EF98700029DD5 /* NetworkServiceTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +467,7 @@
 				AD456BCB2C899EA900029DD5 /* AppLogger.swift in Sources */,
 				AD456BB62C875FB500029DD5 /* HistoryTableViewCell.swift in Sources */,
 				AD456BF52C89E88500029DD5 /* RecipeEntity+CoreDataClass.swift in Sources */,
+				AD456C222C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift in Sources */,
 				AD456BF62C89E88500029DD5 /* RecipeEntity+CoreDataProperties.swift in Sources */,
 				AD456BF72C89E88500029DD5 /* IngredientEntity+CoreDataClass.swift in Sources */,
 				AD456BF82C89E88500029DD5 /* IngredientEntity+CoreDataProperties.swift in Sources */,
@@ -480,7 +503,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD456C1B2C8EF5AB00029DD5 /* recipes_uikit_tests.swift in Sources */,
+				AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */,
+				AD456C282C8EF98700029DD5 /* NetworkServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

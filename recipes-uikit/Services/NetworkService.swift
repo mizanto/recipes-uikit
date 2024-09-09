@@ -12,16 +12,19 @@ protocol NetworkServiceProtocol {
 }
 
 final class NetworkService: NetworkServiceProtocol {
+    private let session: URLSessionProtocol
     
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
+
     private func fetchData<T: Decodable>(from url: URL) async throws -> T {
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await session.data(from: url)
         
         if let jsonString = String(data: data, encoding: .utf8) {
-            AppLogger.shared.debug("Response JSON String: \(jsonString)",
-                                   category: .network)
+            AppLogger.shared.debug("Response JSON String: \(jsonString)", category: .network)
         } else {
-            AppLogger.shared.error("Unable to convert data to String",
-                                   category: .network)
+            AppLogger.shared.error("Unable to convert data to String", category: .network)
         }
         
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -40,16 +43,14 @@ final class NetworkService: NetworkServiceProtocol {
     
     func fetchRandomRecipe() async throws -> RecipeNetworkModel {
         guard let url = APIConfiguration.url(for: .randomRecipe) else {
-            AppLogger.shared.error("Failed to construct URL for random recipe", 
-                                   category: .network)
+            AppLogger.shared.error("Failed to construct URL for random recipe", category: .network)
             throw URLError(.badURL)
         }
         
         let decodedResponse: RecipesResponse = try await fetchData(from: url)
         
         guard let recipe = decodedResponse.meals.first else {
-            AppLogger.shared.error("Failed to parse recipe from response", 
-                                   category: .network)
+            AppLogger.shared.error("Failed to parse recipe from response", category: .network)
             throw URLError(.cannotParseResponse)
         }
         
