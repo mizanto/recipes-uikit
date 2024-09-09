@@ -13,8 +13,6 @@ protocol NetworkServiceProtocol {
 
 final class NetworkService: NetworkServiceProtocol {
     
-    private let baseURL = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")!
-    
     private func fetchData<T: Decodable>(from url: URL) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
         
