@@ -56,7 +56,18 @@
 		AD456C0E2C8B266300029DD5 /* AppDependencyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */; };
 		AD456C102C8B37B400029DD5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */; };
 		AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */; };
+		AD456C1B2C8EF5AB00029DD5 /* recipes_uikit_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD456C1C2C8EF5AB00029DD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD456B5F2C85C59300029DD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD456B662C85C59300029DD5;
+			remoteInfo = "recipes-uikit";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AD456B672C85C59300029DD5 /* recipes-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "recipes-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +120,8 @@
 		AD456C0D2C8B266300029DD5 /* AppDependencyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyConfigurator.swift; sourceTree = "<group>"; };
 		AD456C0F2C8B37B400029DD5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		AD456C122C8B5DA900029DD5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		AD456C182C8EF5AB00029DD5 /* recipes-uikit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-uikit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +133,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD456C152C8EF5AB00029DD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -127,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				AD456B692C85C59300029DD5 /* recipes-uikit */,
+				AD456C192C8EF5AB00029DD5 /* recipes-uikit-tests */,
 				AD456B682C85C59300029DD5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				AD456B672C85C59300029DD5 /* recipes-uikit.app */,
+				AD456C182C8EF5AB00029DD5 /* recipes-uikit-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +313,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		AD456C192C8EF5AB00029DD5 /* recipes-uikit-tests */ = {
+			isa = PBXGroup;
+			children = (
+				AD456C1A2C8EF5AB00029DD5 /* recipes_uikit_tests.swift */,
+			);
+			path = "recipes-uikit-tests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +344,24 @@
 			productReference = AD456B672C85C59300029DD5 /* recipes-uikit.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AD456C172C8EF5AB00029DD5 /* recipes-uikit-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD456C1E2C8EF5AB00029DD5 /* Build configuration list for PBXNativeTarget "recipes-uikit-tests" */;
+			buildPhases = (
+				AD456C142C8EF5AB00029DD5 /* Sources */,
+				AD456C152C8EF5AB00029DD5 /* Frameworks */,
+				AD456C162C8EF5AB00029DD5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD456C1D2C8EF5AB00029DD5 /* PBXTargetDependency */,
+			);
+			name = "recipes-uikit-tests";
+			productName = "recipes-uikit-tests";
+			productReference = AD456C182C8EF5AB00029DD5 /* recipes-uikit-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -326,6 +374,10 @@
 				TargetAttributes = {
 					AD456B662C85C59300029DD5 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					AD456C172C8EF5AB00029DD5 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = AD456B662C85C59300029DD5;
 					};
 				};
 			};
@@ -346,6 +398,7 @@
 			projectRoot = "";
 			targets = (
 				AD456B662C85C59300029DD5 /* recipes-uikit */,
+				AD456C172C8EF5AB00029DD5 /* recipes-uikit-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,6 +412,13 @@
 				AD456B772C85C59500029DD5 /* Base in Resources */,
 				AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */,
 				AD456B722C85C59300029DD5 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD456C162C8EF5AB00029DD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +476,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD456C142C8EF5AB00029DD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD456C1B2C8EF5AB00029DD5 /* recipes_uikit_tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD456C1D2C8EF5AB00029DD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD456B662C85C59300029DD5 /* recipes-uikit */;
+			targetProxy = AD456C1C2C8EF5AB00029DD5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AD456B702C85C59300029DD5 /* Main.storyboard */ = {
@@ -613,6 +689,42 @@
 			};
 			name = Release;
 		};
+		AD456C1F2C8EF5AB00029DD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UER9S2EB72;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.home.recipes-uikit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/recipes-uikit.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/recipes-uikit";
+			};
+			name = Debug;
+		};
+		AD456C202C8EF5AB00029DD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UER9S2EB72;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.home.recipes-uikit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/recipes-uikit.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/recipes-uikit";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -630,6 +742,15 @@
 			buildConfigurations = (
 				AD456B7C2C85C59500029DD5 /* Debug */,
 				AD456B7D2C85C59500029DD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD456C1E2C8EF5AB00029DD5 /* Build configuration list for PBXNativeTarget "recipes-uikit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD456C1F2C8EF5AB00029DD5 /* Debug */,
+				AD456C202C8EF5AB00029DD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
