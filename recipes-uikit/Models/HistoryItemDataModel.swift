@@ -47,6 +47,12 @@ struct HistoryItemDataModel {
         self.date = date
     }
     
+    init(id: String, mealName: String, date: Date) {
+        self.id = id
+        self.mealName = mealName
+        self.date = Date()
+    }
+    
     func toEntity(in context: NSManagedObjectContext) -> HistoryItemEntity {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "HistoryItemEntity", in: context) else {
             fatalError("Failed to find entity description for Recipe")

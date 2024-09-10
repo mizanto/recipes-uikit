@@ -38,7 +38,7 @@ class RecipePresenter: RecipePresenterProtocol {
         )
         
         DispatchQueue.main.async {
-            AppLogger.shared.info("Presenting кecipe: \(recipe.mealName)", category: .ui)
+            AppLogger.shared.info("Presenting recipe: \(recipe.mealName)", category: .ui)
             self.view?.displayRecipe(viewModel)
         }
     }
