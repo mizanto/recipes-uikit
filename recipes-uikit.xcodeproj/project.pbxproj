@@ -10,6 +10,8 @@
 		AD2465102C90931100F6BF1E /* MockFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */; };
 		AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */; };
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
+		AD2465172C90956E00F6BF1E /* MockFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */; };
+		AD2465192C90959700F6BF1E /* FavoritesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */; };
 		AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6A2C85C59300029DD5 /* AppDelegate.swift */; };
 		AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */; };
 		AD456B722C85C59300029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B712C85C59300029DD5 /* Base */; };
@@ -106,6 +108,8 @@
 		AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesRouter.swift; sourceTree = "<group>"; };
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
+		AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesView.swift; sourceTree = "<group>"; };
+		AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenterTests.swift; sourceTree = "<group>"; };
 		AD456B672C85C59300029DD5 /* recipes-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "recipes-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD456B6A2C85C59300029DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			children = (
 				AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */,
 				AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */,
+				AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */,
+				AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD2465172C90956E00F6BF1E /* MockFavoritesView.swift in Sources */,
 				AD456C512C904BD800029DD5 /* RecipeDataModel+Tests.swift in Sources */,
 				AD456C692C907F6B00029DD5 /* MockHistoryInteractor.swift in Sources */,
 				AD456C5D2C90594A00029DD5 /* RecipeViewControllerTests.swift in Sources */,
@@ -672,6 +679,7 @@
 				AD456C652C907D6400029DD5 /* MockHistoryView.swift in Sources */,
 				AD456C382C8F147E00029DD5 /* RecipeEntity+CoreDataClass.swift in Sources */,
 				AD456C3A2C8F148400029DD5 /* IngredientEntity+CoreDataClass.swift in Sources */,
+				AD2465192C90959700F6BF1E /* FavoritesPresenterTests.swift in Sources */,
 				AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */,
 				AD456C632C907A9F00029DD5 /* MockHistoryPresenter.swift in Sources */,
 				AD456C452C8F515F00029DD5 /* MockStorageService.swift in Sources */,
