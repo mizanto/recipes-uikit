@@ -17,16 +17,21 @@ class HistoryInteractorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        
         mockPresenter = MockHistoryPresenter()
         mockStorageService = MockStorageService()
         interactor = HistoryInteractor(presenter: mockPresenter, storageService: mockStorageService)
-        historyItem = HistoryItemDataModel(id: "1", mealName: "Spaghetti", date: Date())
+        historyItem = HistoryItemDataModel(id: "1",
+                                           mealName: "Spaghetti",
+                                           date: Date())
     }
 
     override func tearDown() {
         interactor = nil
         mockPresenter = nil
         mockStorageService = nil
+        historyItem = nil
+        
         super.tearDown()
     }
 
