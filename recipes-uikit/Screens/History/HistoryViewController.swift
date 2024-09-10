@@ -17,10 +17,10 @@ class HistoryViewController: UIViewController {
     
     var interactor: HistoryInteractorProtocol?
     
-    private let tableView = UITableView()
-    private let placeholderView = PlaceholderView(type: .noHistory)
+    let tableView = UITableView()
+    let placeholderView = PlaceholderView(type: .noHistory)
     
-    private var recipes: [HistoryViewModel] = []
+    var recipes: [HistoryViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ class HistoryViewController: UIViewController {
         )
     }
     
-    @objc private func clearHistory() {
+    @objc func clearHistory() {
         AppLogger.shared.info("Clear history button tapped", category: .ui)
         let alertController = UIAlertController(
             title: NSLocalizedString("clear_history_alert.title", comment: ""),
@@ -85,14 +85,13 @@ class HistoryViewController: UIViewController {
         
         let clearAction = UIAlertAction(
             title: NSLocalizedString("clear_button.title", comment: ""), style: .destructive) { [weak self] _ in
-            AppLogger.shared.info("User confirmed clearing history", category: .ui)
-            self?.interactor?.clearHistory()
-        }
+                self?.confirmClearHistory()
+            }
         
         let cancelAction = UIAlertAction(
             title: NSLocalizedString("cancel_button.title", comment: ""), style: .cancel) { _ in
-            AppLogger.shared.info("User cancelled clearing history", category: .ui)
-        }
+                AppLogger.shared.info("User cancelled clearing history", category: .ui)
+            }
         
         alertController.addAction(clearAction)
         alertController.addAction(cancelAction)
@@ -106,6 +105,11 @@ class HistoryViewController: UIViewController {
             title: NSLocalizedString("error.title", comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""), style: .default))
         present(alert, animated: true)
+    }
+    
+    func confirmClearHistory() {
+        AppLogger.shared.info("User confirmed clearing history", category: .ui)
+        interactor?.clearHistory()
     }
 }
 

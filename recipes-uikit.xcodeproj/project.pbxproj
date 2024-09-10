@@ -85,6 +85,8 @@
 		AD456C632C907A9F00029DD5 /* MockHistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C622C907A9F00029DD5 /* MockHistoryPresenter.swift */; };
 		AD456C652C907D6400029DD5 /* MockHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C642C907D6400029DD5 /* MockHistoryView.swift */; };
 		AD456C672C907D8A00029DD5 /* HistoryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C662C907D8A00029DD5 /* HistoryPresenterTests.swift */; };
+		AD456C692C907F6B00029DD5 /* MockHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */; };
+		AD456C6B2C907FAF00029DD5 /* HistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C6A2C907FAF00029DD5 /* HistoryViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		AD456C622C907A9F00029DD5 /* MockHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryPresenter.swift; sourceTree = "<group>"; };
 		AD456C642C907D6400029DD5 /* MockHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryView.swift; sourceTree = "<group>"; };
 		AD456C662C907D8A00029DD5 /* HistoryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenterTests.swift; sourceTree = "<group>"; };
+		AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryInteractor.swift; sourceTree = "<group>"; };
+		AD456C6A2C907FAF00029DD5 /* HistoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +464,7 @@
 			children = (
 				AD456C5F2C907A5B00029DD5 /* HistoryInteractorTests.swift */,
 				AD456C662C907D8A00029DD5 /* HistoryPresenterTests.swift */,
+				AD456C6A2C907FAF00029DD5 /* HistoryViewControllerTests.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 			children = (
 				AD456C622C907A9F00029DD5 /* MockHistoryPresenter.swift */,
 				AD456C642C907D6400029DD5 /* MockHistoryView.swift */,
+				AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD456C512C904BD800029DD5 /* RecipeDataModel+Tests.swift in Sources */,
+				AD456C692C907F6B00029DD5 /* MockHistoryInteractor.swift in Sources */,
 				AD456C5D2C90594A00029DD5 /* RecipeViewControllerTests.swift in Sources */,
 				AD456C3D2C8F151300029DD5 /* IngredientArrayTransformer.swift in Sources */,
 				AD456C652C907D6400029DD5 /* MockHistoryView.swift in Sources */,
@@ -643,6 +650,7 @@
 				AD456C632C907A9F00029DD5 /* MockHistoryPresenter.swift in Sources */,
 				AD456C452C8F515F00029DD5 /* MockStorageService.swift in Sources */,
 				AD456C592C90566100029DD5 /* RecipePresenterTests.swift in Sources */,
+				AD456C6B2C907FAF00029DD5 /* HistoryViewControllerTests.swift in Sources */,
 				AD456C672C907D8A00029DD5 /* HistoryPresenterTests.swift in Sources */,
 				AD456C602C907A5B00029DD5 /* HistoryInteractorTests.swift in Sources */,
 				AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */,
