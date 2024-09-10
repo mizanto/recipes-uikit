@@ -18,6 +18,8 @@ class RecipePresenterTests: XCTestCase {
         
         mockView = MockRecipeView()
         presenter = RecipePresenter(view: mockView)
+        
+        XCTAssertNotNil(presenter.view, "Presenter's view should not be nil")
     }
     
     override func tearDown() {
@@ -28,10 +30,12 @@ class RecipePresenterTests: XCTestCase {
     
     func testPresentRecipe() {
         let recipe = RecipeDataModel.mock
+        let expectation = XCTestExpectation(description: "Recipe should be presented")
         
         presenter.presentRecipe(recipe)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
             XCTAssertNotNil(self.mockView.displayedRecipe)
             XCTAssertEqual(self.mockView.displayedRecipe?.mealName, recipe.mealName)
             XCTAssertEqual(self.mockView.displayedRecipe?.mealThumbURL, recipe.mealThumbURL)
@@ -42,17 +46,27 @@ class RecipePresenterTests: XCTestCase {
             XCTAssertEqual(self.mockView.displayedRecipe?.sourceURL, recipe.sourceURL)
             XCTAssertEqual(self.mockView.displayedRecipe?.isFavorite, recipe.isFavorite)
             XCTAssertEqual(self.mockView.displayedRecipe?.ingredients, "Chicken: 200g")
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testPresentError() {
-        let testError = NSError(domain: "", code: 123, userInfo: [NSLocalizedDescriptionKey: "Test error occurred"])
+        let message = "Test error occurred"
+        let expectation = XCTestExpectation(description: "Error should be presented")
+
+        let testError = NSError(domain: "", code: 123, userInfo: [NSLocalizedDescriptionKey: message])
         
         presenter.presentError(testError)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
             XCTAssertNotNil(self.mockView.displayedError)
-            XCTAssertEqual(self.mockView.displayedError, "Test error occurred")
+            XCTAssertEqual(self.mockView.displayedError, message)
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 1.0)
     }
 }
