@@ -13,7 +13,7 @@ final class RecipeModuleBuilder {
                                   storageService: StorageServiceProtocol) -> UIViewController {
         let viewController = RecipeViewController(screenType: .random)
         let presenter = RecipePresenter(view: viewController)
-        let interactor = RandomRecipeInteractor(presenter: presenter,
+        let interactor = RecipeRandomInteractor(presenter: presenter,
                                                 networkService: networkService,
                                                 storageService: storageService)
         viewController.interactor = interactor

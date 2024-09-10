@@ -122,7 +122,7 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     
     @objc private func getRandomRecipe() {
         AppLogger.shared.info("Get Random Recipe button tapped", category: .ui)
-        if let randomInteractor = interactor as? RandomRecipeInteractorProtocol {
+        if let randomInteractor = interactor as? RecipeRandomInteractorProtocol {
             randomInteractor.fetchRandomRecipe()
         } else {
             AppLogger.shared.error("This screen does not support fetching a random recipe.", category: .ui)

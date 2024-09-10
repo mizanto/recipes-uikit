@@ -1,5 +1,5 @@
 //
-//  RandomRecipeInteractor.swift
+//  RecipeRandomInteractor.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 3.09.2024.
@@ -7,28 +7,21 @@
 
 import Foundation
 
-protocol RandomRecipeInteractorProtocol: RecipeInteractorProtocol {
+protocol RecipeRandomInteractorProtocol: RecipeInteractorProtocol {
     func fetchRandomRecipe()
 }
 
-class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
-    
-    private let presenter: RecipePresenterProtocol
+class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtocol {
     private let networkService: NetworkServiceProtocol
-    private let storageService: StorageServiceProtocol
-    
-    private var currentRecipe: RecipeDataModel?
-    private var isFavorite: Bool = false
     
     init(presenter: RecipePresenterProtocol,
          networkService: NetworkServiceProtocol,
          storageService: StorageServiceProtocol) {
-        self.presenter = presenter
         self.networkService = networkService
-        self.storageService = storageService
+        super.init(presenter: presenter, storageService: storageService)
     }
     
-    func fetchRecipe() {
+    override func fetchRecipe() {
         do {
             let recipe = try storageService.getLastRecipe()
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
@@ -62,8 +55,7 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
     
     private func processLoadedRecipe(_ recipe: RecipeDataModel) {
         currentRecipe = recipe
-        isFavorite = recipe.isFavorite
-        presenter.presentRecipe(recipe, isFavorite: isFavorite)
+        presenter.presentRecipe(recipe)
     }
     
     private func saveRecipe(_ recipe: RecipeDataModel) {
@@ -82,31 +74,6 @@ class RandomRecipeInteractor: RandomRecipeInteractorProtocol {
             AppLogger.shared.info("Added recipe to history: \(historyItem.mealName)", category: .database)
         } catch {
             AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)", category: .database)
-        }
-    }
-    
-    func toggleFavoriteStatus() {
-        guard let recipe = currentRecipe else {
-            AppLogger.shared.error("No recipe available to toggle favorite status", category: .ui)
-            presenter.presentError(StorageServiceError.itemNotFound)
-            return
-        }
-        
-        do {
-            if isFavorite {
-                try storageService.removeRecipeFromFavorites(recipe)
-                isFavorite = false
-                AppLogger.shared.info("Removed recipe from favorites: \(recipe.mealName)", category: .database)
-            } else {
-                try storageService.addRecipeToFavorites(recipe)
-                isFavorite = true
-                AppLogger.shared.info("Added recipe to favorites: \(recipe.mealName)", category: .database)
-            }
-            currentRecipe?.isFavorite = isFavorite
-            presenter.presentRecipe(recipe, isFavorite: isFavorite)
-        } catch {
-            AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)", category: .database)
-            presenter.presentError(error)
         }
     }
 }

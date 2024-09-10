@@ -70,7 +70,7 @@ struct RecipeDataModel {
         guard let dateAdded = entity.dateAdded else {
             throw InitializationError.missingRequiredField("dateAdded")
         }
-
+        
         // Convert IngredientEntity to Ingredient
         let ingredients = ingredientEntities.compactMap { entity -> Ingredient? in
             guard let name = entity.name, let measure = entity.measure else {
@@ -78,7 +78,7 @@ struct RecipeDataModel {
             }
             return Ingredient(name: name, measure: measure)
         }
-
+        
         // Initialize properties
         self.id = id
         self.mealName = mealName
@@ -91,6 +91,30 @@ struct RecipeDataModel {
         self.ingredients = ingredients
         self.dateAdded = dateAdded
         self.isFavorite = entity.isFavorite
+    }
+    
+    init(id: String,
+         mealName: String,
+         category: String? = nil,
+         area: String? = nil,
+         instructions: String,
+         mealThumbURL: URL,
+         youtubeURL: URL? = nil,
+         sourceURL: URL? = nil,
+         ingredients: [Ingredient],
+         dateAdded: Date,
+         isFavorite: Bool = false) {
+        self.id = id
+        self.mealName = mealName
+        self.category = category
+        self.area = area
+        self.instructions = instructions
+        self.mealThumbURL = mealThumbURL
+        self.youtubeURL = youtubeURL
+        self.sourceURL = sourceURL
+        self.ingredients = ingredients
+        self.dateAdded = dateAdded
+        self.isFavorite = isFavorite
     }
     
     func toEntity(in context: NSManagedObjectContext) -> RecipeEntity {

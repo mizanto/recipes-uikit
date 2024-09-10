@@ -43,7 +43,7 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
     func removeRecipeFromFavorites(withId id: String) {
         AppLogger.shared.info("Removing recipe with ID '\(id)' from favorites", category: .database)
         do {
-            let recipe = try storageService.getFavoriteRecipe(by: id)
+            let recipe = try storageService.getRecipe(by: id)
             try storageService.removeRecipeFromFavorites(recipe)
             AppLogger.shared.info("Recipe with ID '\(id)' removed from favorites", category: .database)
             fetchFavoriteRecipes() // Refresh the list after removal
