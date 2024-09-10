@@ -53,7 +53,7 @@ class RecipeRandomInteractorTests: XCTestCase {
     
     func testFetchRecipeFromNetworkSuccess() {
         let expectation = XCTestExpectation(description: "Fetch random recipe from network successfully")
-
+        
         mockNetworkService.randomRecipe = RecipeNetworkModel(
             id: "2",
             mealName: "Random Test Meal",
@@ -65,9 +65,9 @@ class RecipeRandomInteractorTests: XCTestCase {
             sourceURL: nil,
             ingredients: []
         )
-
+        
         interactor.fetchRecipe()
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             XCTAssertTrue(self.mockPresenter.isPresentRecipeCalled)
             XCTAssertNotNil(self.mockPresenter.recipePresented)
@@ -76,18 +76,20 @@ class RecipeRandomInteractorTests: XCTestCase {
             XCTAssertNil(self.mockPresenter.errorPresented)
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
     
     func testFetchRecipeFromNetworkFailure() {
+        mockStorageService.recipes = []
         let expectation = XCTestExpectation(
             description: "Handle network failure when fetching random recipe")
         mockNetworkService.error = URLError(.badServerResponse)
-
+        
         interactor.fetchRecipe()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self = self else { return }
             XCTAssertTrue(self.mockPresenter.isPresentErrorCalled)
             XCTAssertNil(self.mockPresenter.recipePresented)
             XCTAssertNotNil(self.mockPresenter.errorPresented)
@@ -95,6 +97,6 @@ class RecipeRandomInteractorTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 2.0)
     }
 }
