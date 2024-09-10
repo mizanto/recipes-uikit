@@ -18,7 +18,7 @@ class FavoritesViewController: UIViewController {
     var interactor: FavoritesInteractorProtocol?
     private var favoriteRecipes: [FavoriteRecipeViewModel] = []
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = createFavoritesLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
@@ -76,6 +76,12 @@ class FavoritesViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""), style: .default))
         present(alert, animated: true)
     }
+    
+    func deleteFavoriteRecipe(at indexPath: IndexPath) {
+        let recipeToDelete = favoriteRecipes[indexPath.row]
+        AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
+        interactor?.removeRecipeFromFavorites(withId: recipeToDelete.id)
+    }
 }
 
 // MARK: - UICollectionViewDataSource & UICollectionViewDelegate
@@ -102,11 +108,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let deleteAction = UIAction(title: NSLocalizedString("delete_action.title", comment: ""), attributes: .destructive) { [weak self] _ in
-            guard let self = self else { return }
-            
-            let recipeToDelete = self.favoriteRecipes[indexPath.row]
-            AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
-            self.interactor?.removeRecipeFromFavorites(withId: recipeToDelete.id)
+            self?.deleteFavoriteRecipe(at: indexPath)
         }
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in

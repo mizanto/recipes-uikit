@@ -12,6 +12,8 @@
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
 		AD2465172C90956E00F6BF1E /* MockFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */; };
 		AD2465192C90959700F6BF1E /* FavoritesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */; };
+		AD24651B2C90970B00F6BF1E /* MockFavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24651A2C90970B00F6BF1E /* MockFavoritesInteractor.swift */; };
+		AD24651D2C90972800F6BF1E /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24651C2C90972800F6BF1E /* FavoritesViewControllerTests.swift */; };
 		AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6A2C85C59300029DD5 /* AppDelegate.swift */; };
 		AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */; };
 		AD456B722C85C59300029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B712C85C59300029DD5 /* Base */; };
@@ -110,6 +112,8 @@
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
 		AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesView.swift; sourceTree = "<group>"; };
 		AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenterTests.swift; sourceTree = "<group>"; };
+		AD24651A2C90970B00F6BF1E /* MockFavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesInteractor.swift; sourceTree = "<group>"; };
+		AD24651C2C90972800F6BF1E /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerTests.swift; sourceTree = "<group>"; };
 		AD456B672C85C59300029DD5 /* recipes-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "recipes-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD456B6A2C85C59300029DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */,
 				AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */,
 				AD2465162C90956E00F6BF1E /* MockFavoritesView.swift */,
+				AD24651A2C90970B00F6BF1E /* MockFavoritesInteractor.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 			children = (
 				AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */,
 				AD2465182C90959700F6BF1E /* FavoritesPresenterTests.swift */,
+				AD24651C2C90972800F6BF1E /* FavoritesViewControllerTests.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -689,6 +695,7 @@
 				AD456C602C907A5B00029DD5 /* HistoryInteractorTests.swift in Sources */,
 				AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */,
 				AD456C3C2C8F151000029DD5 /* CoreDataStack.swift in Sources */,
+				AD24651D2C90972800F6BF1E /* FavoritesViewControllerTests.swift in Sources */,
 				AD456C532C904DB900029DD5 /* MockNetworkService.swift in Sources */,
 				AD456C572C90560F00029DD5 /* MockRecipeView.swift in Sources */,
 				AD456C3E2C8F152300029DD5 /* AppLogger.swift in Sources */,
@@ -702,6 +709,7 @@
 				AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */,
 				AD456C282C8EF98700029DD5 /* NetworkServiceTests.swift in Sources */,
 				AD456C372C8F147B00029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */,
+				AD24651B2C90970B00F6BF1E /* MockFavoritesInteractor.swift in Sources */,
 				AD456C352C8F11B600029DD5 /* Recipes.xcdatamodeld in Sources */,
 				AD456C552C904EAF00029DD5 /* RecipeRandomInteractorTests.swift in Sources */,
 				AD456C432C8F512900029DD5 /* MockRecipePresenter.swift in Sources */,
