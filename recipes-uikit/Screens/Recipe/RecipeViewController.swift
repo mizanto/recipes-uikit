@@ -20,7 +20,9 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     }
     
     var interactor: RecipeInteractorProtocol?
-    private let recipeView = RecipeView()
+    
+    let recipeView = RecipeView()
+    
     private let screenType: ScreenType
 
     private lazy var getRecipeButton: UIButton = {
@@ -120,7 +122,7 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
     
     // MARK: - Actions
     
-    @objc private func getRandomRecipe() {
+    @objc func getRandomRecipe() {
         AppLogger.shared.info("Get Random Recipe button tapped", category: .ui)
         if let randomInteractor = interactor as? RecipeRandomInteractorProtocol {
             randomInteractor.fetchRandomRecipe()
@@ -130,7 +132,7 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
         }
     }
     
-    @objc private func toggleFavoriteStatus() {
+    @objc func toggleFavoriteStatus() {
         AppLogger.shared.info("Toggle favorite status button tapped", category: .ui)
         interactor?.toggleFavoriteStatus()
     }

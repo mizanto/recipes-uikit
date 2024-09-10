@@ -18,9 +18,9 @@ extension RecipeDataModel {
             area: "Test Area",
             instructions: "Test instructions",
             mealThumbURL: URL(string: "https://example.com/image.jpg")!,
-            youtubeURL: nil,
-            sourceURL: nil,
-            ingredients: [],
+            youtubeURL: URL(string: "https://youtube.com/watch?v=test"),
+            sourceURL: URL(string: "https://example.com/source"),
+            ingredients: [Ingredient(name: "Chicken", measure: "200g")],
             dateAdded: Date(),
             isFavorite: false
         )

@@ -77,6 +77,10 @@
 		AD456C512C904BD800029DD5 /* RecipeDataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C502C904BD800029DD5 /* RecipeDataModel+Tests.swift */; };
 		AD456C532C904DB900029DD5 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C522C904DB900029DD5 /* MockNetworkService.swift */; };
 		AD456C552C904EAF00029DD5 /* RecipeRandomInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */; };
+		AD456C572C90560F00029DD5 /* MockRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C562C90560F00029DD5 /* MockRecipeView.swift */; };
+		AD456C592C90566100029DD5 /* RecipePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C582C90566100029DD5 /* RecipePresenterTests.swift */; };
+		AD456C5B2C9058C300029DD5 /* MockReciMockRecipeRandomInteractorpeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C5A2C9058C300029DD5 /* MockReciMockRecipeRandomInteractorpeInteractor.swift */; };
+		AD456C5D2C90594A00029DD5 /* RecipeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C5C2C90594A00029DD5 /* RecipeViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +156,10 @@
 		AD456C502C904BD800029DD5 /* RecipeDataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeDataModel+Tests.swift"; sourceTree = "<group>"; };
 		AD456C522C904DB900029DD5 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRandomInteractorTests.swift; sourceTree = "<group>"; };
+		AD456C562C90560F00029DD5 /* MockRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecipeView.swift; sourceTree = "<group>"; };
+		AD456C582C90566100029DD5 /* RecipePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenterTests.swift; sourceTree = "<group>"; };
+		AD456C5A2C9058C300029DD5 /* MockReciMockRecipeRandomInteractorpeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReciMockRecipeRandomInteractorpeInteractor.swift; sourceTree = "<group>"; };
+		AD456C5C2C90594A00029DD5 /* RecipeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				AD456C422C8F512900029DD5 /* MockRecipePresenter.swift */,
+				AD456C562C90560F00029DD5 /* MockRecipeView.swift */,
+				AD456C5A2C9058C300029DD5 /* MockReciMockRecipeRandomInteractorpeInteractor.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -421,6 +431,8 @@
 				AD456C4D2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift */,
 				AD456C492C8F51C800029DD5 /* RecipeDetailInteractorTests.swift */,
 				AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */,
+				AD456C582C90566100029DD5 /* RecipePresenterTests.swift */,
+				AD456C5C2C90594A00029DD5 /* RecipeViewControllerTests.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -595,17 +607,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD456C512C904BD800029DD5 /* RecipeDataModel+Tests.swift in Sources */,
+				AD456C5D2C90594A00029DD5 /* RecipeViewControllerTests.swift in Sources */,
 				AD456C3D2C8F151300029DD5 /* IngredientArrayTransformer.swift in Sources */,
 				AD456C382C8F147E00029DD5 /* RecipeEntity+CoreDataClass.swift in Sources */,
 				AD456C3A2C8F148400029DD5 /* IngredientEntity+CoreDataClass.swift in Sources */,
 				AD456C452C8F515F00029DD5 /* MockStorageService.swift in Sources */,
+				AD456C592C90566100029DD5 /* RecipePresenterTests.swift in Sources */,
 				AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */,
 				AD456C3C2C8F151000029DD5 /* CoreDataStack.swift in Sources */,
 				AD456C532C904DB900029DD5 /* MockNetworkService.swift in Sources */,
+				AD456C572C90560F00029DD5 /* MockRecipeView.swift in Sources */,
 				AD456C3E2C8F152300029DD5 /* AppLogger.swift in Sources */,
 				AD456C392C8F148100029DD5 /* RecipeEntity+CoreDataProperties.swift in Sources */,
 				AD456C4A2C8F51C800029DD5 /* RecipeDetailInteractorTests.swift in Sources */,
 				AD456C3B2C8F148600029DD5 /* IngredientEntity+CoreDataProperties.swift in Sources */,
+				AD456C5B2C9058C300029DD5 /* MockReciMockRecipeRandomInteractorpeInteractor.swift in Sources */,
 				AD456C362C8F147800029DD5 /* HistoryItemEntity+CoreDataClass.swift in Sources */,
 				AD456C4E2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift in Sources */,
 				AD456C282C8EF98700029DD5 /* NetworkServiceTests.swift in Sources */,
