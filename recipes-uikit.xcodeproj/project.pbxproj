@@ -75,6 +75,8 @@
 		AD456C4C2C9049F200029DD5 /* BaseRecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C4B2C9049F200029DD5 /* BaseRecipeInteractor.swift */; };
 		AD456C4E2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C4D2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift */; };
 		AD456C512C904BD800029DD5 /* RecipeDataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C502C904BD800029DD5 /* RecipeDataModel+Tests.swift */; };
+		AD456C532C904DB900029DD5 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C522C904DB900029DD5 /* MockNetworkService.swift */; };
+		AD456C552C904EAF00029DD5 /* RecipeRandomInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,8 @@
 		AD456C4B2C9049F200029DD5 /* BaseRecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecipeInteractor.swift; sourceTree = "<group>"; };
 		AD456C4D2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecipeInteractorTests.swift; sourceTree = "<group>"; };
 		AD456C502C904BD800029DD5 /* RecipeDataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeDataModel+Tests.swift"; sourceTree = "<group>"; };
+		AD456C522C904DB900029DD5 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRandomInteractorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,7 @@
 			children = (
 				AD456C442C8F515F00029DD5 /* MockStorageService.swift */,
 				AD456C242C8EF92A00029DD5 /* URLSessionMock.swift */,
+				AD456C522C904DB900029DD5 /* MockNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 			children = (
 				AD456C4D2C904B7F00029DD5 /* BaseRecipeInteractorTests.swift */,
 				AD456C492C8F51C800029DD5 /* RecipeDetailInteractorTests.swift */,
+				AD456C542C904EAF00029DD5 /* RecipeRandomInteractorTests.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 				AD456C452C8F515F00029DD5 /* MockStorageService.swift in Sources */,
 				AD456C252C8EF92A00029DD5 /* URLSessionMock.swift in Sources */,
 				AD456C3C2C8F151000029DD5 /* CoreDataStack.swift in Sources */,
+				AD456C532C904DB900029DD5 /* MockNetworkService.swift in Sources */,
 				AD456C3E2C8F152300029DD5 /* AppLogger.swift in Sources */,
 				AD456C392C8F148100029DD5 /* RecipeEntity+CoreDataProperties.swift in Sources */,
 				AD456C4A2C8F51C800029DD5 /* RecipeDetailInteractorTests.swift in Sources */,
@@ -604,6 +611,7 @@
 				AD456C282C8EF98700029DD5 /* NetworkServiceTests.swift in Sources */,
 				AD456C372C8F147B00029DD5 /* HistoryItemEntity+CoreDataProperties.swift in Sources */,
 				AD456C352C8F11B600029DD5 /* Recipes.xcdatamodeld in Sources */,
+				AD456C552C904EAF00029DD5 /* RecipeRandomInteractorTests.swift in Sources */,
 				AD456C432C8F512900029DD5 /* MockRecipePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,11 +21,9 @@ class BaseRecipeInteractorTests: XCTestCase {
         mockStorageService = MockStorageService()
         
         recipe = RecipeDataModel.mock
-        
-        mockStorageService.recipes.append(recipe)
+
         interactor = BaseRecipeInteractor(presenter: mockPresenter, 
                                           storageService: mockStorageService)
-        interactor.currentRecipe = recipe
     }
     
     override func tearDown() {
@@ -37,6 +35,9 @@ class BaseRecipeInteractorTests: XCTestCase {
     }
     
     func testFetchRecipeThrowsError() {
+        interactor.currentRecipe = recipe
+        mockStorageService.recipes = [recipe]
+        
         interactor.fetchRecipe()
         
         XCTAssertTrue(mockPresenter.isPresentErrorCalled)
@@ -44,6 +45,9 @@ class BaseRecipeInteractorTests: XCTestCase {
     }
     
     func testToggleFavoriteStatusToAdd() {
+        interactor.currentRecipe = recipe
+        mockStorageService.recipes = [recipe]
+        
         interactor.toggleFavoriteStatus()
         
         XCTAssertTrue(mockPresenter.isPresentRecipeCalled)
@@ -53,6 +57,7 @@ class BaseRecipeInteractorTests: XCTestCase {
     
     func testToggleFavoriteStatusToRemove() {
         recipe.isFavorite = true
+        interactor.currentRecipe = recipe
         mockStorageService.recipes = [recipe]
         
         interactor.toggleFavoriteStatus()

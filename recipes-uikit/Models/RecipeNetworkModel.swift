@@ -41,19 +41,8 @@ struct RecipeNetworkModel: Codable {
         mealThumbURL = try container.decode(URL.self, forKey: .mealThumbURL)
         tags = try container.decodeIfPresent(String.self, forKey: .tags)
         
-        if let youtubeString = try container.decodeIfPresent(String.self, forKey: .youtubeURL),
-           let url = URL(string: youtubeString) {
-            youtubeURL = url
-        } else {
-            youtubeURL = nil
-        }
-        
-        if let sourceString = try container.decodeIfPresent(String.self, forKey: .sourceURL),
-           let url = URL(string: sourceString) {
-            sourceURL = url
-        } else {
-            sourceURL = nil
-        }
+        youtubeURL = (try? container.decodeIfPresent(String.self, forKey: .youtubeURL)).flatMap(URL.init)
+        sourceURL = (try? container.decodeIfPresent(String.self, forKey: .sourceURL)).flatMap(URL.init)
         
         var ingredients: [Ingredient] = []
         let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
@@ -64,10 +53,34 @@ struct RecipeNetworkModel: Codable {
             
             if let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: ingredientKey),
                let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: measureKey),
-               !ingredient.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                ingredients.append(Ingredient(name: ingredient, measure: measure))
+               !ingredient.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+               !measure.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                ingredients.append(Ingredient(name: ingredient.trimmingCharacters(in: .whitespacesAndNewlines), measure: measure.trimmingCharacters(in: .whitespacesAndNewlines)))
             }
         }
+        self.ingredients = ingredients
+    }
+    
+    init(id: String,
+         mealName: String,
+         category: String?,
+         area: String?,
+         instructions: String,
+         mealThumbURL: String,
+         tags: String? = nil,
+         youtubeURL: String? = nil,
+         sourceURL: String? = nil,
+         ingredients: [Ingredient] = []
+    ) {
+        self.id = id
+        self.mealName = mealName
+        self.category = category
+        self.area = area
+        self.instructions = instructions
+        self.mealThumbURL = URL(string: mealThumbURL)!
+        self.tags = tags
+        self.youtubeURL = youtubeURL != nil ? URL(string: youtubeURL!) : nil
+        self.sourceURL = sourceURL != nil ? URL(string: sourceURL!) : nil
         self.ingredients = ingredients
     }
 }
