@@ -36,6 +36,12 @@ jobs:
       - name: Install xcpretty
         run: gem install xcpretty
 
+      - name: Remove corrupted Package.resolved
+        run: |
+          if [ -f "recipes-uikit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" ]; then
+            rm "recipes-uikit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+          fi
+
       - name: Install dependencies
         run: |
           xcodebuild -resolvePackageDependencies -project recipes-uikit.xcodeproj -scheme recipes-uikit
