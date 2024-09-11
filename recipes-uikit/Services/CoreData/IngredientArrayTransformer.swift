@@ -32,7 +32,8 @@ class IngredientArrayTransformer: ValueTransformer {
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let data = value as? Data else { return nil }
         do {
-            let ingredients = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, IngredientEntity.self], from: data) as? [IngredientEntity]
+            let ingredients = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, IngredientEntity.self], 
+                                                                     from: data) as? [IngredientEntity]
             return ingredients
         } catch {
             print("Failed to decode ingredients: \(error)")

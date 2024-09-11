@@ -523,6 +523,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD456B7B2C85C59500029DD5 /* Build configuration list for PBXNativeTarget "recipes-uikit" */;
 			buildPhases = (
+				AD24651E2C91AA5B00F6BF1E /* Run SwiftLint */,
 				AD456B632C85C59300029DD5 /* Sources */,
 				AD456B642C85C59300029DD5 /* Frameworks */,
 				AD456B652C85C59300029DD5 /* Resources */,
@@ -618,6 +619,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AD24651E2C91AA5B00F6BF1E /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\" # for M1/M2\nexport PATH=\"$PATH:/usr/local/bin\" # for Intel Mac\n\nif which swiftlint >/dev/null; then\n    USE_SWIFTLINT_SANDBOX=NO swiftlint lint --config ${SRCROOT}/.swiftlint.yml ${SRCROOT}/recipes-uikit\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD456B632C85C59300029DD5 /* Sources */ = {
@@ -873,6 +896,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UER9S2EB72;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "recipes-uikit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -901,6 +925,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UER9S2EB72;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "recipes-uikit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

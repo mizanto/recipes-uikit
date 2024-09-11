@@ -20,7 +20,8 @@ class AppDependencyConfigurator {
         networkService = NetworkService()
         storageService = StorageService()
 
-        ValueTransformer.setValueTransformer(IngredientArrayTransformer(), forName: NSValueTransformerName("IngredientArrayTransformer"))
+        ValueTransformer.setValueTransformer(
+            IngredientArrayTransformer(), forName: NSValueTransformerName("IngredientArrayTransformer"))
     }
 
     func configuredTabBarController() -> UITabBarController {

@@ -92,7 +92,9 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier, for: indexPath) as? FavoriteRecipeCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier,
+            for: indexPath) as? FavoriteRecipeCollectionViewCell else {
             return UICollectionViewCell()
         }
         let recipe = favoriteRecipes[indexPath.row]
@@ -106,7 +108,9 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
         interactor?.selectRecipe(withId: selectedRecipe.id)
     }
     
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
         let deleteAction = UIAction(title: NSLocalizedString("delete_action.title", comment: ""), attributes: .destructive) { [weak self] _ in
             self?.deleteFavoriteRecipe(at: indexPath)
         }

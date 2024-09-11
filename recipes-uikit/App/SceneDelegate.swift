@@ -11,17 +11,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        AppLogger.shared.info("Scene will connect to session: \(session.configuration.name ?? "unknown")", category: .ui)
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+        AppLogger.shared.info("Scene will connect to session: \(session.configuration.name ?? "unknown")",
+                              category: .ui)
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         AppDependencyConfigurator.shared.configureDependencies()
-        
+
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = AppDependencyConfigurator.shared.configuredTabBarController()
         window?.makeKeyAndVisible()
     }
-    
+
     func sceneDidDisconnect(_ scene: UIScene) {
         AppLogger.shared.info("Scene did disconnect", category: .ui)
     }
@@ -42,4 +45,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         AppLogger.shared.info("Scene did enter background", category: .ui)
     }
 }
-

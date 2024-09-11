@@ -47,15 +47,18 @@ struct RecipeNetworkModel: Codable {
         var ingredients: [Ingredient] = []
         let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
         
-        for i in 1...20 {
-            let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(i)")!
-            let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(i)")!
+        for index in 1...20 {
+            let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(index)")!
+            let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(index)")!
             
             if let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: ingredientKey),
                let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: measureKey),
                !ingredient.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                !measure.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                ingredients.append(Ingredient(name: ingredient.trimmingCharacters(in: .whitespacesAndNewlines), measure: measure.trimmingCharacters(in: .whitespacesAndNewlines)))
+                ingredients.append(
+                    Ingredient(name: ingredient.trimmingCharacters(in: .whitespacesAndNewlines),
+                               measure: measure.trimmingCharacters(in: .whitespacesAndNewlines))
+                )
             }
         }
         self.ingredients = ingredients
