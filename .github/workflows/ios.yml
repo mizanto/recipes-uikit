@@ -32,6 +32,7 @@ jobs:
           -project recipes-uikit.xcodeproj \
           -scheme recipes-uikit \
           -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
+          -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
           ONLY_ACTIVE_ARCH=NO \
-          -allowProvisioningUpdates | xcpretty
+          -allowProvisioningUpdates \
+          -allowProvisioningDeviceRegistration | xcpretty
