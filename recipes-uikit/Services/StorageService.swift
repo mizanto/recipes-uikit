@@ -101,7 +101,7 @@ final class StorageService: StorageServiceProtocol {
     }
     
     func saveRecipe(_ recipe: RecipeDataModel) throws {
-        let entity = recipe.toEntity(in: context)
+        let _ = recipe.toEntity(in: context)
         do {
             try context.save()
             AppLogger.shared.info("Saved recipe \(recipe.mealName) successfully", category: .database)
