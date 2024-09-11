@@ -19,14 +19,17 @@ jobs:
         with:
           xcode-version: '15.0'
 
+      - name: Install xcpretty
+        run: gem install xcpretty
+
       - name: Install dependencies
         run: |
-          xcodebuild -resolvePackageDependencies -project recipes-uikit.xcodeproj -scheme recipes-uikit # Команда для разрешения зависимостей Swift Package Manager
+          xcodebuild -resolvePackageDependencies -project recipes-uikit.xcodeproj -scheme recipes-uikit
 
       - name: Build and run tests
         run: |
           xcodebuild clean build test \
-          -project recipes-uikit.xcodeproj \ 
+          -project recipes-uikit.xcodeproj \
           -scheme recipes-uikit \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
