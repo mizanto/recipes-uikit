@@ -16,7 +16,6 @@
 		AD24651D2C90972800F6BF1E /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24651C2C90972800F6BF1E /* FavoritesViewControllerTests.swift */; };
 		AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6A2C85C59300029DD5 /* AppDelegate.swift */; };
 		AD456B6D2C85C59300029DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */; };
-		AD456B722C85C59300029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B712C85C59300029DD5 /* Base */; };
 		AD456B742C85C59500029DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD456B732C85C59500029DD5 /* Assets.xcassets */; };
 		AD456B772C85C59500029DD5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AD456B762C85C59500029DD5 /* Base */; };
 		AD456B7F2C85C67D00029DD5 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456B7E2C85C67D00029DD5 /* RecipeViewController.swift */; };
@@ -109,7 +108,6 @@
 		AD456B672C85C59300029DD5 /* recipes-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "recipes-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD456B6A2C85C59300029DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD456B6C2C85C59300029DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AD456B712C85C59300029DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD456B732C85C59500029DD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD456B762C85C59500029DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD456B782C85C59500029DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 				AD456B882C85CDEB00029DD5 /* Screens */,
 				AD456B902C85D57B00029DD5 /* Services */,
 				AD456C112C8B5C8700029DD5 /* Resources */,
-				AD456B702C85C59300029DD5 /* Main.storyboard */,
 				AD456B782C85C59500029DD5 /* Info.plist */,
 			);
 			path = "recipes-uikit";
@@ -599,7 +596,6 @@
 				AD456B742C85C59500029DD5 /* Assets.xcassets in Resources */,
 				AD456B772C85C59500029DD5 /* Base in Resources */,
 				AD456C132C8B5DA900029DD5 /* Localizable.xcstrings in Resources */,
-				AD456B722C85C59300029DD5 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,14 +730,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AD456B702C85C59300029DD5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AD456B712C85C59300029DD5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AD456B752C85C59500029DD5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
