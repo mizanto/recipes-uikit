@@ -9,5 +9,5 @@ import Foundation
 
 struct HistoryViewModel {
     let mealName: String
-    let dateAdded: String 
+    let dateAdded: String
 }

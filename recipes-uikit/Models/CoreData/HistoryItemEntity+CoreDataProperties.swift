@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension HistoryItemEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<HistoryItemEntity> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<HistoryItemEntity> {
         return NSFetchRequest<HistoryItemEntity>(entityName: "HistoryItemEntity")
     }
 
@@ -22,6 +22,4 @@ extension HistoryItemEntity {
 
 }
 
-extension HistoryItemEntity : Identifiable {
-
-}
+extension HistoryItemEntity: Identifiable {}

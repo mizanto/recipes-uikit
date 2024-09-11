@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RandomRecipeViewModel {
+struct RecipeViewModel {
     let mealName: String
     let mealThumbURL: URL?
     let category: String?

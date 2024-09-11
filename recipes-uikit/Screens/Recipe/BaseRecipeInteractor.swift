@@ -15,12 +15,12 @@ protocol RecipeInteractorProtocol: AnyObject {
 class BaseRecipeInteractor: RecipeInteractorProtocol {
     internal let presenter: RecipePresenterProtocol
     internal let storageService: StorageServiceProtocol
-    
+
     internal var currentRecipe: RecipeDataModel?
 
     enum InteractorError: Error, LocalizedError {
         case methodNotImplemented
-        
+
         var errorDescription: String? {
             switch self {
             case .methodNotImplemented:
@@ -38,14 +38,14 @@ class BaseRecipeInteractor: RecipeInteractorProtocol {
         AppLogger.shared.error("fetchRecipe method is not implemented in subclass", category: .ui)
         presenter.presentError(InteractorError.methodNotImplemented)
     }
-    
+
     func toggleFavoriteStatus() {
         guard let recipe = currentRecipe else {
             AppLogger.shared.error("No recipe available to toggle favorite status", category: .ui)
             presenter.presentError(StorageServiceError.itemNotFound)
             return
         }
-        
+
         do {
             if recipe.isFavorite {
                 try storageService.removeRecipeFromFavorites(recipe)
@@ -55,12 +55,13 @@ class BaseRecipeInteractor: RecipeInteractorProtocol {
                 AppLogger.shared.info("Added recipe to favorites: \(recipe.mealName)", category: .database)
             }
             currentRecipe?.isFavorite.toggle()
-            
+
             if let currentRecipe = currentRecipe {
                 presenter.presentRecipe(currentRecipe)
             }
         } catch {
-            AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)",
+                                   category: .database)
             presenter.presentError(error)
         }
     }

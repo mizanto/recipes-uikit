@@ -12,21 +12,21 @@ protocol FavoritesRouterProtocol {
 }
 
 class FavoritesRouter: FavoritesRouterProtocol {
-    
+
     let storageService: StorageServiceProtocol
     weak var viewController: UIViewController?
-    
+
     init(storageService: StorageServiceProtocol, viewController: UIViewController) {
         self.storageService = storageService
         self.viewController = viewController
     }
-    
+
     func navigateToRecipeDetail(with recipeId: String) {
         let recipeDetailViewController = RecipeModuleBuilder.buildDetail(
             storageService: storageService,
             recipeId: recipeId
         )
-        
+
         viewController?.navigationController?.pushViewController(recipeDetailViewController, animated: true)
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 @testable import recipes_uikit
 
 class MockRecipeView: RecipeViewProtocol {
-    var displayedRecipe: RandomRecipeViewModel?
+    var displayedRecipe: RecipeViewModel?
     var displayedError: String?
     
-    func displayRecipe(_ viewModel: RandomRecipeViewModel) {
+    func displayRecipe(_ viewModel: RecipeViewModel) {
         displayedRecipe = viewModel
     }
     

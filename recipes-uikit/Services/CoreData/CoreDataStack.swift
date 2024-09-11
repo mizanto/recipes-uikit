@@ -18,7 +18,8 @@ final class CoreDataStack {
         let container = NSPersistentContainer(name: "Recipes")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                AppLogger.shared.error("Failed to load persistent stores: \(error), \(error.userInfo)", category: .database)
+                AppLogger.shared.error("Failed to load persistent stores: \(error), \(error.userInfo)",
+                                       category: .database)
             } else {
                 AppLogger.shared.info("Persistent store loaded: \(storeDescription)", category: .database)
             }

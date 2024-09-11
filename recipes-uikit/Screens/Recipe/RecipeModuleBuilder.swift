@@ -8,7 +8,7 @@
 import UIKit
 
 final class RecipeModuleBuilder {
-    
+
     static func buildRandomRecipe(networkService: NetworkServiceProtocol,
                                   storageService: StorageServiceProtocol) -> UIViewController {
         let viewController = RecipeViewController(screenType: .random)
@@ -19,7 +19,7 @@ final class RecipeModuleBuilder {
         viewController.interactor = interactor
         return viewController
     }
-    
+
     static func buildDetail(storageService: StorageServiceProtocol, recipeId: String) -> UIViewController {
         let viewController = RecipeViewController(screenType: .detail)
         let presenter = RecipePresenter(view: viewController)

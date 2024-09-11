@@ -9,7 +9,4 @@
 import Foundation
 import CoreData
 
-
-public class HistoryItemEntity: NSManagedObject {
-
-}
+public class HistoryItemEntity: NSManagedObject {}

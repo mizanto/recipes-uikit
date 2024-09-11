@@ -19,10 +19,10 @@ struct RecipeDataModel {
     let ingredients: [Ingredient]
     let dateAdded: Date
     var isFavorite: Bool
-    
+
     enum InitializationError: Error, LocalizedError {
         case missingRequiredField(String)
-        
+
         var errorDescription: String? {
             switch self {
             case .missingRequiredField(let fieldName):
@@ -30,7 +30,7 @@ struct RecipeDataModel {
             }
         }
     }
-    
+
     init(from networkModel: RecipeNetworkModel) {
         self.id = networkModel.id
         self.mealName = networkModel.mealName
@@ -44,33 +44,33 @@ struct RecipeDataModel {
         self.dateAdded = Date()
         self.isFavorite = false
     }
-    
+
     init(from entity: RecipeEntity) throws {
         // Validate required fields
         guard let id = entity.id else {
             throw InitializationError.missingRequiredField("id")
         }
-        
+
         guard let mealName = entity.mealName else {
             throw InitializationError.missingRequiredField("mealName")
         }
-        
+
         guard let instructions = entity.instructions else {
             throw InitializationError.missingRequiredField("instructions")
         }
-        
+
         guard let mealThumbURLString = entity.mealThumbURL, let mealThumbURL = URL(string: mealThumbURLString) else {
             throw InitializationError.missingRequiredField("mealThumbURL")
         }
-        
+
         guard let ingredientEntities = entity.ingredients else {
             throw InitializationError.missingRequiredField("ingredients")
         }
-        
+
         guard let dateAdded = entity.dateAdded else {
             throw InitializationError.missingRequiredField("dateAdded")
         }
-        
+
         // Convert IngredientEntity to Ingredient
         let ingredients = ingredientEntities.compactMap { entity -> Ingredient? in
             guard let name = entity.name, let measure = entity.measure else {
@@ -78,7 +78,7 @@ struct RecipeDataModel {
             }
             return Ingredient(name: name, measure: measure)
         }
-        
+
         // Initialize properties
         self.id = id
         self.mealName = mealName
@@ -92,7 +92,7 @@ struct RecipeDataModel {
         self.dateAdded = dateAdded
         self.isFavorite = entity.isFavorite
     }
-    
+
     init(id: String,
          mealName: String,
          category: String? = nil,
@@ -116,7 +116,7 @@ struct RecipeDataModel {
         self.dateAdded = dateAdded
         self.isFavorite = isFavorite
     }
-    
+
     func toEntity(in context: NSManagedObjectContext) -> RecipeEntity {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "RecipeEntity", in: context) else {
             fatalError("Failed to find entity description for Recipe")

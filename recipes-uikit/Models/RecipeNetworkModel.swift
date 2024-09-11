@@ -18,7 +18,7 @@ struct RecipeNetworkModel: Codable {
     let youtubeURL: URL?
     let sourceURL: URL?
     var ingredients: [Ingredient]
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "idMeal"
         case mealName = "strMeal"
@@ -30,7 +30,7 @@ struct RecipeNetworkModel: Codable {
         case youtubeURL = "strYoutube"
         case sourceURL = "strSource"
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -40,17 +40,19 @@ struct RecipeNetworkModel: Codable {
         instructions = try container.decode(String.self, forKey: .instructions)
         mealThumbURL = try container.decode(URL.self, forKey: .mealThumbURL)
         tags = try container.decodeIfPresent(String.self, forKey: .tags)
-        
+
         youtubeURL = (try? container.decodeIfPresent(String.self, forKey: .youtubeURL)).flatMap(URL.init)
         sourceURL = (try? container.decodeIfPresent(String.self, forKey: .sourceURL)).flatMap(URL.init)
-        
+
         var ingredients: [Ingredient] = []
         let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        
+
         for index in 1...20 {
-            let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(index)")!
-            let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(index)")!
-            
+            guard let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(index)"),
+                  let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(index)") else {
+                continue
+            }
+
             if let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: ingredientKey),
                let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: measureKey),
                !ingredient.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
@@ -63,27 +65,42 @@ struct RecipeNetworkModel: Codable {
         }
         self.ingredients = ingredients
     }
-    
-    init(id: String,
-         mealName: String,
-         category: String?,
-         area: String?,
-         instructions: String,
-         mealThumbURL: String,
-         tags: String? = nil,
-         youtubeURL: String? = nil,
-         sourceURL: String? = nil,
-         ingredients: [Ingredient] = []
-    ) {
+
+    init?(id: String,
+          mealName: String,
+          category: String?,
+          area: String?,
+          instructions: String,
+          mealThumbURL: String,
+          tags: String? = nil,
+          youtubeURL: String? = nil,
+          sourceURL: String? = nil,
+          ingredients: [Ingredient] = []) {
         self.id = id
         self.mealName = mealName
         self.category = category
         self.area = area
         self.instructions = instructions
-        self.mealThumbURL = URL(string: mealThumbURL)!
+
+        guard let validMealThumbURL = URL(string: mealThumbURL) else {
+            return nil
+        }
+        self.mealThumbURL = validMealThumbURL
+
         self.tags = tags
-        self.youtubeURL = youtubeURL != nil ? URL(string: youtubeURL!) : nil
-        self.sourceURL = sourceURL != nil ? URL(string: sourceURL!) : nil
+
+        if let youtubeString = youtubeURL, let validYoutubeURL = URL(string: youtubeString) {
+            self.youtubeURL = validYoutubeURL
+        } else {
+            self.youtubeURL = nil
+        }
+
+        if let sourceString = sourceURL, let validSourceURL = URL(string: sourceString) {
+            self.sourceURL = validSourceURL
+        } else {
+            self.sourceURL = nil
+        }
+
         self.ingredients = ingredients
     }
 }
@@ -91,12 +108,12 @@ struct RecipeNetworkModel: Codable {
 struct DynamicCodingKeys: CodingKey {
     var stringValue: String
     var intValue: Int?
-    
+
     init?(stringValue: String) {
         self.stringValue = stringValue
         self.intValue = nil
     }
-    
+
     init?(intValue: Int) {
         self.stringValue = "\(intValue)"
         self.intValue = intValue

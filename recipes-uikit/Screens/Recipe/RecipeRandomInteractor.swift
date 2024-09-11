@@ -13,25 +13,26 @@ protocol RecipeRandomInteractorProtocol: RecipeInteractorProtocol {
 
 class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtocol {
     private let networkService: NetworkServiceProtocol
-    
+
     init(presenter: RecipePresenterProtocol,
          networkService: NetworkServiceProtocol,
          storageService: StorageServiceProtocol) {
         self.networkService = networkService
         super.init(presenter: presenter, storageService: storageService)
     }
-    
+
     override func fetchRecipe() {
         do {
             let recipe = try storageService.getLastRecipe()
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
             processLoadedRecipe(recipe)
         } catch {
-            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)",
+                                   category: .database)
             fetchRandomRecipeFromNetwork()
         }
     }
-    
+
     func fetchRandomRecipe() {
         fetchRandomRecipeFromNetwork()
     }
@@ -42,22 +43,24 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
             do {
                 let recipeNetworkModel = try await networkService.fetchRandomRecipe()
                 let recipeDataModel = RecipeDataModel(from: recipeNetworkModel)
-                AppLogger.shared.info("Fetched random recipe: \(recipeDataModel.mealName) from network", category: .network)
+                AppLogger.shared.info("Fetched random recipe: \(recipeDataModel.mealName) from network",
+                                      category: .network)
                 processLoadedRecipe(recipeDataModel)
                 saveRecipe(recipeDataModel)
                 saveRecipeToHistory(recipeDataModel)
             } catch {
-                AppLogger.shared.error("Failed to fetch random recipe: \(error.localizedDescription)", category: .network)
+                AppLogger.shared.error("Failed to fetch random recipe: \(error.localizedDescription)",
+                                       category: .network)
                 presenter.presentError(error)
             }
         }
     }
-    
+
     private func processLoadedRecipe(_ recipe: RecipeDataModel) {
         currentRecipe = recipe
         presenter.presentRecipe(recipe)
     }
-    
+
     private func saveRecipe(_ recipe: RecipeDataModel) {
         do {
             try storageService.saveRecipe(recipe)
@@ -66,14 +69,15 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
             AppLogger.shared.error("Error saving loaded recipe: \(error.localizedDescription)", category: .database)
         }
     }
-    
+
     private func saveRecipeToHistory(_ recipe: RecipeDataModel) {
         do {
             let historyItem = HistoryItemDataModel(from: recipe)
             try storageService.saveRecipeToHistory(historyItem)
             AppLogger.shared.info("Added recipe to history: \(historyItem.mealName)", category: .database)
         } catch {
-            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)",
+                                   category: .database)
         }
     }
 }

@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension RecipeEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<RecipeEntity> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<RecipeEntity> {
         return NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
     }
 
@@ -30,6 +30,4 @@ extension RecipeEntity {
 
 }
 
-extension RecipeEntity : Identifiable {
-
-}
+extension RecipeEntity: Identifiable {}

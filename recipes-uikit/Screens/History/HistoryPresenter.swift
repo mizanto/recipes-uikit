@@ -13,23 +13,23 @@ protocol HistoryPresenterProtocol {
 }
 
 class HistoryPresenter: HistoryPresenterProtocol {
-    
+
     weak var view: HistoryViewProtocol?
-    
+
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
-    
+
     init(view: HistoryViewProtocol) {
         self.view = view
     }
-    
+
     func presentRecipeHistory(_ history: [HistoryItemDataModel]) {
         AppLogger.shared.info("Presenting recipe history with \(history.count) items", category: .ui)
-        
+
         if history.isEmpty {
             view?.displayPlaceholder()
         } else {
@@ -42,7 +42,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
             view?.displayRecipeHistory(viewModel)
         }
     }
-    
+
     func presentError(_ error: Error) {
         AppLogger.shared.error("Error presenting recipe history: \(error.localizedDescription)", category: .ui)
         view?.displayError(error.localizedDescription)

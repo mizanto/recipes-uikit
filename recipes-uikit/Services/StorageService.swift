@@ -16,7 +16,7 @@ enum StorageServiceError: Error, LocalizedError {
     case failedToDelete
     case alreadyInFavorites
     case unknown
-    
+
     var errorDescription: String? {
         switch self {
         case .itemNotFound:
@@ -53,20 +53,20 @@ protocol StorageServiceProtocol {
 // MARK: - Storage Service Implementation
 
 final class StorageService: StorageServiceProtocol {
-    
+
     private let context: NSManagedObjectContext
-    
+
     init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
         self.context = context
     }
-    
+
     // MARK: - Last Viewed Recipe Methods
-    
+
     func getLastRecipe() throws -> RecipeDataModel {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: false)]
         request.fetchLimit = 1
-        
+
         do {
             guard let entity = try context.fetch(request).first else {
                 AppLogger.shared.error("Last viewed recipe not found", category: .database)
@@ -79,17 +79,18 @@ final class StorageService: StorageServiceProtocol {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
             throw StorageServiceError.failedToFetch
         } catch {
-            AppLogger.shared.error("Failed to fetch last viewed recipe: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Failed to fetch last viewed recipe: \(error.localizedDescription)",
+                                   category: .database)
             throw StorageServiceError.failedToFetch
         }
     }
-    
+
     func getRecipe(by id: String) throws -> RecipeDataModel {
         guard let entity = try fetchRecipeEntity(by: id) else {
             AppLogger.shared.error("Recipe with id \(id) not found", category: .database)
             throw StorageServiceError.itemNotFound
         }
-        
+
         do {
             let recipeDataModel = try RecipeDataModel(from: entity)
             AppLogger.shared.info("Loaded recipe with id \(id) successfully", category: .database)
@@ -99,9 +100,9 @@ final class StorageService: StorageServiceProtocol {
             throw StorageServiceError.failedToFetch
         }
     }
-    
+
     func saveRecipe(_ recipe: RecipeDataModel) throws {
-        let _ = recipe.toEntity(in: context)
+        _ = recipe.toEntity(in: context)
         do {
             try context.save()
             AppLogger.shared.info("Saved recipe \(recipe.mealName) successfully", category: .database)
@@ -110,13 +111,13 @@ final class StorageService: StorageServiceProtocol {
             throw StorageServiceError.failedToSave
         }
     }
-    
+
     // MARK: - Recipe History Methods
-    
+
     func getRecipeHistory() throws -> [HistoryItemDataModel] {
         let request: NSFetchRequest<HistoryItemEntity> = HistoryItemEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
+
         do {
             let entities = try context.fetch(request)
             let history = try entities.map { try HistoryItemDataModel(from: $0) }
@@ -130,22 +131,23 @@ final class StorageService: StorageServiceProtocol {
             throw StorageServiceError.failedToFetch
         }
     }
-    
+
     func saveRecipeToHistory(_ recipe: HistoryItemDataModel) throws {
         _ = recipe.toEntity(in: context)
         do {
             try context.save()
             AppLogger.shared.info("Saved recipe to history successfully", category: .database)
         } catch {
-            AppLogger.shared.error("Failed to save recipe to history: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Failed to save recipe to history: \(error.localizedDescription)",
+                                   category: .database)
             throw StorageServiceError.failedToSave
         }
     }
-    
+
     func clearHistory() throws {
         let request: NSFetchRequest<NSFetchRequestResult> = HistoryItemEntity.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
-        
+
         do {
             try context.execute(deleteRequest)
             try context.save()
@@ -155,13 +157,13 @@ final class StorageService: StorageServiceProtocol {
             throw StorageServiceError.failedToDelete
         }
     }
-    
+
     // MARK: - Favorite Recipes Methods
-    
+
     func getFavoriteRecipes() throws -> [RecipeDataModel] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "isFavorite == YES")
-        
+
         do {
             let entities = try context.fetch(request)
             let favorites = try entities.map { try RecipeDataModel(from: $0) }
@@ -171,19 +173,20 @@ final class StorageService: StorageServiceProtocol {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
             throw StorageServiceError.failedToFetch
         } catch {
-            AppLogger.shared.error("Failed to fetch favorite recipes: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Failed to fetch favorite recipes: \(error.localizedDescription)",
+                                   category: .database)
             throw StorageServiceError.failedToFetch
         }
     }
-    
+
     func addRecipeToFavorites(_ recipe: RecipeDataModel) throws {
         try updateRecipeFavoriteStatus(recipe, shouldBeFavorite: true)
     }
-    
+
     func removeRecipeFromFavorites(_ recipe: RecipeDataModel) throws {
         try updateRecipeFavoriteStatus(recipe, shouldBeFavorite: false)
     }
-    
+
     func isRecipeFavorite(_ recipe: RecipeDataModel) throws -> Bool {
         guard let entity = try fetchRecipeEntity(by: recipe.id) else {
             AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
@@ -193,22 +196,21 @@ final class StorageService: StorageServiceProtocol {
         AppLogger.shared.info("Checked if recipe is favorite: \(isFavorite)", category: .database)
         return isFavorite
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func fetchRecipeEntity(by id: String) throws -> RecipeEntity? {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
-        
         return try context.fetch(request).first
     }
-    
+
     private func updateRecipeFavoriteStatus(_ recipe: RecipeDataModel, shouldBeFavorite: Bool) throws {
         guard let entity = try fetchRecipeEntity(by: recipe.id) else {
             AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
             throw StorageServiceError.itemNotFound
         }
-        
+
         if shouldBeFavorite && entity.isFavorite {
             AppLogger.shared.error("Recipe already in favorites", category: .database)
             throw StorageServiceError.alreadyInFavorites
@@ -216,7 +218,7 @@ final class StorageService: StorageServiceProtocol {
             AppLogger.shared.error("Recipe not found in favorites", category: .database)
             throw StorageServiceError.itemNotFound
         }
-        
+
         entity.isFavorite = shouldBeFavorite
         do {
             try context.save()

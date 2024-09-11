@@ -13,16 +13,16 @@ protocol FavoritesPresenterProtocol {
 }
 
 class FavoritesPresenter: FavoritesPresenterProtocol {
-    
+
     weak var view: FavoritesViewProtocol?
-    
+
     init(view: FavoritesViewProtocol) {
         self.view = view
     }
-    
+
     func presentFavoriteRecipes(_ recipes: [RecipeDataModel]) {
         AppLogger.shared.info("Presenting \(recipes.count) favorite recipes", category: .ui)
-        
+
         if recipes.isEmpty {
             view?.displayPlaceholder()
         } else {
@@ -38,7 +38,7 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
             view?.displayFavoriteRecipes(viewModel)
         }
     }
-    
+
     func presentError(_ error: Error) {
         AppLogger.shared.error("Error presenting favorite recipes: \(error.localizedDescription)", category: .ui)
         view?.displayError(error.localizedDescription)

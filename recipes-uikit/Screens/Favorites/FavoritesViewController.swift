@@ -14,42 +14,43 @@ protocol FavoritesViewProtocol: AnyObject {
 }
 
 class FavoritesViewController: UIViewController {
-    
+
     var interactor: FavoritesInteractorProtocol?
     private var favoriteRecipes: [FavoriteRecipeViewModel] = []
-    
+
     lazy var collectionView: UICollectionView = {
         let layout = createFavoritesLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
-    
+
     private let placeholderView: PlaceholderView = PlaceholderView(type: .noFavorites)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         AppLogger.shared.info("Favorites screen loaded", category: .ui)
         setupCollectionView()
         setupPlaceholderView()
-        
+
         view.backgroundColor = .white
         title = NSLocalizedString("favorites_screen.title", comment: "")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppLogger.shared.info("Fetching favorite recipes", category: .database)
         interactor?.fetchFavoriteRecipes()
     }
-    
+
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(FavoriteRecipeCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier)
-        
+        collectionView.register(FavoriteRecipeCollectionViewCell.self,
+                                forCellWithReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier)
+
         view.addSubview(collectionView)
-        
+
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -57,18 +58,18 @@ class FavoritesViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
+
     private func setupPlaceholderView() {
         view.addSubview(placeholderView)
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
         placeholderView.isHidden = true
-        
+
         NSLayoutConstraint.activate([
             placeholderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             placeholderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-    
+
     private func showErrorAlert(message: String) {
         AppLogger.shared.error("Displaying error alert: \(message)", category: .ui)
         let alert = UIAlertController(
@@ -76,7 +77,7 @@ class FavoritesViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button.title", comment: ""), style: .default))
         present(alert, animated: true)
     }
-    
+
     func deleteFavoriteRecipe(at indexPath: IndexPath) {
         let recipeToDelete = favoriteRecipes[indexPath.row]
         AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
@@ -90,8 +91,9 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteRecipes.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: FavoriteRecipeCollectionViewCell.identifier,
             for: indexPath) as? FavoriteRecipeCollectionViewCell else {
@@ -101,20 +103,20 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
         cell.configure(with: recipe)
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedRecipe = favoriteRecipes[indexPath.row]
         AppLogger.shared.info("Selected favorite recipe: \(selectedRecipe.mealName)", category: .ui)
         interactor?.selectRecipe(withId: selectedRecipe.id)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
-        let deleteAction = UIAction(title: NSLocalizedString("delete_action.title", comment: ""), attributes: .destructive) { [weak self] _ in
+        let deleteAction = UIAction(title: NSLocalizedString("delete_action.title", comment: ""),
+                                    attributes: .destructive) { [weak self] _ in
             self?.deleteFavoriteRecipe(at: indexPath)
         }
-        
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
             return UIMenu(title: "", children: [deleteAction])
         })
@@ -125,15 +127,15 @@ private extension FavoritesViewController {
     func createFavoritesLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(240))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(240))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
         group.interItemSpacing = .fixed(8)
-        
+
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 8
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        
+
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
@@ -149,12 +151,12 @@ extension FavoritesViewController: FavoritesViewProtocol {
         placeholderView.isHidden = true
         collectionView.reloadData()
     }
-    
+
     func displayError(_ message: String) {
         AppLogger.shared.error("Error displaying favorites: \(message)", category: .ui)
         showErrorAlert(message: message)
     }
-    
+
     func displayPlaceholder() {
         AppLogger.shared.info("Displaying placeholder", category: .ui)
         placeholderView.isHidden = false
