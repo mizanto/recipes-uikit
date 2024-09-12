@@ -31,7 +31,10 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.0'
+          xcode-version: '15.4'
+
+      - name: Install xcpretty
+        run: gem install xcpretty
 
       - name: Remove corrupted Package.resolved
         run: |
@@ -52,4 +55,4 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
           ONLY_ACTIVE_ARCH=NO \
           -allowProvisioningUpdates \
-          -allowProvisioningDeviceRegistration
+          -allowProvisioningDeviceRegistration | xcpretty
