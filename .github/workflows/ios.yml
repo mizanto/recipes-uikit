@@ -33,9 +33,6 @@ jobs:
         with:
           xcode-version: '15.0'
 
-      - name: Install xcpretty
-        run: gem install xcpretty
-
       - name: Remove corrupted Package.resolved
         run: |
           if [ -f "recipes-uikit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" ]; then
@@ -55,4 +52,4 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
           ONLY_ACTIVE_ARCH=NO \
           -allowProvisioningUpdates \
-          -allowProvisioningDeviceRegistration | xcpretty --test
+          -allowProvisioningDeviceRegistration
