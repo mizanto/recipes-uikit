@@ -1,5 +1,5 @@
 //
-//  CommonTypes.swift
+//  VoidHandler.swift
 //  recipes-uikit
 //
 //  Created by Sergey Bendak on 12.09.2024.

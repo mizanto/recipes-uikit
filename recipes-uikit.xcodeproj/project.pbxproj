@@ -10,7 +10,7 @@
 		AD231CC02C92F03800A25290 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CBF2C92F03800A25290 /* UIButton+Extension.swift */; };
 		AD231CC22C92F05D00A25290 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC12C92F05D00A25290 /* UILabel+Extension.swift */; };
 		AD231CC42C92F08700A25290 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */; };
-		AD231CC72C92F4FC00A25290 /* CommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC62C92F4FC00A25290 /* CommonTypes.swift */; };
+		AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC62C92F4FC00A25290 /* VoidHandler.swift */; };
 		AD2465102C90931100F6BF1E /* MockFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */; };
 		AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */; };
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
@@ -105,7 +105,7 @@
 		AD231CBF2C92F03800A25290 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		AD231CC12C92F05D00A25290 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		AD231CC62C92F4FC00A25290 /* CommonTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTypes.swift; sourceTree = "<group>"; };
+		AD231CC62C92F4FC00A25290 /* VoidHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidHandler.swift; sourceTree = "<group>"; };
 		AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesRouter.swift; sourceTree = "<group>"; };
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 		AD231CC52C92F4E300A25290 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				AD231CC62C92F4FC00A25290 /* CommonTypes.swift */,
+				AD231CC62C92F4FC00A25290 /* VoidHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -679,7 +679,7 @@
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */,
 				AD456BCB2C899EA900029DD5 /* AppLogger.swift in Sources */,
-				AD231CC72C92F4FC00A25290 /* CommonTypes.swift in Sources */,
+				AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */,
 				AD231CC42C92F08700A25290 /* UIImageView+Extension.swift in Sources */,
 				AD456BB62C875FB500029DD5 /* HistoryTableViewCell.swift in Sources */,
 				AD456BF52C89E88500029DD5 /* RecipeEntity+CoreDataClass.swift in Sources */,
