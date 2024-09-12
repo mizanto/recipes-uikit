@@ -10,13 +10,16 @@ import Foundation
 @testable import recipes_uikit
 
 class MockRecipePresenter: RecipePresenterProtocol {
+
     var recipePresented: RecipeDataModel?
     var errorPresented: Error?
     
     var isPresentRecipeCalled = false
     var isPresentErrorCalled = false
     
-    func presentRecipe(_ recipe: RecipeDataModel) {
+    func presentRecipe(_ recipe: recipes_uikit.RecipeDataModel,
+                       onYoutubeButton: @escaping recipes_uikit.VoidHandler,
+                       onSourceButton: @escaping recipes_uikit.VoidHandler) {
         recipePresented = recipe
         isPresentRecipeCalled = true
     }
