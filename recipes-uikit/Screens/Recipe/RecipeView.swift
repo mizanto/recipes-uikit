@@ -37,29 +37,29 @@ class RecipeView: UIView {
     private func initializeUIComponents() {
         imageView = .imageView()
         imageView.accessibilityIdentifier = "RecipeImageView"
-        
+
         categoryLabel = .tagLabel(color: .systemYellow)
         categoryLabel.accessibilityIdentifier = "CategoryLabel"
-        
+
         areaLabel = .tagLabel(color: .systemGreen)
         areaLabel.accessibilityIdentifier = "AreaLabel"
-        
+
         ingredientsTitleLabel = .titleLabel(text: NSLocalizedString("ingredients.title", comment: ""))
         ingredientsTitleLabel.accessibilityIdentifier = "IngredientsTitleLabel"
-        
+
         ingredientsLabel = .textLabel()
         ingredientsLabel.accessibilityIdentifier = "IngredientsLabel"
-        
+
         instructionsTitleLabel = .titleLabel(text: NSLocalizedString("instructions.title", comment: ""))
         instructionsTitleLabel.accessibilityIdentifier = "InstructionsTitleLabel"
-        
+
         instructionsLabel = .textLabel()
         instructionsLabel.accessibilityIdentifier = "InstructionsLabel"
-        
+
         youtubeButton = .linkButton(title: NSLocalizedString("youtube_button.title", comment: ""),
                                     action: UIAction { _ in self.onYoutubeButtonTapped?() })
         youtubeButton.accessibilityIdentifier = "YoutubeButton"
-        
+
         sourceButton = .linkButton(title: NSLocalizedString("source_button.title", comment: ""),
                                    action: UIAction { _ in self.onSourceButtonTapped?() })
         sourceButton.accessibilityIdentifier = "SourceButton"
