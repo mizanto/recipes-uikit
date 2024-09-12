@@ -12,7 +12,7 @@ protocol RecipeViewProtocol: AnyObject {
     func displayError(_ message: String)
 }
 
-class RecipeViewController: UIViewController, RecipeViewProtocol {
+class RecipeViewController: UIViewController {
 
     enum ScreenType {
         case random
@@ -120,8 +120,6 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
         AppLogger.shared.info("Navigation bar setup completed", category: .ui)
     }
 
-    // MARK: - Actions
-
     @objc
     func getRandomRecipe() {
         AppLogger.shared.info("Get Random Recipe button tapped", category: .ui)
@@ -138,9 +136,11 @@ class RecipeViewController: UIViewController, RecipeViewProtocol {
         AppLogger.shared.info("Toggle favorite status button tapped", category: .ui)
         interactor?.toggleFavoriteStatus()
     }
+}
 
-    // MARK: - RecipeViewProtocol
+// MARK: - RecipeViewProtocol
 
+extension RecipeViewController: RecipeViewProtocol {
     func displayRecipe(_ viewModel: RecipeViewModel) {
         recipeView.isHidden = false
         navigationItem.title = viewModel.mealName

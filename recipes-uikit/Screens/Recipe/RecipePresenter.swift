@@ -8,7 +8,9 @@
 import Foundation
 
 protocol RecipePresenterProtocol: AnyObject {
-    func presentRecipe(_ recipe: RecipeDataModel)
+    func presentRecipe(_ recipe: RecipeDataModel,
+                       onYoutubeButton: @escaping VoidHandler,
+                       onSourceButton: @escaping VoidHandler)
     func presentError(_ error: Error)
 }
 
@@ -20,7 +22,9 @@ class RecipePresenter: RecipePresenterProtocol {
         self.view = view
     }
 
-    func presentRecipe(_ recipe: RecipeDataModel) {
+    func presentRecipe(_ recipe: RecipeDataModel,
+                       onYoutubeButton: @escaping VoidHandler,
+                       onSourceButton: @escaping VoidHandler) {
         AppLogger.shared.info("Preparing to present recipe: \(recipe.mealName)", category: .ui)
 
         let viewModel = RecipeViewModel(
@@ -32,9 +36,9 @@ class RecipePresenter: RecipePresenterProtocol {
                 .map { "\($0.name): \($0.measure)" }
                 .joined(separator: "\n"),
             instructions: recipe.instructions,
-            youtubeURL: recipe.youtubeURL,
-            sourceURL: recipe.sourceURL,
-            isFavorite: recipe.isFavorite
+            isFavorite: recipe.isFavorite,
+            onYoutubeButton: onYoutubeButton,
+            onSourceButton: onSourceButton
         )
 
         DispatchQueue.main.async {

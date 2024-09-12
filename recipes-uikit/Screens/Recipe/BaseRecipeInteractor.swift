@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RecipeInteractorProtocol: AnyObject {
     func fetchRecipe()
@@ -57,12 +58,28 @@ class BaseRecipeInteractor: RecipeInteractorProtocol {
             currentRecipe?.isFavorite.toggle()
 
             if let currentRecipe = currentRecipe {
-                presenter.presentRecipe(currentRecipe)
+                presentRecipe(currentRecipe)
             }
         } catch {
             AppLogger.shared.error("Failed to toggle favorite status: \(error.localizedDescription)",
                                    category: .database)
             presenter.presentError(error)
         }
+    }
+
+    func presentRecipe(_ recipe: RecipeDataModel) {
+        presenter.presentRecipe(
+            recipe,
+            onYoutubeButton: { [weak self] in
+                self?.openURL(url: recipe.youtubeURL)
+            },
+            onSourceButton: { [weak self] in
+                self?.openURL(url: recipe.sourceURL)
+            })
+    }
+
+    func openURL(url: URL?) {
+        guard let url = url else { return }
+        UIApplication.shared.open(url)
     }
 }

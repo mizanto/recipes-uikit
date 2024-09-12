@@ -20,3 +20,16 @@ class PaddedLabel: UILabel {
                       height: size.height + padding.top + padding.bottom)
     }
 }
+
+extension PaddedLabel {
+    static func tagLabel(color: UIColor) -> PaddedLabel {
+        let label = PaddedLabel()
+        label.font = .systemFont(ofSize: 13)
+        label.textAlignment = .center
+        label.backgroundColor = color
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+}

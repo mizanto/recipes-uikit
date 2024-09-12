@@ -10,35 +10,43 @@ import Kingfisher
 
 class RecipeView: UIView {
 
-    // MARK: - UI Elements
+    private var imageView: UIImageView!
+    private var categoryLabel: PaddedLabel!
+    private var areaLabel: PaddedLabel!
+    private var ingredientsTitleLabel: UILabel!
+    private var ingredientsLabel: UILabel!
+    private var instructionsTitleLabel: UILabel!
+    private var instructionsLabel: UILabel!
+    private var youtubeButton: UIButton!
+    private var sourceButton: UIButton!
 
-    private lazy var imageView: UIImageView = createImageView()
-    private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemYellow)
-    private lazy var areaLabel: PaddedLabel = createTagLabel(color: .systemGreen)
-    private lazy var ingredientsTitleLabel: UILabel = createTitleLabel(
-        text: NSLocalizedString("ingredients.title", comment: ""))
-    private lazy var ingredientsLabel: UILabel = createTextLabel()
-    private lazy var instructionsTitleLabel: UILabel = createTitleLabel(
-        text: NSLocalizedString("instructions.title", comment: ""))
-    private lazy var instructionsLabel: UILabel = createTextLabel()
-    private lazy var youtubeButton: UIButton = createLinkButton(
-        title: NSLocalizedString("youtube_button.title", comment: ""))
-    private lazy var sourceButton: UIButton = createLinkButton(
-        title: NSLocalizedString("source_button.title", comment: ""))
-
-    // MARK: - Init
+    private var onYoutubeButtonTapped: VoidHandler?
+    private var onSourceButtonTapped: VoidHandler?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        createAndSetupUI()
         setupLayout()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupLayout()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Setup Layout
+    private func createAndSetupUI() {
+        imageView = .imageView()
+        categoryLabel = .tagLabel(color: .systemYellow)
+        areaLabel = .tagLabel(color: .systemGreen)
+        ingredientsTitleLabel = .titleLabel(text: NSLocalizedString("ingredients.title", comment: ""))
+        ingredientsLabel = .textLabel()
+        instructionsTitleLabel = .titleLabel(text: NSLocalizedString("instructions.title", comment: ""))
+        instructionsLabel = .textLabel()
+        youtubeButton = .linkButton(title: NSLocalizedString("youtube_button.title", comment: ""),
+                                    action: UIAction { _ in self.onYoutubeButtonTapped?() })
+        sourceButton = .linkButton(title: NSLocalizedString("source_button.title", comment: ""),
+                                   action: UIAction { _ in self.onSourceButtonTapped?() })
+    }
 
     private func setupLayout() {
         let buttonsStackView = UIStackView(arrangedSubviews: [youtubeButton, sourceButton])
@@ -82,54 +90,38 @@ class RecipeView: UIView {
             youtubeButton.heightAnchor.constraint(equalToConstant: 44),
             sourceButton.heightAnchor.constraint(equalToConstant: 44)
         ])
-
-        youtubeButton.addTarget(self, action: #selector(openYoutube), for: .touchUpInside)
-        sourceButton.addTarget(self, action: #selector(openSource), for: .touchUpInside)
     }
-
-    // MARK: - Configure View
-
-    private var currentRecipeURL: URL?
-    private var currentSourceURL: URL?
 
     func configure(with viewModel: RecipeViewModel) {
-        imageView.kf.setImage(with: viewModel.mealThumbURL)
+        configureImageView(with: viewModel.mealThumbURL)
+        configureLabels(with: viewModel)
+        configureButtons(with: viewModel)
+    }
+
+    private func configureImageView(with url: URL?) {
+        imageView.kf.setImage(with: url)
+    }
+
+    private func configureLabels(with viewModel: RecipeViewModel) {
         categoryLabel.text = viewModel.category
         areaLabel.text = viewModel.area
-        setIngredientsText(viewModel.ingredients)
-        setInstructionsText(viewModel.instructions)
+        setText(viewModel.ingredients, for: ingredientsLabel)
+        setText(viewModel.instructions, for: instructionsLabel)
 
-        youtubeButton.isHidden = viewModel.youtubeURL == nil
-        sourceButton.isHidden = viewModel.sourceURL == nil
-        categoryLabel.isHidden = viewModel.category == nil
-        areaLabel.isHidden = viewModel.area == nil
-
-        currentRecipeURL = viewModel.youtubeURL
-        currentSourceURL = viewModel.sourceURL
+        categoryLabel.isHidden = viewModel.category?.isEmpty ?? true
+        areaLabel.isHidden = viewModel.area?.isEmpty ?? true
     }
 
-    // MARK: - Actions
+    private func configureButtons(with viewModel: RecipeViewModel) {
+        onYoutubeButtonTapped = viewModel.onYoutubeButton
+        onSourceButtonTapped = viewModel.onSourceButton
 
-    @objc
-    private func openYoutube() {
-        guard let url = currentRecipeURL else { return }
-        UIApplication.shared.open(url)
+        youtubeButton.isHidden = viewModel.onYoutubeButton == nil
+        sourceButton.isHidden = viewModel.onSourceButton == nil
     }
 
-    @objc
-    private func openSource() {
-        guard let url = currentSourceURL else { return }
-        UIApplication.shared.open(url)
-    }
-
-    // MARK: - Helpers
-
-    private func setIngredientsText(_ text: String) {
-        ingredientsLabel.attributedText = formattedText(text)
-    }
-
-    private func setInstructionsText(_ text: String) {
-        instructionsLabel.attributedText = formattedText(text)
+    private func setText(_ text: String, for label: UILabel) {
+        label.attributedText = formattedText(text)
     }
 
     private func formattedText(_ text: String) -> NSAttributedString {
@@ -140,54 +132,6 @@ class RecipeView: UIView {
             string: text,
             attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]
         )
-
         return attributedString
-    }
-
-    private func createImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }
-
-    private func createTitleLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.font = .boldSystemFont(ofSize: 17)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-
-    private func createTextLabel() -> UILabel {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-
-    private func createTagLabel(color: UIColor) -> PaddedLabel {
-        let label = PaddedLabel()
-        label.font = .systemFont(ofSize: 15)
-        label.textAlignment = .center
-        label.backgroundColor = color
-        label.layer.cornerRadius = 8
-        label.clipsToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-
-    private func createLinkButton(title: String) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = UIColor.systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }
 }

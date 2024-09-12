@@ -58,7 +58,7 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
 
     private func processLoadedRecipe(_ recipe: RecipeDataModel) {
         currentRecipe = recipe
-        presenter.presentRecipe(recipe)
+        presentRecipe(recipe)
     }
 
     private func saveRecipe(_ recipe: RecipeDataModel) {

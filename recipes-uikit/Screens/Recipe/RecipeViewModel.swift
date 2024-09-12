@@ -14,7 +14,7 @@ struct RecipeViewModel {
     let area: String?
     let ingredients: String
     let instructions: String
-    let youtubeURL: URL?
-    let sourceURL: URL?
     let isFavorite: Bool
+    let onYoutubeButton: VoidHandler?
+    let onSourceButton: VoidHandler?
 }

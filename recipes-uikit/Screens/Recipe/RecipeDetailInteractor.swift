@@ -22,7 +22,7 @@ class RecipeDetailInteractor: BaseRecipeInteractor {
             currentRecipe = recipe
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
 
-            presenter.presentRecipe(recipe)
+            presentRecipe(recipe)
         } catch {
             AppLogger.shared.error("Failed to fetch recipe: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
