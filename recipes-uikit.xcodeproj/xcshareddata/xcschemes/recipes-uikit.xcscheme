@@ -41,6 +41,17 @@
                ReferencedContainer = "container:recipes-uikit.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD231CCB2C9301CA00A25290"
+               BuildableName = "recipes-uikit-uitests.xctest"
+               BlueprintName = "recipes-uikit-uitests"
+               ReferencedContainer = "container:recipes-uikit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -48,6 +48,7 @@ class RecipeViewController: UIViewController {
         AppLogger.shared.info("RecipeViewController initialized with screen type: \(screenType)", category: .ui)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

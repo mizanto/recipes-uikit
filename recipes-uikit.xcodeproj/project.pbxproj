@@ -11,6 +11,8 @@
 		AD231CC22C92F05D00A25290 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC12C92F05D00A25290 /* UILabel+Extension.swift */; };
 		AD231CC42C92F08700A25290 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */; };
 		AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC62C92F4FC00A25290 /* VoidHandler.swift */; };
+		AD231CCF2C9301CA00A25290 /* recipes_uikit_uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */; };
+		AD231CD12C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */; };
 		AD2465102C90931100F6BF1E /* MockFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */; };
 		AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */; };
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
@@ -92,6 +94,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AD231CD22C9301CA00A25290 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD456B5F2C85C59300029DD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD456B662C85C59300029DD5;
+			remoteInfo = "recipes-uikit";
+		};
 		AD456C1C2C8EF5AB00029DD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD456B5F2C85C59300029DD5 /* Project object */;
@@ -106,6 +115,9 @@
 		AD231CC12C92F05D00A25290 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		AD231CC62C92F4FC00A25290 /* VoidHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidHandler.swift; sourceTree = "<group>"; };
+		AD231CCC2C9301CA00A25290 /* recipes-uikit-uitests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-uikit-uitests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_uitests.swift; sourceTree = "<group>"; };
+		AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_uitestsLaunchTests.swift; sourceTree = "<group>"; };
 		AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesRouter.swift; sourceTree = "<group>"; };
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
@@ -187,6 +199,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AD231CC92C9301CA00A25290 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD456B642C85C59300029DD5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +242,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		AD231CCD2C9301CA00A25290 /* recipes-uikit-uitests */ = {
+			isa = PBXGroup;
+			children = (
+				AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */,
+				AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */,
+			);
+			path = "recipes-uikit-uitests";
+			sourceTree = "<group>";
+		};
 		AD24650E2C90930000F6BF1E /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +277,7 @@
 			children = (
 				AD456B692C85C59300029DD5 /* recipes-uikit */,
 				AD456C192C8EF5AB00029DD5 /* recipes-uikit-tests */,
+				AD231CCD2C9301CA00A25290 /* recipes-uikit-uitests */,
 				AD456B682C85C59300029DD5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -258,6 +287,7 @@
 			children = (
 				AD456B672C85C59300029DD5 /* recipes-uikit.app */,
 				AD456C182C8EF5AB00029DD5 /* recipes-uikit-tests.xctest */,
+				AD231CCC2C9301CA00A25290 /* recipes-uikit-uitests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -536,6 +566,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AD231CCB2C9301CA00A25290 /* recipes-uikit-uitests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD231CD42C9301CA00A25290 /* Build configuration list for PBXNativeTarget "recipes-uikit-uitests" */;
+			buildPhases = (
+				AD231CC82C9301CA00A25290 /* Sources */,
+				AD231CC92C9301CA00A25290 /* Frameworks */,
+				AD231CCA2C9301CA00A25290 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD231CD32C9301CA00A25290 /* PBXTargetDependency */,
+			);
+			name = "recipes-uikit-uitests";
+			productName = "recipes-uikit-uitests";
+			productReference = AD231CCC2C9301CA00A25290 /* recipes-uikit-uitests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AD456B662C85C59300029DD5 /* recipes-uikit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD456B7B2C85C59500029DD5 /* Build configuration list for PBXNativeTarget "recipes-uikit" */;
@@ -585,6 +633,10 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					AD231CCB2C9301CA00A25290 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = AD456B662C85C59300029DD5;
+					};
 					AD456B662C85C59300029DD5 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -612,11 +664,19 @@
 			targets = (
 				AD456B662C85C59300029DD5 /* recipes-uikit */,
 				AD456C172C8EF5AB00029DD5 /* recipes-uikit-tests */,
+				AD231CCB2C9301CA00A25290 /* recipes-uikit-uitests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AD231CCA2C9301CA00A25290 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD456B652C85C59300029DD5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +719,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AD231CC82C9301CA00A25290 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD231CCF2C9301CA00A25290 /* recipes_uikit_uitests.swift in Sources */,
+				AD231CD12C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD456B632C85C59300029DD5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -754,6 +823,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AD231CD32C9301CA00A25290 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD456B662C85C59300029DD5 /* recipes-uikit */;
+			targetProxy = AD231CD22C9301CA00A25290 /* PBXContainerItemProxy */;
+		};
 		AD456C1D2C8EF5AB00029DD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AD456B662C85C59300029DD5 /* recipes-uikit */;
@@ -773,6 +847,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AD231CD52C9301CA00A25290 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UER9S2EB72;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.home.recipes-uikit-uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "recipes-uikit";
+			};
+			name = Debug;
+		};
+		AD231CD62C9301CA00A25290 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UER9S2EB72;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.home.recipes-uikit-uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "recipes-uikit";
+			};
+			name = Release;
+		};
 		AD456B792C85C59500029DD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -995,6 +1103,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AD231CD42C9301CA00A25290 /* Build configuration list for PBXNativeTarget "recipes-uikit-uitests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD231CD52C9301CA00A25290 /* Debug */,
+				AD231CD62C9301CA00A25290 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AD456B622C85C59300029DD5 /* Build configuration list for PBXProject "recipes-uikit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
