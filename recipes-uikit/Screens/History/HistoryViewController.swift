@@ -43,7 +43,7 @@ class HistoryViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: "HistoryTableViewCell")
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -114,6 +114,8 @@ class HistoryViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource & UITableViewDelegate
+
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -121,7 +123,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "HistoryTableViewCell", for: indexPath) as? HistoryTableViewCell else {
+            withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else {
             return UITableViewCell()
         }
         let recipe = recipes[indexPath.row]
@@ -134,6 +136,8 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - HistoryViewProtocol
 
 extension HistoryViewController: HistoryViewProtocol {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel]) {

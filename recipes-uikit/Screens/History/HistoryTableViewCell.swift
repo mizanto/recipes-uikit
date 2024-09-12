@@ -8,30 +8,25 @@
 import UIKit
 
 class HistoryTableViewCell: UITableViewCell {
+    static let identifier = "HistoryTableViewCell"
 
-    private let mealNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let dateAddedLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private var mealNameLabel: UILabel!
+    private var dateAddedLabel: UILabel!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initializeUIComponents()
         setupLayout()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupLayout()
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func initializeUIComponents() {
+        mealNameLabel = .textLabel()
+        dateAddedLabel = .secondaryLabel()
     }
 
     private func setupLayout() {

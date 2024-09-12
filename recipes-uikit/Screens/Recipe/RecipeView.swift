@@ -25,7 +25,7 @@ class RecipeView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        createAndSetupUI()
+        initializeUIComponents()
         setupLayout()
     }
 
@@ -34,7 +34,7 @@ class RecipeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func createAndSetupUI() {
+    private func initializeUIComponents() {
         imageView = .imageView()
         categoryLabel = .tagLabel(color: .systemYellow)
         areaLabel = .tagLabel(color: .systemGreen)
