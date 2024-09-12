@@ -11,8 +11,7 @@
 		AD231CC22C92F05D00A25290 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC12C92F05D00A25290 /* UILabel+Extension.swift */; };
 		AD231CC42C92F08700A25290 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */; };
 		AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC62C92F4FC00A25290 /* VoidHandler.swift */; };
-		AD231CCF2C9301CA00A25290 /* recipes_uikit_uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */; };
-		AD231CD12C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */; };
+		AD231CD82C93060700A25290 /* RandomRecipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */; };
 		AD2465102C90931100F6BF1E /* MockFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */; };
 		AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */; };
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
@@ -116,8 +115,7 @@
 		AD231CC32C92F08700A25290 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		AD231CC62C92F4FC00A25290 /* VoidHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidHandler.swift; sourceTree = "<group>"; };
 		AD231CCC2C9301CA00A25290 /* recipes-uikit-uitests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-uikit-uitests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_uitests.swift; sourceTree = "<group>"; };
-		AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipes_uikit_uitestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeUITests.swift; sourceTree = "<group>"; };
 		AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesRouter.swift; sourceTree = "<group>"; };
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
@@ -245,8 +243,7 @@
 		AD231CCD2C9301CA00A25290 /* recipes-uikit-uitests */ = {
 			isa = PBXGroup;
 			children = (
-				AD231CCE2C9301CA00A25290 /* recipes_uikit_uitests.swift */,
-				AD231CD02C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift */,
+				AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */,
 			);
 			path = "recipes-uikit-uitests";
 			sourceTree = "<group>";
@@ -723,8 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD231CCF2C9301CA00A25290 /* recipes_uikit_uitests.swift in Sources */,
-				AD231CD12C9301CA00A25290 /* recipes_uikit_uitestsLaunchTests.swift in Sources */,
+				AD231CD82C93060700A25290 /* RandomRecipeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

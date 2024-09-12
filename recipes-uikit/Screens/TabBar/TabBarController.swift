@@ -50,15 +50,29 @@ class TabBarController: UITabBarController {
     }
 
     private func setupTabItems() {
-        randomRecipeViewController.tabBarItem = UITabBarItem(
+        let randomRecipeTabBarItem = UITabBarItem(
             title: NSLocalizedString("random_tab.title", comment: ""),
-            image: UIImage(systemName: "shuffle"), tag: 0)
-        historyViewController.tabBarItem = UITabBarItem(
+            image: UIImage(systemName: "shuffle"),
+            tag: 0
+        )
+        randomRecipeTabBarItem.accessibilityIdentifier = "RandomTab"
+        randomRecipeViewController.tabBarItem = randomRecipeTabBarItem
+
+        let historyTabBarItem = UITabBarItem(
             title: NSLocalizedString("history_tab.title", comment: ""),
-            image: UIImage(systemName: "clock"), tag: 1)
-        favoritesViewController.tabBarItem = UITabBarItem(
-            title: NSLocalizedString("random_tab.title", comment: ""),
-            image: UIImage(systemName: "star"), tag: 2)
+            image: UIImage(systemName: "clock"),
+            tag: 1
+        )
+        historyTabBarItem.accessibilityIdentifier = "HistoryTab"
+        historyViewController.tabBarItem = historyTabBarItem
+
+        let favoritesTabBarItem = UITabBarItem(
+            title: NSLocalizedString("favorites_tab.title", comment: ""),
+            image: UIImage(systemName: "star"),
+            tag: 2
+        )
+        favoritesTabBarItem.accessibilityIdentifier =  "FavoritesTab"
+        favoritesViewController.tabBarItem = favoritesTabBarItem
     }
 
 }

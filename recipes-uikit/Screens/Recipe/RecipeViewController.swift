@@ -31,6 +31,7 @@ class RecipeViewController: UIViewController {
             NSLocalizedString("get_random_recipe_button.title", comment: ""),
             for: .normal
         )
+        button.accessibilityIdentifier = "GetRecipeButton"
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(getRandomRecipe), for: .touchUpInside)
         return button
@@ -117,6 +118,7 @@ class RecipeViewController: UIViewController {
             target: self,
             action: #selector(toggleFavoriteStatus)
         )
+        favoriteButton.accessibilityIdentifier = "FavoriteButton"
         navigationItem.rightBarButtonItem = favoriteButton
         AppLogger.shared.info("Navigation bar setup completed", category: .ui)
     }
