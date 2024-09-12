@@ -9,33 +9,62 @@ import XCTest
 
 final class HistoryUITests: XCTestCase {
 
+    var app: XCUIApplication!
+    var historyTab: XCUIElement!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        app = XCUIApplication()
         app.launch()
+        
+        loadRecipe()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        historyTab = app.tabBars.buttons["HistoryTab"]
+        XCTAssertTrue(historyTab.exists, "The history tab should exist")
+        historyTab.tap()
+    }
+    
+    private func loadRecipe() {
+        let getRecipeButton = app.buttons["GetRecipeButton"]
+        XCTAssertTrue(getRecipeButton.exists, "The Get Random Recipe button should exist")
+        getRecipeButton.tap()
+        
+        let recipeImageView = app.images["RecipeImageView"]
+        let recipeLoadedExpectation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true"),
+            object: recipeImageView
+        )
+        let loadingResult = XCTWaiter().wait(for: [recipeLoadedExpectation], timeout: 5)
+        XCTAssertEqual(loadingResult, .completed, "The random recipe should be fetched and displayed")
+    }
+    
+    func testHistoryTabIsSelected() {
+        XCTAssertTrue(historyTab.exists, "The history tab should exist")
+        XCTAssertTrue(historyTab.isSelected, "The history tab should be selected")
+        
+        let tableView = app.tables["HistoryTableView"]
+        XCTAssertTrue(tableView.exists, "The history table view should exist")
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testClearHistoryButtonTap() {
+        let clearButton = app.navigationBars.buttons["Clear"]
+        XCTAssertTrue(clearButton.exists, "The Clear button should exist")
+
+        clearButton.tap()
+
+        let alert = app.alerts["Clear History"]
+        XCTAssertTrue(alert.exists, "The Clear History alert should be presented")
+
+        let confirmButton = alert.buttons["Clear"]
+        XCTAssertTrue(confirmButton.exists, "The Clear button in alert should exist")
+
+        confirmButton.tap()
+
+        let placeholderView = app.otherElements["PlaceholderView"]
+        XCTAssertTrue(placeholderView.exists, "The placeholder view should be displayed after clearing history")
+        
+        let tableView = app.tables["HistoryTableView"]
+        XCTAssertFalse(tableView.exists, "The history table view should be hidden after clearing history")
     }
 }

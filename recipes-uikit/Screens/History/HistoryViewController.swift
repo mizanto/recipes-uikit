@@ -40,6 +40,7 @@ class HistoryViewController: UIViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "HistoryTableView"
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,25 +55,31 @@ class HistoryViewController: UIViewController {
     }
 
     private func setupPlaceholderView() {
+        placeholderView.accessibilityIdentifier = "PlaceholderView"
+
         view.addSubview(placeholderView)
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
         placeholderView.isHidden = true
 
         NSLayoutConstraint.activate([
-            placeholderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            placeholderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            placeholderView.topAnchor.constraint(equalTo: view.topAnchor),
+            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
     private func setupNavigationBar() {
         title = NSLocalizedString("history_screen.title", comment: "")
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let clearBarButton = UIBarButtonItem(
             title: NSLocalizedString("clear_button.title", comment: ""),
             style: .plain,
             target: self,
             action: #selector(clearHistory)
         )
+        clearBarButton.accessibilityIdentifier = "Clear"
+        navigationItem.rightBarButtonItem = clearBarButton
     }
 
     @objc
@@ -150,8 +157,8 @@ extension HistoryViewController: HistoryViewProtocol {
 
     func displayPlaceholder() {
         AppLogger.shared.info("Displaying placeholder", category: .ui)
-        placeholderView.isHidden = false
         tableView.isHidden = true
+        placeholderView.isHidden = false
     }
 
     func displayError(_ message: String) {

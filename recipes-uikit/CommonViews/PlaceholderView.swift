@@ -33,7 +33,7 @@ class PlaceholderView: UIView {
     }
 
     private let imageView = UIImageView()
-    private let label = UILabel()
+    private let label = UILabel.textLabel()
 
     init(type: PlaceholderType) {
         super.init(frame: .zero)
@@ -41,6 +41,7 @@ class PlaceholderView: UIView {
         configure(with: type)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,18 +49,14 @@ class PlaceholderView: UIView {
     private func setupView() {
         addSubview(imageView)
         addSubview(label)
+        label.textAlignment = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 21)
 
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
+            imageView.widthAnchor.constraint(equalToConstant: 80),
+            imageView.heightAnchor.constraint(equalToConstant: 80),
 
             label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
