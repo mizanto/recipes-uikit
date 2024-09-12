@@ -10,18 +10,26 @@ import UIKit
 class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
     static let identifier = "FavoriteRecipeCollectionViewCell"
 
-    private lazy var imageView: UIImageView = createImageView()
-    private lazy var titleLabel: UILabel = createTitleLabel()
-    private lazy var categoryLabel: PaddedLabel = createTagLabel(color: .systemYellow)
-    private lazy var areaLabel: PaddedLabel = createTagLabel(color: .systemGreen)
+    private var imageView: UIImageView!
+    private var titleLabel: UILabel!
+    private var categoryLabel: PaddedLabel!
+    private var areaLabel: PaddedLabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initializeUIComponents()
         setupLayout()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func initializeUIComponents() {
+        imageView = .imageView()
+        titleLabel = .textLabel()
+        categoryLabel = .tagLabel(color: .systemYellow)
+        areaLabel = .tagLabel(color: .systemGreen)
     }
 
     private func setupLayout() {
@@ -56,33 +64,5 @@ class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
 
         categoryLabel.isHidden = viewModel.category == nil
         areaLabel.isHidden = viewModel.area == nil
-    }
-
-    private func createImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }
-
-    private func createTitleLabel() -> UILabel {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-
-    private func createTagLabel(color: UIColor) -> PaddedLabel {
-        let label = PaddedLabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = color
-        label.textAlignment = .center
-        label.layer.cornerRadius = 8
-        label.clipsToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }
 }

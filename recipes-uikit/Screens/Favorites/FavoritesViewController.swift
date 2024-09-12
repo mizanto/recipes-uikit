@@ -78,6 +78,22 @@ class FavoritesViewController: UIViewController {
         present(alert, animated: true)
     }
 
+    private func createFavoritesLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(240))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(240))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(8)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 8
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+
     func deleteFavoriteRecipe(at indexPath: IndexPath) {
         let recipeToDelete = favoriteRecipes[indexPath.row]
         AppLogger.shared.info("Deleting favorite recipe: \(recipeToDelete.mealName)", category: .ui)
@@ -120,24 +136,6 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
             return UIMenu(title: "", children: [deleteAction])
         })
-    }
-}
-
-private extension FavoritesViewController {
-    func createFavoritesLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(240))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(240))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
-        group.interItemSpacing = .fixed(8)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 8
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
     }
 }
 
