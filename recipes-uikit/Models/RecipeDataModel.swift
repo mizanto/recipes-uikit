@@ -118,10 +118,7 @@ struct RecipeDataModel {
     }
 
     func toEntity(in context: NSManagedObjectContext) -> RecipeEntity {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "RecipeEntity", in: context) else {
-            fatalError("Failed to find entity description for Recipe")
-        }
-        let entity = RecipeEntity(entity: entityDescription, insertInto: context)
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Recipe", into: context) as! RecipeEntity
         entity.id = id
         entity.mealName = mealName
         entity.category = category
@@ -131,7 +128,8 @@ struct RecipeDataModel {
         entity.youtubeURL = youtubeURL?.absoluteString
         entity.sourceURL = sourceURL?.absoluteString
         entity.ingredients = ingredients.map { ingredient in
-            let ingredientEntity = IngredientEntity(context: context)
+            let ingredientEntity = NSEntityDescription.insertNewObject(
+                forEntityName: "Ingredient", into: context) as! IngredientEntity
             ingredientEntity.name = ingredient.name
             ingredientEntity.measure = ingredient.measure
             return ingredientEntity

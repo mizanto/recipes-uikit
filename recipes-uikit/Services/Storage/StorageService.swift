@@ -113,11 +113,12 @@ final class StorageService: StorageServiceProtocol {
     }
 
     func clearHistory() throws {
-        let request: NSFetchRequest<NSFetchRequestResult> = HistoryItemEntity.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
-
+        let fetchRequest: NSFetchRequest<HistoryItemEntity> = HistoryItemEntity.fetchRequest()
         do {
-            try context.execute(deleteRequest)
+            let entities = try context.fetch(fetchRequest)
+            for entity in entities {
+                context.delete(entity)
+            }
             try context.save()
             AppLogger.shared.info("Cleared recipe history", category: .database)
         } catch {

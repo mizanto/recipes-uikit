@@ -13,7 +13,7 @@ extension HistoryItemEntity {
 
     @nonobjc
     public class func fetchRequest() -> NSFetchRequest<HistoryItemEntity> {
-        return NSFetchRequest<HistoryItemEntity>(entityName: "HistoryItemEntity")
+        return NSFetchRequest<HistoryItemEntity>(entityName: "HistoryItem")
     }
 
     @NSManaged public var id: String?

@@ -19,7 +19,7 @@ public class IngredientEntity: NSManagedObject, NSSecureCoding {
     required convenience public init?(coder: NSCoder) {
         let context = CoreDataStack.shared.context
 
-        guard let entity = NSEntityDescription.entity(forEntityName: "IngredientEntity", in: context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: context) else {
             return nil
         }
 

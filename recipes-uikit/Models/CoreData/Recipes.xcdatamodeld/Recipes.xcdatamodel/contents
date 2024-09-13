@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="HistoryItemEntity" representedClassName=".HistoryItemEntity" syncable="YES">
+    <entity name="HistoryItem" representedClassName=".HistoryItemEntity" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="mealName" attributeType="String"/>
     </entity>
-    <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES">
+    <entity name="Ingredient" representedClassName=".IngredientEntity" syncable="YES">
         <attribute name="measure" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="RecipeEntity" representedClassName=".RecipeEntity" syncable="YES">
+    <entity name="Recipe" representedClassName=".RecipeEntity" syncable="YES">
         <attribute name="area" optional="YES" attributeType="String"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="dateAdded" attributeType="Date" usesScalarValueType="NO"/>

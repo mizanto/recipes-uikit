@@ -13,7 +13,7 @@ extension RecipeEntity {
 
     @nonobjc
     public class func fetchRequest() -> NSFetchRequest<RecipeEntity> {
-        return NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
+        return NSFetchRequest<RecipeEntity>(entityName: "Recipe")
     }
 
     @NSManaged public var id: String?
