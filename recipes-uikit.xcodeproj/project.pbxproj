@@ -92,6 +92,8 @@
 		AD456C672C907D8A00029DD5 /* HistoryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C662C907D8A00029DD5 /* HistoryPresenterTests.swift */; };
 		AD456C692C907F6B00029DD5 /* MockHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */; };
 		AD456C6B2C907FAF00029DD5 /* HistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD456C6A2C907FAF00029DD5 /* HistoryViewControllerTests.swift */; };
+		ADA5EF792C9464C90048B3DD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5EF782C9464C90048B3DD /* NetworkError.swift */; };
+		ADA5EF7C2C9466B70048B3DD /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5EF7B2C9466B70048B3DD /* StorageError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +200,8 @@
 		AD456C662C907D8A00029DD5 /* HistoryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenterTests.swift; sourceTree = "<group>"; };
 		AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryInteractor.swift; sourceTree = "<group>"; };
 		AD456C6A2C907FAF00029DD5 /* HistoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerTests.swift; sourceTree = "<group>"; };
+		ADA5EF782C9464C90048B3DD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		ADA5EF7B2C9466B70048B3DD /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,12 +360,9 @@
 		AD456B902C85D57B00029DD5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AD456BFA2C89EB2B00029DD5 /* CoreData */,
-				AD456B9E2C87343600029DD5 /* APIConfiguration.swift */,
-				AD456B912C85D5B700029DD5 /* NetworkService.swift */,
-				AD456B9C2C8730C600029DD5 /* StorageService.swift */,
+				ADA5EF772C9464A90048B3DD /* Network */,
+				ADA5EF7A2C9466280048B3DD /* Storage */,
 				AD456BCA2C899EA900029DD5 /* AppLogger.swift */,
-				AD456C212C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -566,6 +567,27 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		ADA5EF772C9464A90048B3DD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AD456C212C8EF8AA00029DD5 /* URLSession+URLSessionProtocol.swift */,
+				AD456B9E2C87343600029DD5 /* APIConfiguration.swift */,
+				ADA5EF782C9464C90048B3DD /* NetworkError.swift */,
+				AD456B912C85D5B700029DD5 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		ADA5EF7A2C9466280048B3DD /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AD456BFA2C89EB2B00029DD5 /* CoreData */,
+				ADA5EF7B2C9466B70048B3DD /* StorageError.swift */,
+				AD456B9C2C8730C600029DD5 /* StorageService.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -737,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA5EF792C9464C90048B3DD /* NetworkError.swift in Sources */,
 				AD456BC72C8887F600029DD5 /* FavoritesRouter.swift in Sources */,
 				AD456C002C89ECDD00029DD5 /* HistoryItemDataModel.swift in Sources */,
 				AD456B6B2C85C59300029DD5 /* AppDelegate.swift in Sources */,
@@ -764,6 +787,7 @@
 				AD456BAE2C875A0E00029DD5 /* HistoryInteractor.swift in Sources */,
 				AD456B9F2C87343600029DD5 /* APIConfiguration.swift in Sources */,
 				AD456B982C85EA0400029DD5 /* RecipeView.swift in Sources */,
+				ADA5EF7C2C9466B70048B3DD /* StorageError.swift in Sources */,
 				AD456BA52C87447900029DD5 /* RecipePresenter.swift in Sources */,
 				AD456BCE2C89BCDC00029DD5 /* Recipes.xcdatamodeld in Sources */,
 				AD456B852C85CA1900029DD5 /* TabBarController.swift in Sources */,

@@ -27,8 +27,7 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
             processLoadedRecipe(recipe)
         } catch {
-            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)",
-                                   category: .database)
+            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)", category: .database)
             fetchRandomRecipeFromNetwork()
         }
     }
@@ -42,18 +41,33 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
         Task {
             do {
                 let recipeNetworkModel = try await networkService.fetchRandomRecipe()
-                let recipeDataModel = RecipeDataModel(from: recipeNetworkModel)
-                AppLogger.shared.info("Fetched random recipe: \(recipeDataModel.mealName) from network",
-                                      category: .network)
-                processLoadedRecipe(recipeDataModel)
-                saveRecipe(recipeDataModel)
-                saveRecipeToHistory(recipeDataModel)
+                AppLogger.shared.info("Fetched random recipe: \(recipeNetworkModel.mealName) from network", category: .network)
+                
+                try await handleFetchedRecipe(recipeNetworkModel)
+            } catch let networkError as NetworkError {
+                AppLogger.shared.error("Network error while fetching random recipe: \(networkError.localizedDescription)", category: .network)
+                presenter.presentError(networkError)
+            } catch let storageError as StorageError {
+                AppLogger.shared.error("Storage error while handling recipe: \(storageError.localizedDescription)", category: .database)
+                presenter.presentError(storageError)
             } catch {
-                AppLogger.shared.error("Failed to fetch random recipe: \(error.localizedDescription)",
-                                       category: .network)
+                AppLogger.shared.error("Unexpected error while fetching random recipe: \(error.localizedDescription)", category: .network)
                 presenter.presentError(error)
             }
         }
+    }
+
+    private func handleFetchedRecipe(_ recipeNetworkModel: RecipeNetworkModel) async throws {
+        if let recipe = try? storageService.getRecipe(by: recipeNetworkModel.id) {
+            AppLogger.shared.info("Present recipe: \(recipe.mealName) from storage", category: .database)
+            processLoadedRecipe(recipe)
+        } else {
+            let recipe = RecipeDataModel(from: recipeNetworkModel)
+            AppLogger.shared.info("Present recipe: \(recipe.mealName) from network", category: .network)
+            processLoadedRecipe(recipe)
+            try saveRecipeIfNotExists(recipe)
+        }
+        saveRecipeToHistory(id: recipeNetworkModel.id, mealName: recipeNetworkModel.mealName)
     }
 
     private func processLoadedRecipe(_ recipe: RecipeDataModel) {
@@ -61,23 +75,23 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
         presentRecipe(recipe)
     }
 
-    private func saveRecipe(_ recipe: RecipeDataModel) {
+    private func saveRecipeIfNotExists(_ recipe: RecipeDataModel) throws {
         do {
             try storageService.saveRecipe(recipe)
             AppLogger.shared.info("Saved last viewed recipe: \(recipe.mealName)", category: .database)
         } catch {
             AppLogger.shared.error("Error saving loaded recipe: \(error.localizedDescription)", category: .database)
+            throw StorageError.failedToSave
         }
     }
 
-    private func saveRecipeToHistory(_ recipe: RecipeDataModel) {
+    private func saveRecipeToHistory(id: String, mealName: String) {
         do {
-            let historyItem = HistoryItemDataModel(from: recipe)
+            let historyItem = HistoryItemDataModel(id: id, mealName: mealName)
             try storageService.saveRecipeToHistory(historyItem)
             AppLogger.shared.info("Added recipe to history: \(historyItem.mealName)", category: .database)
         } catch {
-            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)",
-                                   category: .database)
+            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)", category: .database)
         }
     }
 }

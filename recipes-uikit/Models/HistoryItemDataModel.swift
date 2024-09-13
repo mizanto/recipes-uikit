@@ -47,10 +47,10 @@ struct HistoryItemDataModel {
         self.date = date
     }
 
-    init(id: String, mealName: String, date: Date) {
+    init(id: String, mealName: String, date: Date = Date()) {
         self.id = id
         self.mealName = mealName
-        self.date = Date()
+        self.date = date
     }
 
     func toEntity(in context: NSManagedObjectContext) -> HistoryItemEntity {

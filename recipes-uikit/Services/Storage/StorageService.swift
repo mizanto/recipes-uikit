@@ -7,36 +7,6 @@
 
 import CoreData
 
-// MARK: - Custom Error for Core Data Operations
-
-enum StorageServiceError: Error, LocalizedError {
-    case itemNotFound
-    case failedToFetch
-    case failedToSave
-    case failedToDelete
-    case alreadyInFavorites
-    case unknown
-
-    var errorDescription: String? {
-        switch self {
-        case .itemNotFound:
-            return "Item not found."
-        case .failedToFetch:
-            return "Failed to fetch items."
-        case .failedToSave:
-            return "Failed to save item."
-        case .failedToDelete:
-            return "Failed to delete item."
-        case .alreadyInFavorites:
-            return "Item is already in favorites."
-        case .unknown:
-            return "An unknown error occurred."
-        }
-    }
-}
-
-// MARK: - Storage Service Protocol
-
 protocol StorageServiceProtocol {
     func getLastRecipe() throws -> RecipeDataModel
     func getRecipe(by id: String) throws -> RecipeDataModel
@@ -49,8 +19,6 @@ protocol StorageServiceProtocol {
     func removeRecipeFromFavorites(_ recipe: RecipeDataModel) throws
     func isRecipeFavorite(_ recipe: RecipeDataModel) throws -> Bool
 }
-
-// MARK: - Storage Service Implementation
 
 final class StorageService: StorageServiceProtocol {
 
@@ -70,25 +38,25 @@ final class StorageService: StorageServiceProtocol {
         do {
             guard let entity = try context.fetch(request).first else {
                 AppLogger.shared.error("Last viewed recipe not found", category: .database)
-                throw StorageServiceError.itemNotFound
+                throw StorageError.itemNotFound
             }
             let recipeDataModel = try RecipeDataModel(from: entity)
             AppLogger.shared.info("Loaded last viewed recipe successfully", category: .database)
             return recipeDataModel
         } catch let error as RecipeDataModel.InitializationError {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         } catch {
             AppLogger.shared.error("Failed to fetch last viewed recipe: \(error.localizedDescription)",
                                    category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         }
     }
 
     func getRecipe(by id: String) throws -> RecipeDataModel {
         guard let entity = try fetchRecipeEntity(by: id) else {
             AppLogger.shared.error("Recipe with id \(id) not found", category: .database)
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
 
         do {
@@ -97,7 +65,7 @@ final class StorageService: StorageServiceProtocol {
             return recipeDataModel
         } catch let error as RecipeDataModel.InitializationError {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         }
     }
 
@@ -108,7 +76,7 @@ final class StorageService: StorageServiceProtocol {
             AppLogger.shared.info("Saved recipe \(recipe.mealName) successfully", category: .database)
         } catch {
             AppLogger.shared.error("Failed to save last recipe: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToSave
+            throw StorageError.failedToSave
         }
     }
 
@@ -125,10 +93,10 @@ final class StorageService: StorageServiceProtocol {
             return history
         } catch let error as HistoryItemDataModel.InitializationError {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         } catch {
             AppLogger.shared.error("Failed to fetch recipe history: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         }
     }
 
@@ -140,7 +108,7 @@ final class StorageService: StorageServiceProtocol {
         } catch {
             AppLogger.shared.error("Failed to save recipe to history: \(error.localizedDescription)",
                                    category: .database)
-            throw StorageServiceError.failedToSave
+            throw StorageError.failedToSave
         }
     }
 
@@ -154,7 +122,7 @@ final class StorageService: StorageServiceProtocol {
             AppLogger.shared.info("Cleared recipe history", category: .database)
         } catch {
             AppLogger.shared.error("Failed to clear recipe history: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToDelete
+            throw StorageError.failedToDelete
         }
     }
 
@@ -171,11 +139,11 @@ final class StorageService: StorageServiceProtocol {
             return favorites
         } catch let error as RecipeDataModel.InitializationError {
             AppLogger.shared.error("Initialization error: \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         } catch {
             AppLogger.shared.error("Failed to fetch favorite recipes: \(error.localizedDescription)",
                                    category: .database)
-            throw StorageServiceError.failedToFetch
+            throw StorageError.failedToFetch
         }
     }
 
@@ -190,7 +158,7 @@ final class StorageService: StorageServiceProtocol {
     func isRecipeFavorite(_ recipe: RecipeDataModel) throws -> Bool {
         guard let entity = try fetchRecipeEntity(by: recipe.id) else {
             AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         let isFavorite = entity.isFavorite
         AppLogger.shared.info("Checked if recipe is favorite: \(isFavorite)", category: .database)
@@ -208,15 +176,15 @@ final class StorageService: StorageServiceProtocol {
     private func updateRecipeFavoriteStatus(_ recipe: RecipeDataModel, shouldBeFavorite: Bool) throws {
         guard let entity = try fetchRecipeEntity(by: recipe.id) else {
             AppLogger.shared.error("Recipe with id \(recipe.id) not found", category: .database)
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
 
         if shouldBeFavorite && entity.isFavorite {
             AppLogger.shared.error("Recipe already in favorites", category: .database)
-            throw StorageServiceError.alreadyInFavorites
+            throw StorageError.alreadyInFavorites
         } else if !shouldBeFavorite && !entity.isFavorite {
             AppLogger.shared.error("Recipe not found in favorites", category: .database)
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
 
         entity.isFavorite = shouldBeFavorite
@@ -230,7 +198,7 @@ final class StorageService: StorageServiceProtocol {
         } catch {
             let action = shouldBeFavorite ? "add recipe to favorites" : "remove recipe from favorites"
             AppLogger.shared.error("Failed to \(action): \(error.localizedDescription)", category: .database)
-            throw StorageServiceError.failedToSave
+            throw StorageError.failedToSave
         }
     }
 }

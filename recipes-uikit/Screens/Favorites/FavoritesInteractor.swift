@@ -15,8 +15,8 @@ protocol FavoritesInteractorProtocol {
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
 
-    private let presenter: FavoritesPresenterProtocol?
-    private let router: FavoritesRouterProtocol?
+    private let presenter: FavoritesPresenterProtocol
+    private let router: FavoritesRouterProtocol
 
     private let storageService: StorageServiceProtocol
 
@@ -33,11 +33,11 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         do {
             let favorites = try storageService.getFavoriteRecipes()
             AppLogger.shared.info("Fetched \(favorites.count) favorite recipes", category: .database)
-            presenter?.presentFavoriteRecipes(favorites)
+            presenter.presentFavoriteRecipes(favorites)
         } catch {
             AppLogger.shared.error("Failed to fetch favorite recipes: \(error.localizedDescription)",
                                    category: .database)
-            presenter?.presentError(error)
+            presenter.presentError(error)
         }
     }
 
@@ -48,20 +48,20 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
             try storageService.removeRecipeFromFavorites(recipe)
             AppLogger.shared.info("Recipe with ID '\(id)' removed from favorites", category: .database)
             fetchFavoriteRecipes()
-        } catch StorageServiceError.itemNotFound {
-            AppLogger.shared.error("Recipe with ID '\(id)' not found in favorites", category: .database)
-            presenter?.presentError(StorageServiceError.itemNotFound)
+        } catch let storageError as StorageError {
+            AppLogger.shared.error("Storage error while removing recipe from favorites: \(storageError.localizedDescription)", category: .database)
+            presenter.presentError(storageError)
         } catch {
             AppLogger.shared.error(
                 "Failed to remove recipe with ID '\(id)' from favorites: \(error.localizedDescription)",
                 category: .database
             )
-            presenter?.presentError(error)
+            presenter.presentError(error)
         }
     }
 
     func selectRecipe(withId id: String) {
         AppLogger.shared.info("Navigating to details of recipe with ID: \(id)", category: .ui)
-        router?.navigateToRecipeDetail(with: id)
+        router.navigateToRecipeDetail(with: id)
     }
 }

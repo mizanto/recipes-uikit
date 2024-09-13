@@ -43,7 +43,7 @@ class BaseRecipeInteractor: RecipeInteractorProtocol {
     func toggleFavoriteStatus() {
         guard let recipe = currentRecipe else {
             AppLogger.shared.error("No recipe available to toggle favorite status", category: .ui)
-            presenter.presentError(StorageServiceError.itemNotFound)
+            presenter.presentError(StorageError.itemNotFound)
             return
         }
 

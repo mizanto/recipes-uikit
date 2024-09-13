@@ -21,7 +21,6 @@ class RecipeDetailInteractor: BaseRecipeInteractor {
             let recipe = try storageService.getRecipe(by: recipeId)
             currentRecipe = recipe
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
-
             presentRecipe(recipe)
         } catch {
             AppLogger.shared.error("Failed to fetch recipe: \(error.localizedDescription)", category: .database)
