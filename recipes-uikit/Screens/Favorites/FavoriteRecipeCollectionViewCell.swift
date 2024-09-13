@@ -27,9 +27,13 @@ class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
 
     private func initializeUIComponents() {
         imageView = .imageView()
+        imageView.accessibilityIdentifier = "FavoriteRecipeImageView"
         titleLabel = .textLabel()
+        titleLabel.accessibilityIdentifier = "FavoriteRecipeTitleLabel"
         categoryLabel = .tagLabel(color: .systemYellow)
+        categoryLabel.accessibilityIdentifier = "FavoriteRecipeCategoryLabel"
         areaLabel = .tagLabel(color: .systemGreen)
+        areaLabel.accessibilityIdentifier = "FavoriteRecipeAreaLabel"
     }
 
     private func setupLayout() {

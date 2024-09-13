@@ -13,6 +13,7 @@
 		AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CC62C92F4FC00A25290 /* VoidHandler.swift */; };
 		AD231CD82C93060700A25290 /* RandomRecipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */; };
 		AD231CDA2C931A9A00A25290 /* HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CD92C931A9A00A25290 /* HistoryUITests.swift */; };
+		AD231CDC2C94408100A25290 /* FavoritesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD231CDB2C94408100A25290 /* FavoritesUITests.swift */; };
 		AD2465102C90931100F6BF1E /* MockFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */; };
 		AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */; };
 		AD2465152C90939A00F6BF1E /* FavoritesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */; };
@@ -118,6 +119,7 @@
 		AD231CCC2C9301CA00A25290 /* recipes-uikit-uitests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-uikit-uitests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipeUITests.swift; sourceTree = "<group>"; };
 		AD231CD92C931A9A00A25290 /* HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUITests.swift; sourceTree = "<group>"; };
+		AD231CDB2C94408100A25290 /* FavoritesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUITests.swift; sourceTree = "<group>"; };
 		AD24650F2C90931100F6BF1E /* MockFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesPresenter.swift; sourceTree = "<group>"; };
 		AD2465112C90936100F6BF1E /* MockFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoritesRouter.swift; sourceTree = "<group>"; };
 		AD2465142C90939A00F6BF1E /* FavoritesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractorTests.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				AD231CD72C93060700A25290 /* RandomRecipeUITests.swift */,
 				AD231CD92C931A9A00A25290 /* HistoryUITests.swift */,
+				AD231CDB2C94408100A25290 /* FavoritesUITests.swift */,
 			);
 			path = "recipes-uikit-uitests";
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD231CDC2C94408100A25290 /* FavoritesUITests.swift in Sources */,
 				AD231CDA2C931A9A00A25290 /* HistoryUITests.swift in Sources */,
 				AD231CD82C93060700A25290 /* RandomRecipeUITests.swift in Sources */,
 			);

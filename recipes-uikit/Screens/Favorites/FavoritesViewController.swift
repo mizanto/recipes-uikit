@@ -21,10 +21,15 @@ class FavoritesViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let layout = createFavoritesLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.accessibilityIdentifier = "FavoritesCollectionView"
         return collectionView
     }()
 
-    private let placeholderView: PlaceholderView = PlaceholderView(type: .noFavorites)
+    private let placeholderView: PlaceholderView = {
+        let placeholder = PlaceholderView(type: .noFavorites)
+        placeholder.accessibilityIdentifier = "FavoritesPlaceholderView"
+        return placeholder
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +70,10 @@ class FavoritesViewController: UIViewController {
         placeholderView.isHidden = true
 
         NSLayoutConstraint.activate([
-            placeholderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            placeholderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            placeholderView.topAnchor.constraint(equalTo: view.topAnchor),
+            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
