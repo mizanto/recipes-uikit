@@ -706,6 +706,7 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"",
 			);
 			inputPaths = (
 			);
@@ -713,10 +714,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${DERIVED_FILE_DIR}/swiftlint_output.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\" # for M1/M2\nexport PATH=\"$PATH:/usr/local/bin\" # for Intel Mac\n\nif which swiftlint >/dev/null; then\n    USE_SWIFTLINT_SANDBOX=NO swiftlint lint --config ${SRCROOT}/.swiftlint.yml ${SRCROOT}/recipes-uikit\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\" # for M1/M2\nexport PATH=\"$PATH:/usr/local/bin\" # for Intel Mac\n\nif which swiftlint >/dev/null; then\n    USE_SWIFTLINT_SANDBOX=NO swiftlint lint --config ${SRCROOT}/.swiftlint.yml ${SRCROOT}/recipes-uikit\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n# Create or update a dummy output file to prevent Xcode warning\necho \"SwiftLint ran successfully\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
