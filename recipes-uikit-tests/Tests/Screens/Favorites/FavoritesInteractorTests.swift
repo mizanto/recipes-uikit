@@ -53,7 +53,7 @@ class FavoritesInteractorTests: XCTestCase {
         interactor.fetchFavoriteRecipes()
         
         XCTAssertTrue(mockPresenter.presentErrorCalled)
-        XCTAssertEqual(mockPresenter.error as? StorageServiceError, .itemNotFound)
+        XCTAssertEqual(mockPresenter.error as? StorageError, .itemNotFound)
     }
     
     func testRemoveRecipeFromFavoritesSuccess() {
@@ -72,7 +72,7 @@ class FavoritesInteractorTests: XCTestCase {
         interactor.removeRecipeFromFavorites(withId: "invalid_id")
         
         XCTAssertTrue(mockPresenter.presentErrorCalled)
-        XCTAssertEqual(mockPresenter.error as? StorageServiceError, .itemNotFound)
+        XCTAssertEqual(mockPresenter.error as? StorageError, .itemNotFound)
     }
     
     func testSelectRecipeCallsRouter() {

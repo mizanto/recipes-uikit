@@ -12,7 +12,7 @@ import Foundation
 class MockStorageService: StorageServiceProtocol {
     var recipes: [RecipeDataModel] = []
     var history: [HistoryItemDataModel] = []
-    var error: StorageServiceError?
+    var error: StorageError?
     
     private var favoriteRecipes: [RecipeDataModel] {
         recipes.filter { $0.isFavorite }
@@ -28,7 +28,7 @@ class MockStorageService: StorageServiceProtocol {
         try throwErrorIfNeeded()
         
         guard let recipe = recipes.last else {
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         return recipe
     }
@@ -37,7 +37,7 @@ class MockStorageService: StorageServiceProtocol {
         try throwErrorIfNeeded()
         
         guard let recipe = recipes.first(where: { $0.id == id }) else {
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         return recipe
     }
@@ -51,7 +51,7 @@ class MockStorageService: StorageServiceProtocol {
         try throwErrorIfNeeded()
         
         guard !history.isEmpty else {
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         return history
     }
@@ -75,11 +75,11 @@ class MockStorageService: StorageServiceProtocol {
         try throwErrorIfNeeded()
         
         guard !favoriteRecipes.contains(where: { $0.id == recipe.id }) else {
-            throw StorageServiceError.alreadyInFavorites
+            throw StorageError.alreadyInFavorites
         }
         
         guard let index = recipes.firstIndex(where: { $0.id == recipe.id }) else {
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         
         recipes[index].isFavorite = true
@@ -89,7 +89,7 @@ class MockStorageService: StorageServiceProtocol {
         try throwErrorIfNeeded()
         
         guard let index = recipes.firstIndex(where: { $0.id == recipe.id }) else {
-            throw StorageServiceError.itemNotFound
+            throw StorageError.itemNotFound
         }
         
         recipes[index].isFavorite = false

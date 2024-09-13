@@ -13,15 +13,18 @@ protocol NetworkServiceProtocol {
 
 final class NetworkService: NetworkServiceProtocol {
     private let session: URLSessionProtocol
+    private let apiConfig: APIConfiguration
 
-    init(session: URLSessionProtocol = URLSession.shared) {
+    init(session: URLSessionProtocol = URLSession.shared,
+         apiConfig: APIConfiguration = APIConfiguration()) {
         self.session = session
+        self.apiConfig = apiConfig
     }
 
     private func fetchData<T: Decodable>(from url: URL) async throws -> T {
         do {
             let (data, response) = try await session.data(from: url)
-            
+
             if let jsonString = String(data: data, encoding: .utf8) {
                 AppLogger.shared.debug("Response JSON String: \(jsonString)", category: .network)
             } else {
@@ -40,10 +43,19 @@ final class NetworkService: NetworkServiceProtocol {
 
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: data)
-            
         } catch let decodingError as DecodingError {
             AppLogger.shared.error("Decoding error: \(decodingError.localizedDescription)", category: .network)
             throw NetworkError.decodingError(decodingError)
+        } catch let urlError as URLError {
+            AppLogger.shared.error("URL error: \(urlError.localizedDescription)", category: .network)
+            switch urlError.code {
+            case .badURL:
+                throw NetworkError.badURL
+            case .badServerResponse:
+                throw NetworkError.badServerResponse
+            default:
+                throw NetworkError.networkError(urlError)
+            }
         } catch {
             AppLogger.shared.error("Network error: \(error.localizedDescription)", category: .network)
             throw NetworkError.networkError(error)
@@ -51,7 +63,7 @@ final class NetworkService: NetworkServiceProtocol {
     }
 
     func fetchRandomRecipe() async throws -> RecipeNetworkModel {
-        guard let url = APIConfiguration.url(for: .randomRecipe) else {
+        guard let url = apiConfig.url(for: .randomRecipe) else {
             AppLogger.shared.error("Failed to construct URL for random recipe", category: .network)
             throw NetworkError.badURL
         }
@@ -62,7 +74,7 @@ final class NetworkService: NetworkServiceProtocol {
             AppLogger.shared.error("Failed to parse recipe from response", category: .network)
             throw NetworkError.noRecipeFound
         }
-        
+
         return recipe
     }
 }

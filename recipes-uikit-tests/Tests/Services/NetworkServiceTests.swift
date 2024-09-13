@@ -75,11 +75,14 @@ final class NetworkServiceTests: XCTestCase {
         do {
             _ = try await sut.fetchRandomRecipe()
             XCTFail("Expected error to be thrown, but got success.")
+        } catch let error as NetworkError {
+            XCTAssertEqual(error, .badServerResponse)
+            XCTAssertEqual(error.localizedDescription, "The server response was invalid.")
         } catch {
-            XCTAssertEqual((error as? URLError)?.code, .badServerResponse)
+            XCTFail("Unexpected error type: \(error)")
         }
     }
-    
+
     func testFetchRandomRecipeDecodingError() async throws {
         let invalidJsonData = "Invalid JSON".data(using: .utf8)
         urlSessionMock.data = invalidJsonData
@@ -91,15 +94,29 @@ final class NetworkServiceTests: XCTestCase {
         do {
             _ = try await sut.fetchRandomRecipe()
             XCTFail("Expected decoding error to be thrown, but got success.")
+        } catch let NetworkError.decodingError(decodingError as DecodingError) {
+            guard case .dataCorrupted(let context) = decodingError else {
+                return XCTFail("Expected DecodingError.dataCorrupted but got \(decodingError)")
+            }
+            XCTAssertEqual(context.debugDescription, "The given data was not valid JSON.")
+            XCTAssertEqual(context.codingPath.count, 0)
         } catch {
-            XCTAssertTrue(error is DecodingError, "Expected DecodingError but got \(type(of: error))")
+            XCTFail("Unexpected error type: \(error)")
         }
     }
 
     func testFetchRandomRecipeInvalidURL() async throws {
-        sut = NetworkService(session: urlSessionMock)
-        
-        let url = APIConfiguration.url(for: .randomRecipe)
-        XCTAssertNotNil(url, "URL must be not nil")
+        let invalidAPIConfig = APIConfiguration(baseURL: "htp://invalid-url")
+        sut = NetworkService(session: urlSessionMock, apiConfig: invalidAPIConfig)
+
+        do {
+            let _ = try await sut.fetchRandomRecipe()
+            XCTFail("Expected badURL error to be thrown")
+        } catch let error as NetworkError {
+            XCTAssertEqual(error, .badURL)
+            XCTAssertEqual(error.localizedDescription, "The URL provided was invalid.")
+        } catch {
+            XCTFail("Unexpected error type: \(error)")
+        }
     }
 }

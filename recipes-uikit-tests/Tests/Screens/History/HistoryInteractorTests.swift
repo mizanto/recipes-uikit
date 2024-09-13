@@ -46,13 +46,13 @@ class HistoryInteractorTests: XCTestCase {
     }
 
     func testFetchHistoryFailure() {
-        mockStorageService.error = StorageServiceError.itemNotFound
+        mockStorageService.error = StorageError.itemNotFound
 
         interactor.fetchHistory()
 
         XCTAssertTrue(mockPresenter.presentErrorCalled)
         XCTAssertNotNil(mockPresenter.receivedError)
-        XCTAssertEqual(mockPresenter.receivedError as? StorageServiceError, StorageServiceError.itemNotFound)
+        XCTAssertEqual(mockPresenter.receivedError as? StorageError, StorageError.itemNotFound)
     }
 
     func testClearHistorySuccess() {
@@ -65,12 +65,12 @@ class HistoryInteractorTests: XCTestCase {
     }
 
     func testClearHistoryFailure() {
-        mockStorageService.error = StorageServiceError.failedToDelete
+        mockStorageService.error = StorageError.failedToDelete
 
         interactor.clearHistory()
 
         XCTAssertTrue(mockPresenter.presentErrorCalled)
         XCTAssertNotNil(mockPresenter.receivedError)
-        XCTAssertEqual(mockPresenter.receivedError as? StorageServiceError, StorageServiceError.failedToDelete)
+        XCTAssertEqual(mockPresenter.receivedError as? StorageError, StorageError.failedToDelete)
     }
 }

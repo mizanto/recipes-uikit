@@ -49,7 +49,9 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
             AppLogger.shared.info("Recipe with ID '\(id)' removed from favorites", category: .database)
             fetchFavoriteRecipes()
         } catch let storageError as StorageError {
-            AppLogger.shared.error("Storage error while removing recipe from favorites: \(storageError.localizedDescription)", category: .database)
+            AppLogger.shared.error(
+                "Storage error while removing recipe from favorites: \(storageError.localizedDescription)",
+                category: .database)
             presenter.presentError(storageError)
         } catch {
             AppLogger.shared.error(

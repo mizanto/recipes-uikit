@@ -19,10 +19,20 @@ enum Endpoint {
 }
 
 struct APIConfiguration {
-    static let baseURL = "https://www.themealdb.com/api/json/v1/"
-    static let apiKey = "1"
+    let baseURL: String
+    let apiKey: String
 
-    static func url(for endpoint: Endpoint) -> URL? {
-        return URL(string: "\(baseURL)\(apiKey)/\(endpoint.path)")
+    init(baseURL: String = "https://www.themealdb.com/api/json/v1/",
+         apiKey: String = "1") {
+        self.baseURL = baseURL
+        self.apiKey = apiKey
+    }
+
+    func url(for endpoint: Endpoint) -> URL? {
+        let urlString = "\(baseURL)\(apiKey)/\(endpoint.path)"
+        guard let url = URL(string: urlString), url.scheme == "https" else {
+            return nil
+        }
+        return url
     }
 }

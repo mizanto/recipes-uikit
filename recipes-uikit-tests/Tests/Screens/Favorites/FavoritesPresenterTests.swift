@@ -26,7 +26,7 @@ class FavoritesPresenterTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPresentFavoriteRecipes_WithNonEmptyRecipes() {
+    func testPresentFavoriteRecipesWithNonEmptyRecipes() {
         let recipes = [RecipeDataModel.mock]
         
         presenter.presentFavoriteRecipes(recipes)
@@ -37,7 +37,7 @@ class FavoritesPresenterTests: XCTestCase {
         XCTAssertEqual(mockView.displayedRecipes?.first?.mealName, recipes.first?.mealName)
     }
     
-    func testPresentFavoriteRecipes_WithEmptyRecipes() {
+    func testPresentFavoriteRecipesWithEmptyRecipes() {
         let recipes: [RecipeDataModel] = []
         
         presenter.presentFavoriteRecipes(recipes)
@@ -46,7 +46,7 @@ class FavoritesPresenterTests: XCTestCase {
         XCTAssertFalse(mockView.displayFavoriteRecipesCalled)
     }
     
-    func testPresentError_CallsDisplayError() {
+    func testPresentErrorCallsDisplayError() {
         let message = "Test Error"
         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
         

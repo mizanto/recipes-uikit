@@ -45,13 +45,13 @@ class RecipeDetailInteractorTests: XCTestCase {
     }
     
     func testFetchRecipeFailure() {
-        mockStorageService.error = StorageServiceError.itemNotFound
+        mockStorageService.error = StorageError.itemNotFound
         
         interactor.fetchRecipe()
         
         XCTAssertTrue(mockPresenter.isPresentErrorCalled)
         XCTAssertNil(mockPresenter.recipePresented)
         XCTAssertNotNil(mockPresenter.errorPresented)
-        XCTAssertEqual(mockPresenter.errorPresented as? StorageServiceError, StorageServiceError.itemNotFound)
+        XCTAssertEqual(mockPresenter.errorPresented as? StorageError, StorageError.itemNotFound)
     }
 }

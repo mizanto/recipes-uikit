@@ -18,8 +18,11 @@ final class URLSessionMock: URLSessionProtocol {
         if let error = error {
             throw error
         }
-        guard let data = data, let response = response else {
-            throw URLError(.badServerResponse)
+        guard let data = data else {
+            throw URLError(.cannotLoadFromNetwork, userInfo: [NSLocalizedDescriptionKey: "Mock data is nil."])
+        }
+        guard let response = response else {
+            throw URLError(.badServerResponse, userInfo: [NSLocalizedDescriptionKey: "Mock response is nil."])
         }
         return (data, response)
     }

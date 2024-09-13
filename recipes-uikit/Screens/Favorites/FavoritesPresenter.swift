@@ -23,23 +23,18 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     func presentFavoriteRecipes(_ recipes: [RecipeDataModel]) {
         AppLogger.shared.info("Presenting \(recipes.count) favorite recipes", category: .ui)
 
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-
-            if recipes.isEmpty {
-                self.view?.displayPlaceholder()
-            } else {
-                let viewModel = self.mapToViewModel(recipes)
-                self.view?.displayFavoriteRecipes(viewModel)
-            }
+        if recipes.isEmpty {
+            self.view?.displayPlaceholder()
+        } else {
+            let viewModel = self.mapToViewModel(recipes)
+            self.view?.displayFavoriteRecipes(viewModel)
         }
     }
 
     func presentError(_ error: Error) {
-        AppLogger.shared.error("Error presenting favorite recipes: \(error.localizedDescription)", category: .ui)
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.displayError(error.localizedDescription)
-        }
+        AppLogger.shared.error("Error presenting favorite recipes: \(error.localizedDescription)",
+                               category: .ui)
+        self.view?.displayError(error.localizedDescription)
     }
 
     private func mapToViewModel(_ recipes: [RecipeDataModel]) -> [FavoriteRecipeViewModel] {

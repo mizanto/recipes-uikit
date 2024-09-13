@@ -27,7 +27,10 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
             AppLogger.shared.info("Loaded recipe from storage: \(recipe.mealName)", category: .database)
             processLoadedRecipe(recipe)
         } catch {
-            AppLogger.shared.error("Failed to load last viewed recipe: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error(
+                "Failed to load last viewed recipe: \(error.localizedDescription)",
+                category: .database
+            )
             fetchRandomRecipeFromNetwork()
         }
     }
@@ -41,17 +44,21 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
         Task {
             do {
                 let recipeNetworkModel = try await networkService.fetchRandomRecipe()
-                AppLogger.shared.info("Fetched random recipe: \(recipeNetworkModel.mealName) from network", category: .network)
-                
+                AppLogger.shared.info("Fetched random recipe: \(recipeNetworkModel.mealName) from network",
+                                      category: .network)
                 try await handleFetchedRecipe(recipeNetworkModel)
             } catch let networkError as NetworkError {
-                AppLogger.shared.error("Network error while fetching random recipe: \(networkError.localizedDescription)", category: .network)
+                AppLogger.shared.error(
+                    "Network error while fetching random recipe: \(networkError.localizedDescription)",
+                    category: .network)
                 presenter.presentError(networkError)
             } catch let storageError as StorageError {
-                AppLogger.shared.error("Storage error while handling recipe: \(storageError.localizedDescription)", category: .database)
+                AppLogger.shared.error("Storage error while handling recipe: \(storageError.localizedDescription)",
+                                       category: .database)
                 presenter.presentError(storageError)
             } catch {
-                AppLogger.shared.error("Unexpected error while fetching random recipe: \(error.localizedDescription)", category: .network)
+                AppLogger.shared.error("Unexpected error while fetching random recipe: \(error.localizedDescription)",
+                                       category: .network)
                 presenter.presentError(error)
             }
         }
@@ -91,7 +98,8 @@ class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtoc
             try storageService.saveRecipeToHistory(historyItem)
             AppLogger.shared.info("Added recipe to history: \(historyItem.mealName)", category: .database)
         } catch {
-            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)", category: .database)
+            AppLogger.shared.error("Error saving loaded recipe to history: \(error.localizedDescription)",
+                                   category: .database)
         }
     }
 }
