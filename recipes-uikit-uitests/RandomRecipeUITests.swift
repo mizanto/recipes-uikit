@@ -13,12 +13,33 @@ final class RandomRecipeUITests: XCTestCase {
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-        
         app = XCUIApplication()
         app.launch()
+        
+        // Ensure the test starts on the Random Recipe tab
+        checkFirstTabIsSelectedOnLaunch()
     }
     
+    // Test to verify that all necessary elements exist in the recipe view
     func testRecipeViewElementsExist() {
+        checkRecipeViewElementsExist()
+    }
+    
+    // Test to verify that tapping the "Get Recipe" button fetches a random recipe and displays it
+    func testGetRandomRecipeButtonTapped() {
+        tapGetRecipeButton()
+        checkRecipeIsDisplayed()
+    }
+    
+    // Verify the first tab ("Random Recipe") is selected on launch
+    func checkFirstTabIsSelectedOnLaunch() {
+        let firstTab = app.tabBars.buttons["RandomTab"]
+        XCTAssertTrue(firstTab.exists, "The first tab 'Random Recipe' should exist")
+        XCTAssertTrue(firstTab.isSelected, "The first tab 'Random Recipe' should be selected on launch")
+    }
+    
+    // Verify all required elements exist in the recipe view
+    func checkRecipeViewElementsExist() {
         let getRecipeButton = app.buttons["GetRecipeButton"]
         XCTAssertTrue(getRecipeButton.exists, "Get Recipe button should exist")
         
@@ -35,27 +56,21 @@ final class RandomRecipeUITests: XCTestCase {
         XCTAssertTrue(sourceButton.exists, "Source button should exist")
     }
     
-    func testFirstTabIsSelectedOnLaunch() {
-        let app = XCUIApplication()
-        app.launch()
-
-        let firstTab = app.tabBars.buttons["RandomTab"]
-        XCTAssertTrue(firstTab.exists, "The first tab 'Random Recipe' should exist")
-        XCTAssertTrue(firstTab.isSelected, "The first tab 'Random Recipe' should be selected on launch")
-    }
-    
-    func testGetRandomRecipeButtonTapped() {
+    // Tap the "Get Recipe" button to fetch a random recipe
+    func tapGetRecipeButton() {
         let getRecipeButton = app.buttons["GetRecipeButton"]
         XCTAssertTrue(getRecipeButton.exists, "Get Recipe button should exist")
-        
         getRecipeButton.tap()
-        
+    }
+    
+    // Check that a recipe is displayed after tapping "Get Recipe"
+    func checkRecipeIsDisplayed() {
         let recipeImage = app.images["RecipeImageView"]
-        let exists = NSPredicate(format: "exists == true")
-        expectation(for: exists, evaluatedWith: recipeImage, handler: nil)
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        XCTAssertTrue(recipeImage.exists, "Recipe image should exist after fetching random recipe")
+        waitForElementToAppear(recipeImage)
+    }
+    
+    // Wait for a specific element to appear on the screen with a timeout
+    func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval = 5) {
+        XCTAssertTrue(element.waitForExistence(timeout: timeout), "Element should appear within \(timeout) seconds")
     }
 }
