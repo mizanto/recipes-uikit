@@ -11,6 +11,7 @@ import Foundation
 
 class MockNetworkService: NetworkServiceProtocol {
     var randomRecipe: RecipeNetworkModel?
+    var recipe: RecipeNetworkModel?
     var error: Error?
     
     func fetchRandomRecipe() async throws -> RecipeNetworkModel {
@@ -21,5 +22,15 @@ class MockNetworkService: NetworkServiceProtocol {
             throw URLError(.badServerResponse)
         }
         return randomRecipe
+    }
+    
+    func fetchRecipe(id: String) async throws -> RecipeNetworkModel {
+        if let error = error {
+            throw error
+        }
+        guard let recipe = recipe else {
+            throw URLError(.badServerResponse)
+        }
+        return recipe
     }
 }

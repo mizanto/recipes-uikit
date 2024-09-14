@@ -12,6 +12,9 @@ import Foundation
 class MockHistoryInteractor: HistoryInteractorProtocol {
     var fetchHistoryCalled = false
     var clearHistoryCalled = false
+    var selectRecipeCalled = false
+    
+    var selectedRecipeId: String?
 
     func fetchHistory() {
         fetchHistoryCalled = true
@@ -19,5 +22,10 @@ class MockHistoryInteractor: HistoryInteractorProtocol {
 
     func clearHistory() {
         clearHistoryCalled = true
+    }
+    
+    func selectRecipe(withId id: String) {
+        selectRecipeCalled = true
+        selectedRecipeId = id
     }
 }

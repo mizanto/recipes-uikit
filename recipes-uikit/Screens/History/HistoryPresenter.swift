@@ -35,6 +35,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
         } else {
             let viewModel = history.map { item in
                 HistoryViewModel(
+                    id: item.id,
                     mealName: item.mealName,
                     dateAdded: dateFormatter.string(from: item.date)
                 )

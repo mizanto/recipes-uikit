@@ -10,15 +10,20 @@ import Foundation
 protocol HistoryInteractorProtocol {
     func fetchHistory()
     func clearHistory()
+    func selectRecipe(withId id: String)
 }
 
 class HistoryInteractor: HistoryInteractorProtocol {
     private let presenter: HistoryPresenterProtocol
+    private let router: HistoryRouterProtocol
+    
     private let storageService: StorageServiceProtocol
 
     init(presenter: HistoryPresenterProtocol,
+         router: HistoryRouterProtocol,
          storageService: StorageServiceProtocol) {
         self.presenter = presenter
+        self.router = router
         self.storageService = storageService
     }
 
@@ -47,5 +52,10 @@ class HistoryInteractor: HistoryInteractorProtocol {
             AppLogger.shared.error("Failed to clear history: \(error.localizedDescription)", category: .database)
             presenter.presentError(error)
         }
+    }
+    
+    func selectRecipe(withId id: String) {
+        AppLogger.shared.info("Navigating to details of recipe with ID: \(id)", category: .ui)
+        router.navigateToRecipeDetail(with: id)
     }
 }

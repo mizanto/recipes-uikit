@@ -93,6 +93,8 @@
 		AD4D88DA2C94CA52003DD3C4 /* HistoryItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4D88D42C94CA52003DD3C4 /* HistoryItemEntity+CoreDataProperties.swift */; };
 		AD4D88DB2C94CA52003DD3C4 /* RecipeEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4D88D52C94CA52003DD3C4 /* RecipeEntity+CoreDataClass.swift */; };
 		AD4D88DC2C94CA52003DD3C4 /* RecipeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4D88D62C94CA52003DD3C4 /* RecipeEntity+CoreDataProperties.swift */; };
+		AD4D88DE2C94E0D8003DD3C4 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4D88DD2C94E0D8003DD3C4 /* HistoryRouter.swift */; };
+		AD4D88E02C95830B003DD3C4 /* MockHistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4D88DF2C95830B003DD3C4 /* MockHistoryRouter.swift */; };
 		ADA5EF792C9464C90048B3DD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5EF782C9464C90048B3DD /* NetworkError.swift */; };
 		ADA5EF7C2C9466B70048B3DD /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5EF7B2C9466B70048B3DD /* StorageError.swift */; };
 /* End PBXBuildFile section */
@@ -202,6 +204,8 @@
 		AD4D88D42C94CA52003DD3C4 /* HistoryItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AD4D88D52C94CA52003DD3C4 /* RecipeEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AD4D88D62C94CA52003DD3C4 /* RecipeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AD4D88DD2C94E0D8003DD3C4 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		AD4D88DF2C95830B003DD3C4 /* MockHistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryRouter.swift; sourceTree = "<group>"; };
 		ADA5EF782C9464C90048B3DD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		ADA5EF7B2C9466B70048B3DD /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -402,6 +406,7 @@
 				AD456BAB2C8759E000029DD5 /* HistoryViewController.swift */,
 				AD456BB52C875FB500029DD5 /* HistoryTableViewCell.swift */,
 				AD456BB32C875B5200029DD5 /* HistoryViewModel.swift */,
+				AD4D88DD2C94E0D8003DD3C4 /* HistoryRouter.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -566,6 +571,7 @@
 				AD456C622C907A9F00029DD5 /* MockHistoryPresenter.swift */,
 				AD456C642C907D6400029DD5 /* MockHistoryView.swift */,
 				AD456C682C907F6B00029DD5 /* MockHistoryInteractor.swift */,
+				AD4D88DF2C95830B003DD3C4 /* MockHistoryRouter.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				AD456C4C2C9049F200029DD5 /* BaseRecipeInteractor.swift in Sources */,
 				AD456B8B2C85D35C00029DD5 /* Ingredient.swift in Sources */,
 				AD456BB22C875A4600029DD5 /* HistoryModuleBuilder.swift in Sources */,
+				AD4D88DE2C94E0D8003DD3C4 /* HistoryRouter.swift in Sources */,
 				AD456BCB2C899EA900029DD5 /* AppLogger.swift in Sources */,
 				AD231CC72C92F4FC00A25290 /* VoidHandler.swift in Sources */,
 				AD231CC42C92F08700A25290 /* UIImageView+Extension.swift in Sources */,
@@ -828,6 +835,7 @@
 				AD456C652C907D6400029DD5 /* MockHistoryView.swift in Sources */,
 				AD2465192C90959700F6BF1E /* FavoritesPresenterTests.swift in Sources */,
 				AD2465122C90936100F6BF1E /* MockFavoritesRouter.swift in Sources */,
+				AD4D88E02C95830B003DD3C4 /* MockHistoryRouter.swift in Sources */,
 				AD37678A2C94B90600C56777 /* StorageServiceTests.swift in Sources */,
 				AD456C632C907A9F00029DD5 /* MockHistoryPresenter.swift in Sources */,
 				AD456C452C8F515F00029DD5 /* MockStorageService.swift in Sources */,

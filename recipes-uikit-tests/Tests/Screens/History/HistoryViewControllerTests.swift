@@ -35,7 +35,7 @@ class HistoryViewControllerTests: XCTestCase {
     }
     
     func testDisplayRecipeHistoryShowsTableViewAndHidesPlaceholder() {
-        let recipe = HistoryViewModel(mealName: "Pizza", dateAdded: "Today")
+        let recipe = HistoryViewModel(id: "1", mealName: "Pizza", dateAdded: "Today")
         let recipes = [recipe]
         
         viewController.displayRecipeHistory(recipes)

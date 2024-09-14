@@ -12,6 +12,7 @@ import XCTest
 class HistoryInteractorTests: XCTestCase {
     var interactor: HistoryInteractor!
     var mockPresenter: MockHistoryPresenter!
+    var mockRouter: MockHistoryRouter!
     var mockStorageService: MockStorageService!
     var historyItem: HistoryItemDataModel!
 
@@ -19,8 +20,11 @@ class HistoryInteractorTests: XCTestCase {
         super.setUp()
         
         mockPresenter = MockHistoryPresenter()
+        mockRouter = MockHistoryRouter()
         mockStorageService = MockStorageService()
-        interactor = HistoryInteractor(presenter: mockPresenter, storageService: mockStorageService)
+        interactor = HistoryInteractor(presenter: mockPresenter,
+                                       router: mockRouter,
+                                       storageService: mockStorageService)
         historyItem = HistoryItemDataModel(id: "1",
                                            mealName: "Spaghetti",
                                            date: Date())
@@ -72,5 +76,12 @@ class HistoryInteractorTests: XCTestCase {
         XCTAssertTrue(mockPresenter.presentErrorCalled)
         XCTAssertNotNil(mockPresenter.receivedError)
         XCTAssertEqual(mockPresenter.receivedError as? StorageError, StorageError.failedToDelete)
+    }
+    
+    func testSelectRecipeCallsRouter() {
+        interactor.selectRecipe(withId: "1")
+        
+        XCTAssertTrue(mockRouter.navigateToRecipeDetailCalled)
+        XCTAssertEqual(mockRouter.selectedRecipeId, "1")
     }
 }

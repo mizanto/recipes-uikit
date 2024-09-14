@@ -140,6 +140,8 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         AppLogger.shared.info("Selected recipe at index: \(indexPath.row)", category: .ui)
+        let recipe = recipes[indexPath.row]
+        interactor?.selectRecipe(withId: recipe.id)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

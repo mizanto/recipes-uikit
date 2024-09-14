@@ -8,6 +8,7 @@
 import Foundation
 
 struct HistoryViewModel {
+    let id: String
     let mealName: String
     let dateAdded: String
 }
