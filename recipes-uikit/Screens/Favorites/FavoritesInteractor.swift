@@ -13,7 +13,7 @@ protocol FavoritesInteractorProtocol {
     func selectRecipe(withId id: String)
 }
 
-class FavoritesInteractor: FavoritesInteractorProtocol {
+final class FavoritesInteractor: FavoritesInteractorProtocol {
 
     private let presenter: FavoritesPresenterProtocol
     private let router: FavoritesRouterProtocol

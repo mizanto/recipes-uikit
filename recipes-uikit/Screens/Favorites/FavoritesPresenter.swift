@@ -12,7 +12,7 @@ protocol FavoritesPresenterProtocol {
     func presentError(_ error: Error)
 }
 
-class FavoritesPresenter: FavoritesPresenterProtocol {
+final class FavoritesPresenter: FavoritesPresenterProtocol {
 
     weak var view: FavoritesViewProtocol?
 

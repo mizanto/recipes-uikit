@@ -13,7 +13,7 @@ protocol HistoryViewProtocol: AnyObject {
     func displayError(_ message: String)
 }
 
-class HistoryViewController: UIViewController {
+final class HistoryViewController: UIViewController {
 
     var interactor: HistoryInteractorProtocol?
 
@@ -121,8 +121,6 @@ class HistoryViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource & UITableViewDelegate
-
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -145,8 +143,6 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-// MARK: - HistoryViewProtocol
 
 extension HistoryViewController: HistoryViewProtocol {
     func displayRecipeHistory(_ viewModel: [HistoryViewModel]) {

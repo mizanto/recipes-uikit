@@ -11,7 +11,7 @@ protocol RecipeRandomInteractorProtocol: RecipeInteractorProtocol {
     func fetchRandomRecipe()
 }
 
-class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtocol {
+final class RecipeRandomInteractor: BaseRecipeInteractor, RecipeRandomInteractorProtocol {
     private let networkService: NetworkServiceProtocol
 
     init(presenter: RecipePresenterProtocol,

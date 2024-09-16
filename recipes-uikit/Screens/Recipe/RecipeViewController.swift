@@ -12,7 +12,7 @@ protocol RecipeViewProtocol: AnyObject {
     func displayError(_ message: String)
 }
 
-class RecipeViewController: UIViewController {
+final class RecipeViewController: UIViewController {
 
     enum ScreenType {
         case random

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
 
     private var randomRecipeViewController: UIViewController!
     private var historyViewController: UIViewController!

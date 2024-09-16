@@ -13,7 +13,7 @@ protocol FavoritesViewProtocol: AnyObject {
     func displayError(_ message: String)
 }
 
-class FavoritesViewController: UIViewController {
+final class FavoritesViewController: UIViewController {
 
     var interactor: FavoritesInteractorProtocol?
     private var favoriteRecipes: [FavoriteRecipeViewModel] = []

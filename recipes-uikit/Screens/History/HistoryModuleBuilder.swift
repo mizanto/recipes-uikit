@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryModuleBuilder {
+final class HistoryModuleBuilder {
     static func build(storageService: StorageServiceProtocol) -> UIViewController {
         let viewController = HistoryViewController()
         let presenter = HistoryPresenter(view: viewController)

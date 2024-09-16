@@ -12,7 +12,7 @@ protocol HistoryPresenterProtocol {
     func presentError(_ error: Error)
 }
 
-class HistoryPresenter: HistoryPresenterProtocol {
+final class HistoryPresenter: HistoryPresenterProtocol {
 
     weak var view: HistoryViewProtocol?
 

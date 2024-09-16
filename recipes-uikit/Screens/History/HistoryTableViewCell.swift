@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryTableViewCell: UITableViewCell {
+final class HistoryTableViewCell: UITableViewCell {
     static let identifier = "HistoryTableViewCell"
 
     private var mealNameLabel: UILabel!

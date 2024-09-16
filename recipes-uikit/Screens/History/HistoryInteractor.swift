@@ -13,7 +13,7 @@ protocol HistoryInteractorProtocol {
     func selectRecipe(withId id: String)
 }
 
-class HistoryInteractor: HistoryInteractorProtocol {
+final class HistoryInteractor: HistoryInteractorProtocol {
     private let presenter: HistoryPresenterProtocol
     private let router: HistoryRouterProtocol
     

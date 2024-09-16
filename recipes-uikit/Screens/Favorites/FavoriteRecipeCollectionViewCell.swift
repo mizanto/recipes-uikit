@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
+final class FavoriteRecipeCollectionViewCell: UICollectionViewCell {
     static let identifier = "FavoriteRecipeCollectionViewCell"
 
     private var imageView: UIImageView!

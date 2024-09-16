@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class RecipeView: UIView {
+final class RecipeView: UIView {
 
     private var imageView: UIImageView!
     private var categoryLabel: PaddedLabel!

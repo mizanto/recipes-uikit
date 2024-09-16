@@ -11,7 +11,7 @@ protocol HistoryRouterProtocol {
     func navigateToRecipeDetail(with recipeId: String)
 }
 
-class HistoryRouter: HistoryRouterProtocol {
+final class HistoryRouter: HistoryRouterProtocol {
 
     let storageService: StorageServiceProtocol
     weak var viewController: UIViewController?

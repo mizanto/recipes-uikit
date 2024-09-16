@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RecipeDetailInteractor: BaseRecipeInteractor {
+final class RecipeDetailInteractor: BaseRecipeInteractor {
     private let recipeId: String
 
     init(presenter: RecipePresenterProtocol, storageService: StorageServiceProtocol, recipeId: String) {

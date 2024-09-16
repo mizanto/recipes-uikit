@@ -14,7 +14,7 @@ protocol RecipePresenterProtocol: AnyObject {
     func presentError(_ error: Error)
 }
 
-class RecipePresenter: RecipePresenterProtocol {
+final class RecipePresenter: RecipePresenterProtocol {
 
     weak var view: RecipeViewProtocol?
 

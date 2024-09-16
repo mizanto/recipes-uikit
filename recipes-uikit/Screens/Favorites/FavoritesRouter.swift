@@ -11,7 +11,7 @@ protocol FavoritesRouterProtocol {
     func navigateToRecipeDetail(with recipeId: String)
 }
 
-class FavoritesRouter: FavoritesRouterProtocol {
+final class FavoritesRouter: FavoritesRouterProtocol {
 
     let storageService: StorageServiceProtocol
     weak var viewController: UIViewController?

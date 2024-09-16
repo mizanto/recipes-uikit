@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppDependencyConfigurator {
+final class AppDependencyConfigurator {
 
     static let shared = AppDependencyConfigurator()
 
